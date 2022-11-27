@@ -22,18 +22,24 @@ const WithdrawCard = (props: Props) => {
       <form>
         <div className="card">
           <div className="card-content">
-            <span className="card-title">Withdraw</span>
-            <div className="input-field">
-              <input
-                className="validate"
-                id="amount"
-                type="number"
-                min={0}
-                max={balance}
-                value={amount}
-                onChange={handleChangeAmount}
-              />
-              <label htmlFor="amount">Amount</label>
+            <div className="row">
+              <div className="col s12">
+                <span className="card-title">Withdraw</span>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  className="validate"
+                  id="amount"
+                  type="number"
+                  min={0}
+                  max={balance}
+                  value={amount}
+                  onChange={handleChangeAmount}
+                />
+                <label htmlFor="amount">Amount</label>
+              </div>
             </div>
           </div>
           <div className="card-action">

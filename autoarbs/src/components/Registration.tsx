@@ -35,9 +35,10 @@ const Registration = (props: Props) => {
         <h1 className="col s12">Create an Account</h1>
       </div>
       <div className="row">
-        <form className="col s12" onSubmit={handleSubmit}>
+        <form className="col s6 offset-s3" onSubmit={handleSubmit}>
           <div className="row">
             <div className="input-field col s12">
+              <i className="material-icons prefix">account_circle</i>
               <input
                 id="username"
                 type="text"
@@ -50,6 +51,7 @@ const Registration = (props: Props) => {
           </div>
           <div className="row">
             <div className="input-field col s12">
+              <i className="material-icons prefix">lock</i>
               <input
                 id="password"
                 type="password"
@@ -62,6 +64,7 @@ const Registration = (props: Props) => {
           </div>
           <div className="row">
             <div className="input-field col s12">
+              <i className="material-icons prefix">password</i>
               <input
                 id="password-retype"
                 type="password"

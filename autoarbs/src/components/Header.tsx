@@ -29,13 +29,21 @@ const Header = (props: Props) => {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <Link to="/">
-              <p className="brand-logo">AutoArbs</p>
-            </Link>
-            <a href="#" data-target="mobile-nav" className="sidenav-trigger">
-              <i className="material-icons">menu</i>
-            </a>
-            <ul className="right hide-on-med-and-down">{navLinks}</ul>
+            <div className="row">
+              <div className="col s10 offset-s1">
+                <Link to="/">
+                  <p className="brand-logo">AutoArbs</p>
+                </Link>
+                <a
+                  href="#"
+                  data-target="mobile-nav"
+                  className="sidenav-trigger"
+                >
+                  <i className="material-icons">menu</i>
+                </a>
+                <ul className="right hide-on-med-and-down">{navLinks}</ul>
+              </div>
+            </div>
           </div>
         </nav>
       </div>

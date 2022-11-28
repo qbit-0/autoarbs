@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RegistrationCard from "../RegistrationCard";
 
 type Props = {};
@@ -10,6 +11,13 @@ const RegistrationPage = (props: Props) => {
           <div className="col s12 m8 offset-m2">
             <RegistrationCard />
           </div>
+        </div>
+        <div className="flex justify-center">
+          <Link to="/login">
+            <button className="btn-flat waves-effect waves-light">
+              Or Login
+            </button>
+          </Link>
         </div>
       </div>
     </div>

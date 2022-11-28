@@ -61,14 +61,11 @@ const LoginCard = (props: Props) => {
           </div>
         </div>
         <div className="card-action">
-          <Link to="/registration">
-            <button className="btn-flat waves-effect waves-light">
-              Create Account
+          <div className="flex justify-end">
+            <button className="btn waves-effect waves-light" type="submit">
+              Next
             </button>
-          </Link>
-          <button className="btn waves-effect waves-light right" type="submit">
-            Next
-          </button>
+          </div>
         </div>
       </form>
     </div>

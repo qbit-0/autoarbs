@@ -42,9 +42,11 @@ const WithdrawCard = (props: Props) => {
           </div>
         </div>
         <div className="card-action">
-          <button className="btn waves-effect waves-light" type="submit">
-            Withdraw
-          </button>
+          <div className="flex justify-end">
+            <button className="btn waves-effect waves-light" type="submit">
+              Withdraw
+            </button>
+          </div>
         </div>
       </form>
     </div>

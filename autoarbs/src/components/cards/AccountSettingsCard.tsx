@@ -10,7 +10,7 @@ const AccountSettingsCard = (props: Props) => {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card hoverable">
       <div className="card-content">
         <div className="card-title">Settings</div>
         <div className="input-field">
@@ -24,7 +24,9 @@ const AccountSettingsCard = (props: Props) => {
       </div>
       <div className="card-action">
         <div className="flex justify-end">
-          <button className="btn waves-effect waves-light">Save</button>
+          <button className="btn waves-effect waves-light" type="submit">
+            Save
+          </button>
         </div>
       </div>
     </div>

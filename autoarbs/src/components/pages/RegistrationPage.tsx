@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import RegistrationCard from "../RegistrationCard";
+import RegistrationCard from "../cards/RegistrationCard";
 
 type Props = {};
 

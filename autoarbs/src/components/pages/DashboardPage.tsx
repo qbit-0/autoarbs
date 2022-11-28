@@ -10,7 +10,7 @@ const DashboardPage = (props: Props) => {
       <div className="container">
         <div className="row">
           <div className="col s12">
-            <h1>Dashboard</h1>
+            <h1>Investment Dashboard</h1>
           </div>
         </div>
         <div className="row">

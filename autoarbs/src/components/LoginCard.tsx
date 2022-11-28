@@ -7,11 +7,10 @@ import {
   useState,
 } from "react";
 import { Link } from "react-router-dom";
-import M from "materialize-css";
 
 type Props = {};
 
-const Login = (props: Props) => {
+const LoginCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,12 +29,10 @@ const Login = (props: Props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <h1 className="col s12">Login</h1>
-      </div>
-      <div className="row">
-        <form className="col s12 m8 offset-m2" onSubmit={handleSubmit}>
+    <div className="card hoverable">
+      <form onSubmit={handleSubmit}>
+        <div className="card-content">
+          <span className="card-title center">Log In</span>
           <div className="row">
             <div className="input-field col s12">
               <i className="material-icons prefix">account_circle</i>
@@ -62,24 +59,20 @@ const Login = (props: Props) => {
               <label htmlFor="password">Password</label>
             </div>
           </div>
-          <div className="row">
-            <div className="col s12">
-              <button className="waves-effect waves-light btn">Login</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className="row">
-        <div className="center">
+        </div>
+        <div className="card-action">
           <Link to="/registration">
-            <button className="waves-effect waves-light btn">
-              Or Create an Account
+            <button className="btn-flat waves-effect waves-light">
+              Create Account
             </button>
           </Link>
+          <button className="btn waves-effect waves-light right" type="submit">
+            Next
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
 
-export default Login;
+export default LoginCard;

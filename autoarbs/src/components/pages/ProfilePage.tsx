@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const Profile = (props: Props) => {
+const ProfilePage = (props: Props) => {
   return (
     <div>
       <div className="container">
@@ -15,4 +15,4 @@ const Profile = (props: Props) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

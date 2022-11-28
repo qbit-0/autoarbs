@@ -1,16 +1,16 @@
 import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useEffect,
   useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+  ChangeEvent,
+  FormEvent,
 } from "react";
 import { Link } from "react-router-dom";
 
 type Props = {};
 
-const Registration = (props: Props) => {
+const RegistrationCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
@@ -30,12 +30,10 @@ const Registration = (props: Props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <h1 className="col s12">Create an Account</h1>
-      </div>
-      <div className="row">
-        <form className="col s12 m8 offset-m2" onSubmit={handleSubmit}>
+    <div className="card hoverable">
+      <form className="" onSubmit={handleSubmit}>
+        <div className="card-content">
+          <span className="card-title center">Create an Account</span>
           <div className="row">
             <div className="input-field col s12">
               <i className="material-icons prefix">account_circle</i>
@@ -75,24 +73,16 @@ const Registration = (props: Props) => {
               <label htmlFor="password-retype">Retype Password</label>
             </div>
           </div>
-          <div className="row">
-            <div className="col s12">
-              <button className="waves-effect waves-light btn">
-                Create an Account
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className="row">
-        <div className="center">
-          <Link to="/login">
-            <button className="waves-effect waves-light btn">Or Login</button>
-          </Link>
         </div>
-      </div>
+        <div className="card-action">
+          <Link to="/login">
+            <button className="btn-flat waves-effect waves-light">Login</button>
+          </Link>
+          <button className="btn waves-effect waves-light right">Next</button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default Registration;
+export default RegistrationCard;

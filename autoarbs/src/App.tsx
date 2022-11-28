@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
-import Otp from "./components/Otp";
-import Profile from "./components/Profile";
-import Registration from "./components/Registration";
+import DashboardPage from "./components/pages/DashboardPage";
+import LoginPage from "./components/pages/LoginPage";
+import OtpPage from "./components/pages/OtpPage";
+import ProfilePage from "./components/pages/ProfilePage";
+import RegistrationPage from "./components/pages/RegistrationPage";
 import Root from "./components/Root";
 
 const router = createBrowserRouter([
@@ -11,11 +11,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <Dashboard /> },
-      { path: "/profile", element: <Profile /> },
-      { path: "/registration", element: <Registration /> },
-      { path: "/otp", element: <Otp /> },
-      { path: "/login", element: <Login /> },
+      { path: "/", element: <DashboardPage /> },
+      { path: "/profile", element: <ProfilePage /> },
+      { path: "/registration", element: <RegistrationPage /> },
+      { path: "/otp", element: <OtpPage /> },
+      { path: "/login", element: <LoginPage /> },
     ],
   },
 ]);

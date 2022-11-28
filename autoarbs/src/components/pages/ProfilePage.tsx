@@ -20,7 +20,9 @@ const ProfilePage = (props: Props) => {
           </div>
         </div>
         <div className="row">
-          <AccountSettingsCard />
+          <div className="col s12">
+            <AccountSettingsCard />
+          </div>
         </div>
       </div>
     </div>

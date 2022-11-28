@@ -1,10 +1,10 @@
 import React from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import {
   selectBalance,
   selectDeposited,
   selectWithdrawn,
-} from "../features/account/accountSlice";
+} from "../../features/account/accountSlice";
 
 type Props = {};
 
@@ -17,7 +17,7 @@ const BalanceCard = (props: Props) => {
   const profitPercent = (profit / deposited) * 100;
 
   return (
-    <div className="card hoverable">
+    <div className="card">
       <div className="card-content">
         <span className="card-title">Balance</span>
         <div className="row">

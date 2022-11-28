@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LoginCard from "../LoginCard";
+import LoginCard from "../cards/LoginCard";
 
 type Props = {};
 

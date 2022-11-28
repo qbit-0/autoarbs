@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export type AccountState = {
+  username: string;
   balance: number;
   deposited: number;
   withdrawn: number;
 };
 
 const initialState = {
+  username: "UsernameHere",
   balance: 30,
   deposited: 20,
   withdrawn: 10,
@@ -30,6 +32,7 @@ const accountSlice = createSlice({
 
 export const accountActions = accountSlice.actions;
 
+export const selectUsername = (state: RootState) => state.account.username;
 export const selectBalance = (state: RootState) => state.account.balance;
 export const selectDeposited = (state: RootState) => state.account.deposited;
 export const selectWithdrawn = (state: RootState) => state.account.withdrawn;

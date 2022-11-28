@@ -1,6 +1,6 @@
-import BalanceCard from "../BalanceCard";
-import DepositCard from "../DepositCard";
-import WithdrawCard from "../WithdrawCard";
+import BalanceCard from "../cards/BalanceCard";
+import DepositCard from "../cards/DepositCard";
+import WithdrawCard from "../cards/WithdrawCard";
 
 type Props = {};
 
@@ -8,7 +8,11 @@ const DashboardPage = (props: Props) => {
   return (
     <div>
       <div className="container">
-        <h1>Dashboard</h1>
+        <div className="row">
+          <div className="col s12">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
         <div className="row">
           <div className="col s12">
             <BalanceCard />

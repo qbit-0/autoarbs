@@ -1,13 +1,18 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 type Props = {};
 
 const DepositCard = (props: Props) => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>();
+  const amountInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     M.updateTextFields();
   }, []);
+
+  const handleCardClick = () => {
+    amountInputRef.current?.focus();
+  };
 
   const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedNum = Number.parseFloat(e.currentTarget.value);
@@ -16,7 +21,7 @@ const DepositCard = (props: Props) => {
   };
 
   return (
-    <div className="card hoverable">
+    <div className="card hoverable pointer" onClick={handleCardClick}>
       <form>
         <div className="card-content">
           <div className="row">
@@ -28,6 +33,7 @@ const DepositCard = (props: Props) => {
             <div className="input-field col s12">
               <input
                 className="validate"
+                ref={amountInputRef}
                 id="amount"
                 type="number"
                 value={amount}

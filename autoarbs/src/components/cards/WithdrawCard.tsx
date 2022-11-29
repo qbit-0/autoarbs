@@ -1,11 +1,18 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import { useAppSelector } from "../../app/hooks";
+import { selectBalance } from "../../features/account/accountSlice";
 
 type Props = {};
 
-const balance = 1000;
-
 const WithdrawCard = (props: Props) => {
-  const [amount, setAmount] = useState(0);
+  const balance = useAppSelector(selectBalance);
+
+  const [amount, setAmount] = useState<number>();
+  const amountInputRef = useRef<HTMLInputElement>(null);
+
+  const handleCardClick = () => {
+    amountInputRef.current?.focus();
+  };
 
   const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedNum = Number.parseFloat(e.currentTarget.value);
@@ -14,7 +21,7 @@ const WithdrawCard = (props: Props) => {
   };
 
   return (
-    <div className="card hoverable">
+    <div className="card hoverable pointer" onClick={handleCardClick}>
       <form>
         <div className="card-content">
           <div className="row">
@@ -26,6 +33,7 @@ const WithdrawCard = (props: Props) => {
             <div className="input-field col s12">
               <input
                 className="validate"
+                ref={amountInputRef}
                 id="amount"
                 type="number"
                 min={0}

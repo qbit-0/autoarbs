@@ -39,7 +39,7 @@ const DepositCard = (props: Props) => {
         </div>
         <div className="card-action">
           <div className="flex justify-end">
-            <button className="btn waves-effect waves-light" type="submit">
+            <button className="btn waves-effect waves-light red" type="submit">
               Deposit
             </button>
           </div>

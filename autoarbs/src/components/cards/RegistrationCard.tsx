@@ -76,7 +76,7 @@ const RegistrationCard = (props: Props) => {
         </div>
         <div className="card-action">
           <div className="flex justify-end">
-            <button className="btn waves-effect waves-light">Next</button>
+            <button className="btn waves-effect waves-light blue">Next</button>
           </div>
         </div>
       </form>

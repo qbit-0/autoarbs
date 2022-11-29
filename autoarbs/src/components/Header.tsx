@@ -40,7 +40,7 @@ const Header = (props: Props) => {
     <header>
       <div className="navbar-fixed">
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper blue darken-3">
             <Link to="/">
               <p className="brand-logo right">AutoArbs</p>
             </Link>

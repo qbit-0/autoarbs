@@ -3,6 +3,7 @@ import {
   Dispatch,
   FormEvent,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
 
@@ -12,6 +13,10 @@ const RegistrationCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
+
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
 
   const handleTextChange = (setText: Dispatch<SetStateAction<string>>) => {
     return (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +75,7 @@ const RegistrationCard = (props: Props) => {
         </div>
         <div className="card-action">
           <div className="flex justify-end">
-            <button className="btn waves-effect waves-light blue">Next</button>
+            <button className="btn waves-effect waves-light">Next</button>
           </div>
         </div>
       </form>

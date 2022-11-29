@@ -1,9 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type Props = {};
 
 const DepositCard = (props: Props) => {
   const [amount, setAmount] = useState(0);
+
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
 
   const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedNum = Number.parseFloat(e.currentTarget.value);
@@ -35,7 +39,7 @@ const DepositCard = (props: Props) => {
         </div>
         <div className="card-action">
           <div className="flex justify-end">
-            <button className="btn waves-effect waves-light red" type="submit">
+            <button className="btn waves-effect waves-light" type="submit">
               Deposit
             </button>
           </div>

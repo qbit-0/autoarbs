@@ -1,0 +1,47 @@
+@import "../node_modules/materialize-css/sass/components/_color-variables.scss";
+
+$primary-color: color("blue", "darken-2") !default;
+$secondary-color: color("blue", "base") !default;
+$success-color: color("green", "base") !default;
+$success-color: color("red", "base") !default;
+
+$footer-bg-color: color("blue", "darken-4") !default;
+
+@import '../node_modules/materialize-css/sass/materialize.scss';
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.height-full {
+  flex-grow: 1;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+

@@ -9,6 +9,14 @@ $footer-bg-color: color("blue", "darken-4") !default;
 
 @import '../node_modules/materialize-css/sass/materialize.scss';
 
+.card {
+  border-radius: 16px;
+}
+
+.btn {
+  border-radius: 4px;
+}
+
 #root {
   display: flex;
   min-height: 100vh;
@@ -43,8 +51,4 @@ main {
 
 .space-between {
   justify-content: space-between;
-}
-
-.card {
-  border-radius: 16px;
 }

@@ -1,13 +1,9 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 type Props = {};
 
 const DepositCard = (props: Props) => {
   const [amount, setAmount] = useState(0);
-
-  useEffect(() => {
-    M.updateTextFields();
-  }, [amount]);
 
   const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>) => {
     const parsedNum = Number.parseFloat(e.currentTarget.value);

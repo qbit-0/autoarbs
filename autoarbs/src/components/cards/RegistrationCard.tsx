@@ -1,12 +1,10 @@
 import {
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
   ChangeEvent,
+  Dispatch,
   FormEvent,
+  SetStateAction,
+  useState,
 } from "react";
-import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -14,10 +12,6 @@ const RegistrationCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
-
-  useEffect(() => {
-    M.updateTextFields();
-  }, []);
 
   const handleTextChange = (setText: Dispatch<SetStateAction<string>>) => {
     return (e: ChangeEvent<HTMLInputElement>) => {

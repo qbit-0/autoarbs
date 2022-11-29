@@ -3,20 +3,14 @@ import {
   Dispatch,
   FormEvent,
   SetStateAction,
-  useEffect,
   useState,
 } from "react";
-import { Link } from "react-router-dom";
 
 type Props = {};
 
 const LoginCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    M.updateTextFields();
-  }, []);
 
   const handleTextChange = (setText: Dispatch<SetStateAction<string>>) => {
     return (e: ChangeEvent<HTMLInputElement>) => {

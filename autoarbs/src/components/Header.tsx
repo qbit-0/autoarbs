@@ -1,5 +1,5 @@
 import M from "materialize-css";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import NavLink from "./NavLink";
 
@@ -11,7 +11,6 @@ const Header = (props: Props) => {
 
   useEffect(() => {
     if (sidenavRef.current !== null) {
-      M.Sidenav.init(sidenavRef.current);
       setSidenavInstance(M.Sidenav.getInstance(sidenavRef.current));
     }
   }, []);
@@ -40,7 +39,7 @@ const Header = (props: Props) => {
     <header>
       <div className="navbar-fixed">
         <nav>
-          <div className="nav-wrapper blue darken-3">
+          <div className="nav-wrapper">
             <Link to="/">
               <p className="brand-logo right">AutoArbs</p>
             </Link>

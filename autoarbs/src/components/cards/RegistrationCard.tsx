@@ -1,12 +1,11 @@
 import {
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
   ChangeEvent,
+  Dispatch,
   FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
 } from "react";
-import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -76,7 +75,7 @@ const RegistrationCard = (props: Props) => {
         </div>
         <div className="card-action">
           <div className="flex justify-end">
-            <button className="btn waves-effect waves-light blue">Next</button>
+            <button className="btn waves-effect waves-light">Next</button>
           </div>
         </div>
       </form>

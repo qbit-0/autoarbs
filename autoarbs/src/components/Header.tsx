@@ -1,5 +1,5 @@
 import M from "materialize-css";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import NavLink from "./NavLink";
 
@@ -7,17 +7,29 @@ type Props = {};
 
 const Header = (props: Props) => {
   const sidenavRef = useRef<HTMLUListElement>(null);
+  const [sidenavInstance, setSidenavInstance] = useState<M.Sidenav>();
 
   useEffect(() => {
-    if (sidenavRef.current !== null) M.Sidenav.init(sidenavRef.current);
+    if (sidenavRef.current !== null) {
+      M.Sidenav.init(sidenavRef.current);
+      setSidenavInstance(M.Sidenav.getInstance(sidenavRef.current));
+    }
   }, []);
+
+  const handleNavClick = () => {
+    sidenavInstance?.close();
+  };
 
   const navLinks = (
     <>
-      <NavLink name="Dashboard" to="/" />
-      <NavLink name="Profile" to="/profile" />
-      <NavLink name="Login" to="/login" />
-      <NavLink name="Create an Account" to="/registration" />
+      <NavLink name="Dashboard" to="/" onClick={handleNavClick} />
+      <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
+      <NavLink name="Login" to="/login" onClick={handleNavClick} />
+      <NavLink
+        name="Create an Account"
+        to="/registration"
+        onClick={handleNavClick}
+      />
       <li>
         <Link to="/">Logout</Link>
       </li>

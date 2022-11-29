@@ -28,16 +28,16 @@ const BalanceCard = (props: Props) => {
         <div className="row divider" />
         <div className="row">
           <div className="col s12 m4">
-            <p>Total Deposited</p>
-            <h3>${deposited}</h3>
+            <p className="red-text">Total Deposited</p>
+            <h3 className="red-text">${deposited}</h3>
           </div>
           <div className="col s12 m4">
-            <p>Total Withdrawn</p>
-            <h3>${withdrawn}</h3>
+            <p className="green-text">Total Withdrawn</p>
+            <h3 className="green-text">${withdrawn}</h3>
           </div>
           <div className="col s12 m4">
-            <p>Total Profit</p>
-            <h3>
+            <p className="blue-text">Total Profit</p>
+            <h3 className="blue-text">
               ${profit} ({profitPercent}%)
             </h3>
           </div>

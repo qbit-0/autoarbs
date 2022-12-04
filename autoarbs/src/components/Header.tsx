@@ -21,7 +21,8 @@ const Header = (props: Props) => {
 
   const navLinks = (
     <>
-      <NavLink name="Dashboard" to="/" onClick={handleNavClick} />
+      <NavLink name="Landing" to="/" onClick={handleNavClick} />
+      <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
       <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
       <NavLink name="Login" to="/login" onClick={handleNavClick} />
       <NavLink

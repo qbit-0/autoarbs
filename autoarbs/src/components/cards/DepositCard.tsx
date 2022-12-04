@@ -1,10 +1,14 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { accountActions } from "../../features/account/accountSlice";
 
 type Props = {};
 
 const DepositCard = (props: Props) => {
   const [amount, setAmount] = useState<number>();
   const amountInputRef = useRef<HTMLInputElement>(null);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     M.updateTextFields();
@@ -20,9 +24,14 @@ const DepositCard = (props: Props) => {
     setAmount(newAmount);
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(accountActions.deposit(amount));
+  };
+
   return (
     <div className="card hoverable pointer" onClick={handleCardClick}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="card-content">
           <div className="row">
             <div className="col s12">

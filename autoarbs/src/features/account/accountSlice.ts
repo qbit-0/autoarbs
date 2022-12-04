@@ -10,9 +10,9 @@ export type AccountState = {
 
 const initialState = {
   username: "UsernameHere",
-  balance: 30,
-  deposited: 20,
-  withdrawn: 10,
+  balance: 300,
+  deposited: 200,
+  withdrawn: 100,
 };
 
 const accountSlice = createSlice({

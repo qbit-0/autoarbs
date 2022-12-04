@@ -1,6 +1,6 @@
 type Props = {};
 
-const HomePage = (props: Props) => {
+const LandingPage = (props: Props) => {
   return (
     <div>
       <div className="container">
@@ -16,4 +16,4 @@ const HomePage = (props: Props) => {
   );
 };
 
-export default HomePage;
+export default LandingPage;

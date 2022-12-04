@@ -43,9 +43,12 @@ const Header = (props: Props) => {
             <Link to="/">
               <p className="brand-logo right">AutoArbs</p>
             </Link>
-            <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+            <button data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>
-            </a>
+            </button>
+            {/* <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+              <i className="material-icons">menu</i>
+            </a> */}
             <ul className="hide-on-med-and-down">{navLinks}</ul>
           </div>
         </nav>

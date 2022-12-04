@@ -38,7 +38,7 @@ const BalanceCard = (props: Props) => {
           <div className="col s12 m4">
             <p className="blue-text">Total Profit</p>
             <h3 className="blue-text">
-              ${profit} ({profitPercent}%)
+              ${profit} ({profitPercent.toFixed(2)}%)
             </h3>
           </div>
         </div>

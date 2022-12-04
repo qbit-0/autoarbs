@@ -5,6 +5,7 @@ const AccountInfoCard = (props: Props) => {
     <div className="card">
       <div className="card-content">
         <span className="card-title">Info</span>
+        <p>Account info goes here.</p>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ const RegistrationCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const RegistrationCard = (props: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username) {
+    if (username && password && password === passwordRetype) {
       dispatch(accountActions.login(username));
       navigate("/dashboard");
     }
@@ -79,6 +80,9 @@ const RegistrationCard = (props: Props) => {
                 className="validate"
               />
               <label htmlFor="password-retype">Retype Password</label>
+              {password !== passwordRetype && (
+                <span className="helper-text">password does not match</span>
+              )}
             </div>
           </div>
         </div>

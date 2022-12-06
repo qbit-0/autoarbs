@@ -6,6 +6,9 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
+import { accountActions } from "../../features/account/accountSlice";
 
 type Props = {};
 
@@ -13,6 +16,8 @@ const RegistrationCard = (props: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     M.updateTextFields();
@@ -26,6 +31,10 @@ const RegistrationCard = (props: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (username) {
+      dispatch(accountActions.login(username));
+      navigate("/dashboard");
+    }
   };
 
   return (

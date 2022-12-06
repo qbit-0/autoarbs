@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardPage from "./components/pages/DashboardPage";
-import LandingPage from "./components/pages/LandingPage";
+import AboutPage from "./components/pages/AboutPage";
 import LoginPage from "./components/pages/LoginPage";
 import OtpPage from "./components/pages/OtpPage";
 import ProfilePage from "./components/pages/ProfilePage";
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <LandingPage /> },
+      { path: "/", element: <AboutPage /> },
       { path: "/dashboard", element: <DashboardPage /> },
       { path: "/profile", element: <ProfilePage /> },
       { path: "/registration", element: <RegistrationPage /> },

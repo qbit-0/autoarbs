@@ -30,7 +30,7 @@ const LoginCard = (props: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username) {
+    if (username && password) {
       dispatch(accountActions.login(username));
       navigate("/dashboard");
     }

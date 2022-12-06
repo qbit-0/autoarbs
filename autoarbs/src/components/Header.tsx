@@ -1,6 +1,12 @@
 import M from "materialize-css";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import {
+  accountActions,
+  selectUsername,
+} from "../features/account/accountSlice";
 import NavLink from "./NavLink";
 
 type Props = {};
@@ -8,6 +14,8 @@ type Props = {};
 const Header = (props: Props) => {
   const sidenavRef = useRef<HTMLUListElement>(null);
   const [sidenavInstance, setSidenavInstance] = useState<M.Sidenav>();
+  const username = useAppSelector(selectUsername);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (sidenavRef.current !== null) {
@@ -21,18 +29,33 @@ const Header = (props: Props) => {
 
   const navLinks = (
     <>
-      <NavLink name="Landing" to="/" onClick={handleNavClick} />
-      <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
-      <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
-      <NavLink name="Login" to="/login" onClick={handleNavClick} />
-      <NavLink
-        name="Create an Account"
-        to="/registration"
-        onClick={handleNavClick}
-      />
-      <li>
-        <Link to="/">Logout</Link>
-      </li>
+      <NavLink name="About" to="/" onClick={handleNavClick} />
+      {username && (
+        <>
+          <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
+          <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
+          <li>
+            <Link
+              to="/"
+              onClick={() => {
+                dispatch(accountActions.logout());
+              }}
+            >
+              Logout
+            </Link>
+          </li>
+        </>
+      )}
+      {!username && (
+        <>
+          <NavLink name="Login" to="/login" onClick={handleNavClick} />
+          <NavLink
+            name="Create an Account"
+            to="/registration"
+            onClick={handleNavClick}
+          />
+        </>
+      )}
     </>
   );
 

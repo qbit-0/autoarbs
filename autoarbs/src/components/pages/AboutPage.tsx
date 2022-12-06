@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 type Props = {};
 
-const LandingPage = (props: Props) => {
+const AboutPage = (props: Props) => {
   return (
     <div>
       <div className="container">
@@ -58,4 +58,4 @@ const LandingPage = (props: Props) => {
   );
 };
 
-export default LandingPage;
+export default AboutPage;

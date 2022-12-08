@@ -3,6 +3,9 @@ import { RootState } from "../../app/store";
 
 export type AccountState = {
   username: string | null;
+  email: string | null;
+  firstname: string | null;
+  lastname: string | null;
   balance: number;
   deposited: number;
   withdrawn: number;
@@ -10,6 +13,9 @@ export type AccountState = {
 
 const initialState = {
   username: null,
+  email: null,
+  firstname: null,
+  lastname: null,
   balance: 300,
   deposited: 200,
   withdrawn: 100,
@@ -20,7 +26,10 @@ const accountSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.username = action.payload;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+      state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
     },
     logout: (state) => {
       state.username = null;

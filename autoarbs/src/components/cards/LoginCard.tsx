@@ -7,13 +7,14 @@ import {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
 type Props = {};
 
 const LoginCard = (props: Props) => {
-  const [username, setUsername] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -28,11 +29,23 @@ const LoginCard = (props: Props) => {
     };
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username && password) {
-      dispatch(accountActions.login(username));
-      navigate("/dashboard");
+
+    if (!usernameOrEmail || !password) return;
+
+    const res = await login(usernameOrEmail, password);
+    console.log(res);
+
+    const data = res.data;
+
+    switch (data.statusCode) {
+      case 200:
+        dispatch(accountActions.login(usernameOrEmail));
+        navigate("/dashboard");
+        break;
+      case 400:
+        break;
     }
   };
 
@@ -43,20 +56,18 @@ const LoginCard = (props: Props) => {
           <span className="card-title center">Log In</span>
           <div className="row">
             <div className="input-field col s12">
-              <i className="material-icons prefix">account_circle</i>
               <input
-                id="username"
+                id="username_or_email"
                 type="text"
-                value={username}
-                onChange={handleTextChange(setUsername)}
+                value={usernameOrEmail}
+                onChange={handleTextChange(setUsernameOrEmail)}
                 className="validate"
               />
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username_or_email">Username or Email</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <i className="material-icons prefix">lock</i>
               <input
                 id="password"
                 type="password"

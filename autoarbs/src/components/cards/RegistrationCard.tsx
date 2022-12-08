@@ -7,12 +7,16 @@ import {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { register } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
 type Props = {};
 
 const RegistrationCard = (props: Props) => {
+  const [email, setEmail] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
@@ -30,11 +34,22 @@ const RegistrationCard = (props: Props) => {
     };
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username && password && password === passwordRetype) {
-      dispatch(accountActions.login(username));
-      navigate("/dashboard");
+    if (!username || !password || password !== passwordRetype) return;
+
+    const res = await register(firstname, lastname, username, email, password);
+    console.log(res);
+
+    const data = res.data;
+
+    switch (data.statusCode) {
+      case 201:
+        dispatch(accountActions.login(username));
+        navigate("/dashboard");
+        break;
+      case 400:
+        break;
     }
   };
 
@@ -45,7 +60,40 @@ const RegistrationCard = (props: Props) => {
           <span className="card-title center">Create an Account</span>
           <div className="row">
             <div className="input-field col s12">
-              <i className="material-icons prefix">account_circle</i>
+              <input
+                id="email"
+                type="text"
+                value={email}
+                onChange={handleTextChange(setEmail)}
+                className="validate"
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12 m6">
+              <input
+                id="firstname"
+                type="text"
+                value={firstname}
+                onChange={handleTextChange(setFirstname)}
+                className="validate"
+              />
+              <label htmlFor="firstname">First Name</label>
+            </div>
+            <div className="input-field col s12 m6">
+              <input
+                id="lastname"
+                type="text"
+                value={lastname}
+                onChange={handleTextChange(setLastname)}
+                className="validate"
+              />
+              <label htmlFor="lastname">Last Name</label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12">
               <input
                 id="username"
                 type="text"
@@ -58,7 +106,6 @@ const RegistrationCard = (props: Props) => {
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <i className="material-icons prefix">lock</i>
               <input
                 id="password"
                 type="password"
@@ -71,7 +118,6 @@ const RegistrationCard = (props: Props) => {
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <i className="material-icons prefix">password</i>
               <input
                 id="password-retype"
                 type="password"

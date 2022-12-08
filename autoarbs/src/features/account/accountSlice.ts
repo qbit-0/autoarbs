@@ -2,23 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export type AccountState = {
-  username: string | null;
-  email: string | null;
-  firstname: string | null;
-  lastname: string | null;
+  isLoggedIn: boolean;
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
   balance: number;
   deposited: number;
   withdrawn: number;
 };
 
 const initialState = {
-  username: null,
-  email: null,
-  firstname: null,
-  lastname: null,
-  balance: 300,
-  deposited: 200,
-  withdrawn: 100,
+  isLoggedIn: false,
+  username: "",
+  email: "",
+  firstname: "",
+  lastname: "",
+  balance: 0,
+  deposited: 0,
+  withdrawn: 0,
 };
 
 const accountSlice = createSlice({
@@ -26,13 +28,15 @@ const accountSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
+      state.isLoggedIn = true;
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
     },
     logout: (state) => {
-      state.username = null;
+      state.isLoggedIn = false;
+      state.username = "";
     },
     deposit: (state, action) => {
       state.balance += action.payload;
@@ -47,7 +51,10 @@ const accountSlice = createSlice({
 
 export const accountActions = accountSlice.actions;
 
+export const selectIsLoggedIn = (state: RootState) => state.account.isLoggedIn;
 export const selectUsername = (state: RootState) => state.account.username;
+export const selectFirstname = (state: RootState) => state.account.firstname;
+export const selectLastname = (state: RootState) => state.account.lastname;
 export const selectBalance = (state: RootState) => state.account.balance;
 export const selectDeposited = (state: RootState) => state.account.deposited;
 export const selectWithdrawn = (state: RootState) => state.account.withdrawn;

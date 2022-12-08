@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
+import { selectIsLoggedIn } from "../../features/account/accountSlice";
 import BalanceCard from "../cards/BalanceCard";
 import DepositCard from "../cards/DepositCard";
 import WithdrawCard from "../cards/WithdrawCard";
@@ -5,6 +9,14 @@ import WithdrawCard from "../cards/WithdrawCard";
 type Props = {};
 
 const DashboardPage = (props: Props) => {
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) navigate("/");
+  }, [navigate, isLoggedIn]);
+
   return (
     <div>
       <div className="container">

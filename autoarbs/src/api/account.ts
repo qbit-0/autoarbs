@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://boladada524-001-site1.atempurl.com/api";
+const url = "https://autoarbs.herokuapp.com/api";
 
 const registerEndpoint = "/auth/register";
 const loginEndpoint = "/auth/login";

@@ -24,9 +24,16 @@ export const register = async (
 };
 
 export const login = async (usernameOrEmail: string, password: string) => {
-  return axios.post(`${url}${loginEndpoint}`, {
-    userName: usernameOrEmail,
-    password,
+  // return axios.post(`${url}${loginEndpoint}`, {
+  //   userName: usernameOrEmail,
+  //   password,
+  // });
+
+  return fetch(`https://autoarbs.herokuapp.com/api/auth/login`, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userName: "qbit", password: "asdfasdf" }),
   });
 };
 
@@ -40,6 +47,10 @@ export const deposit = async (
     amount,
     method,
   });
+};
+
+export const getDeposit = async () => {
+  return await axios.get(`${url}${depositEndpoint}`);
 };
 
 export const withdraw = async (

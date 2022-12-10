@@ -34,8 +34,8 @@ const LoginCard = (props: Props) => {
 
     if (!usernameOrEmail || !password) return;
 
-    const res = await login(usernameOrEmail, password);
-    console.log(res);
+    // const res = await login(usernameOrEmail, password);
+    // console.log(res);
 
     fetch(`https://autoarbs.herokuapp.com/api/auth/login`, {
       method: "POST",

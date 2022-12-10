@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api/account";
+import { getDeposit, login } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
@@ -37,16 +37,32 @@ const LoginCard = (props: Props) => {
     const res = await login(usernameOrEmail, password);
     console.log(res);
 
-    const data = res.data;
+    fetch(`https://autoarbs.herokuapp.com/api/auth/login`, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userName: "qbit", password: "asdfasdf" }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    switch (data.statusCode) {
-      case 200:
-        dispatch(accountActions.login(usernameOrEmail));
-        navigate("/dashboard");
-        break;
-      case 400:
-        break;
-    }
+    // const data = res.data;
+
+    // switch (data.statusCode) {
+    //   case 200:
+    //     dispatch(accountActions.login(usernameOrEmail));
+    //     navigate("/dashboard");
+    //     break;
+    //   case 400:
+    //     break;
+    // }
+
+    // const res = await getDeposit();
+    // console.log(res);
   };
 
   return (

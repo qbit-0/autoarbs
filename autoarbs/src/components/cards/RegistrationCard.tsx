@@ -15,9 +15,9 @@ type Props = {};
 
 const RegistrationCard = (props: Props) => {
   const [email, setEmail] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
 
@@ -36,19 +36,19 @@ const RegistrationCard = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!username || !password || password !== passwordRetype) return;
+    if (!userName || !password || password !== passwordRetype) return;
 
-    const res = await register(firstname, lastname, username, email, password);
-    console.log(res);
-
+    const res = await register(firstName, lastName, userName, email, password);
     const data = res.data;
 
+    console.log(data);
+
     switch (data.statusCode) {
-      case 201:
-        dispatch(accountActions.login(username));
+      case "201":
+        dispatch(accountActions.login(data.userData));
         navigate("/dashboard");
         break;
-      case 400:
+      case "400":
         break;
     }
   };
@@ -75,8 +75,8 @@ const RegistrationCard = (props: Props) => {
               <input
                 id="firstname"
                 type="text"
-                value={firstname}
-                onChange={handleTextChange(setFirstname)}
+                value={firstName}
+                onChange={handleTextChange(setFirstName)}
                 className="validate"
               />
               <label htmlFor="firstname">First Name</label>
@@ -85,8 +85,8 @@ const RegistrationCard = (props: Props) => {
               <input
                 id="lastname"
                 type="text"
-                value={lastname}
-                onChange={handleTextChange(setLastname)}
+                value={lastName}
+                onChange={handleTextChange(setLastName)}
                 className="validate"
               />
               <label htmlFor="lastname">Last Name</label>
@@ -97,8 +97,8 @@ const RegistrationCard = (props: Props) => {
               <input
                 id="username"
                 type="text"
-                value={username}
-                onChange={handleTextChange(setUsername)}
+                value={userName}
+                onChange={handleTextChange(setUserName)}
                 className="validate"
               />
               <label htmlFor="username">Username</label>

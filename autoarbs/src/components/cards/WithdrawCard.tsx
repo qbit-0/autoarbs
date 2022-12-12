@@ -2,13 +2,15 @@ import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
-  selectBalance,
+  selectUserData,
 } from "../../features/account/accountSlice";
 
 type Props = {};
 
 const WithdrawCard = (props: Props) => {
-  const balance = useAppSelector(selectBalance);
+  const userData = useAppSelector(selectUserData);
+
+  const balance = userData?.balance || 0;
 
   const [amount, setAmount] = useState<number>();
   const amountInputRef = useRef<HTMLInputElement>(null);
@@ -29,6 +31,8 @@ const WithdrawCard = (props: Props) => {
     e.preventDefault();
     dispatch(accountActions.withdraw(amount));
   };
+
+  if (!userData) return null;
 
   return (
     <div className="card hoverable pointer" onClick={handleCardClick}>

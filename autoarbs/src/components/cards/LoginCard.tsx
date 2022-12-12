@@ -14,7 +14,7 @@ import { accountActions } from "../../features/account/accountSlice";
 type Props = {};
 
 const LoginCard = (props: Props) => {
-  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [userNameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -32,17 +32,19 @@ const LoginCard = (props: Props) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!usernameOrEmail || !password) return;
+    if (!userNameOrEmail || !password) return;
 
-    const res = await login(usernameOrEmail, password);
+    const res = await login(userNameOrEmail, password);
     const data = res.data;
 
+    console.log(data);
+
     switch (data.statusCode) {
-      case 200:
-        dispatch(accountActions.login(usernameOrEmail));
+      case "200":
+        dispatch(accountActions.login(data.userData));
         navigate("/dashboard");
         break;
-      case 400:
+      default:
         break;
     }
   };
@@ -57,7 +59,7 @@ const LoginCard = (props: Props) => {
               <input
                 id="username_or_email"
                 type="text"
-                value={usernameOrEmail}
+                value={userNameOrEmail}
                 onChange={handleTextChange(setUsernameOrEmail)}
                 className="validate"
               />

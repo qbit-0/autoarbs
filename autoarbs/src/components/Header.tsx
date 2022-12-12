@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 import {
   accountActions,
-  selectUsername,
+  selectUserData,
 } from "../features/account/accountSlice";
 import NavLink from "./NavLink";
 
@@ -14,7 +14,7 @@ type Props = {};
 const Header = (props: Props) => {
   const sidenavRef = useRef<HTMLUListElement>(null);
   const [sidenavInstance, setSidenavInstance] = useState<M.Sidenav>();
-  const username = useAppSelector(selectUsername);
+  const userData = useAppSelector(selectUserData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,10 +27,12 @@ const Header = (props: Props) => {
     sidenavInstance?.close();
   };
 
+  if (!userData) return null;
+
   const navLinks = (
     <>
       <NavLink name="About" to="/" onClick={handleNavClick} />
-      {username && (
+      {userData.userName && (
         <>
           <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
           <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
@@ -46,7 +48,7 @@ const Header = (props: Props) => {
           </li>
         </>
       )}
-      {!username && (
+      {!userData.userName && (
         <>
           <NavLink name="Login" to="/login" onClick={handleNavClick} />
           <NavLink

@@ -1,17 +1,16 @@
-import React from "react";
 import { useAppSelector } from "../../app/hooks";
-import {
-  selectBalance,
-  selectDeposited,
-  selectWithdrawn,
-} from "../../features/account/accountSlice";
+import { selectUserData } from "../../features/account/accountSlice";
 
 type Props = {};
 
 const BalanceCard = (props: Props) => {
-  const balance = useAppSelector(selectBalance);
-  const deposited = useAppSelector(selectDeposited);
-  const withdrawn = useAppSelector(selectWithdrawn);
+  const userData = useAppSelector(selectUserData);
+
+  if (!userData) return null;
+
+  const balance = userData?.balance;
+  const deposited = 0;
+  const withdrawn = 0;
 
   const profit = balance + withdrawn - deposited;
   const profitPercent = (profit / deposited) * 100;

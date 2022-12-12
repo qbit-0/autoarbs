@@ -1,26 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
-export type AccountState = {
-  isLoggedIn: boolean;
-  username: string;
+type UserData = {
+  userName: string;
   email: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   balance: number;
-  deposited: number;
-  withdrawn: number;
+  withdrawalHistory: [];
 };
 
-const initialState = {
+export type AccountState = {
+  isLoggedIn: boolean;
+  userData: UserData | null;
+};
+
+const initialState: AccountState = {
   isLoggedIn: false,
-  username: "",
-  email: "",
-  firstname: "",
-  lastname: "",
-  balance: 0,
-  deposited: 0,
-  withdrawn: 0,
+  userData: null,
 };
 
 const accountSlice = createSlice({
@@ -29,34 +26,20 @@ const accountSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.isLoggedIn = true;
-      state.username = action.payload.username;
-      state.email = action.payload.email;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
+      state.userData = action.payload;
     },
     logout: (state) => {
       state.isLoggedIn = false;
-      state.username = "";
+      state.userData = null;
     },
-    deposit: (state, action) => {
-      state.balance += action.payload;
-      state.deposited += action.payload;
-    },
-    withdraw: (state, action) => {
-      state.balance -= action.payload;
-      state.withdrawn += action.payload;
-    },
+    deposit: (state, action) => {},
+    withdraw: (state, action) => {},
   },
 });
 
 export const accountActions = accountSlice.actions;
 
 export const selectIsLoggedIn = (state: RootState) => state.account.isLoggedIn;
-export const selectUsername = (state: RootState) => state.account.username;
-export const selectFirstname = (state: RootState) => state.account.firstname;
-export const selectLastname = (state: RootState) => state.account.lastname;
-export const selectBalance = (state: RootState) => state.account.balance;
-export const selectDeposited = (state: RootState) => state.account.deposited;
-export const selectWithdrawn = (state: RootState) => state.account.withdrawn;
+export const selectUserData = (state: RootState) => state.account.userData;
 
 export default accountSlice.reducer;

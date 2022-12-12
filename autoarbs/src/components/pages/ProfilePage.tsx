@@ -2,10 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import {
-  selectFirstname,
   selectIsLoggedIn,
-  selectLastname,
-  selectUsername,
+  selectUserData,
 } from "../../features/account/accountSlice";
 import AccountInfoCard from "../cards/AccountInfoCard";
 import AccountSettingsCard from "../cards/AccountSettingsCard";
@@ -14,9 +12,7 @@ type Props = {};
 
 const ProfilePage = (props: Props) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
-  const username = useAppSelector(selectUsername);
-  const firstname = useAppSelector(selectFirstname);
-  const lastname = useAppSelector(selectLastname);
+  const userData = useAppSelector(selectUserData);
 
   const navigate = useNavigate();
 
@@ -24,12 +20,14 @@ const ProfilePage = (props: Props) => {
     if (!isLoggedIn) navigate("/");
   }, [navigate, isLoggedIn]);
 
+  if (!userData) return null;
+
   return (
     <div>
       <div className="container">
         <div className="row">
           <h1>
-            {username}({firstname} {lastname})
+            {userData.userName} ({userData.firstName} {userData.lastName})
           </h1>
         </div>
         <div className="row">

@@ -27,12 +27,10 @@ const Header = (props: Props) => {
     sidenavInstance?.close();
   };
 
-  if (!userData) return null;
-
   const navLinks = (
     <>
       <NavLink name="About" to="/" onClick={handleNavClick} />
-      {userData.userName && (
+      {userData && (
         <>
           <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
           <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
@@ -48,7 +46,7 @@ const Header = (props: Props) => {
           </li>
         </>
       )}
-      {!userData.userName && (
+      {!userData && (
         <>
           <NavLink name="Login" to="/login" onClick={handleNavClick} />
           <NavLink

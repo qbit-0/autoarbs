@@ -48,7 +48,7 @@ const SignUpCard = (props: Props) => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting }: FormikHelpers<Values>
+    { setSubmitting, setStatus }: FormikHelpers<Values>
   ) => {
     try {
       const res = await register(
@@ -68,12 +68,20 @@ const SignUpCard = (props: Props) => {
         case "400":
           switch (data.statusMessage) {
             case "Email is not available":
+              setStatus("Email is not available");
+              M.toast({ html: "Email is not available" });
+              break;
+            default:
+              setStatus("Sign up failed, try again later");
+              M.toast({ html: "Sign up failed, try again later" });
               break;
           }
           break;
       }
     } catch (err) {
       console.error(err);
+      setStatus("Sign up failed, try again later");
+      M.toast({ html: "Sign up failed, try again later" });
     } finally {
       setSubmitting(false);
     }
@@ -152,6 +160,7 @@ const SignUpCard = (props: Props) => {
               <div className="flex justify-end">
                 <button
                   className="btn waves-effect waves-light"
+                  type="submit"
                   disabled={isSubmitting}
                 >
                   Next

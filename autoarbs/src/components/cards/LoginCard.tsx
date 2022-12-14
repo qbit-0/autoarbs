@@ -26,7 +26,7 @@ const LoginCard = (props: Props) => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting }: FormikHelpers<Values>
+    { setSubmitting, setStatus }: FormikHelpers<Values>
   ) => {
     try {
       const res = await login(values.email, values.password);
@@ -41,15 +41,17 @@ const LoginCard = (props: Props) => {
           break;
         case "400":
           switch (data.statusMessage) {
-            case "":
-              break;
             default:
+              setStatus("Login failed, try again later");
+              M.toast({ html: "Login failed, try again later" });
               break;
           }
           break;
       }
     } catch (err) {
       console.error(err);
+      setStatus("Login failed, try again later");
+      M.toast({ html: "Login failed, try again later" });
     } finally {
       setSubmitting(false);
     }
@@ -62,7 +64,7 @@ const LoginCard = (props: Props) => {
         validationSchema={LoginSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, status }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Log In</span>

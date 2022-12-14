@@ -13,9 +13,9 @@ const LoginPage = (props: Props) => {
           </div>
         </div>
         <div className="flex justify-center">
-          <Link to="/registration">
+          <Link to="/signup">
             <button className="btn-flat waves-effect waves-light">
-              Or Create an Account
+              Or Sign Up
             </button>
           </Link>
         </div>

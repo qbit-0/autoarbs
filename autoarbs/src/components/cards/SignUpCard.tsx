@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
-import { FormikErrors } from "formik/dist/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import { register } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
@@ -13,6 +13,7 @@ type Values = {
   password: string;
   confirmPassword: string;
 };
+
 const initialValues: Values = {
   email: "",
   firstName: "",
@@ -21,45 +22,29 @@ const initialValues: Values = {
   confirmPassword: "",
 };
 
+const SignUpSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  firstName: Yup.string().required("Required"),
+  lastName: Yup.string().required("Required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .max(32, "Password must be at most 32 characters")
+    .required("Required"),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password")],
+    "Your passwords must match"
+  ),
+});
+
 type Props = {};
 
-const RegistrationCard = (props: Props) => {
+const SignUpCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     M.updateTextFields();
   }, []);
-
-  const validate = (values: Values) => {
-    const errors: FormikErrors<Values> = {};
-
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
-
-    if (!values.firstName) {
-      errors.firstName = "Required";
-    }
-
-    if (!values.lastName) {
-      errors.lastName = "Required";
-    }
-
-    if (!values.password) {
-      errors.password = "Required";
-    } else if (values.password.length < 8 || values.password.length > 32) {
-      errors.password = "Password length must be between 8 and 32 characters";
-    }
-
-    if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = "Passwords do not match";
-    }
-
-    return errors;
-  };
 
   const handleSubmit = async (
     values: Values,
@@ -98,7 +83,7 @@ const RegistrationCard = (props: Props) => {
     <div className="card hoverable">
       <Formik
         initialValues={initialValues}
-        validate={validate}
+        validationSchema={SignUpSchema}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
@@ -180,4 +165,4 @@ const RegistrationCard = (props: Props) => {
   );
 };
 
-export default RegistrationCard;
+export default SignUpCard;

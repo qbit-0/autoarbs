@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import RegistrationCard from "../cards/RegistrationCard";
+import SignUpCard from "../cards/SignUpCard";
 
 type Props = {};
 
-const RegistrationPage = (props: Props) => {
+const SignUpPage = (props: Props) => {
   return (
     <div className="valign-wrapper height-full">
       <div className="container">
         <div className="row">
           <div className="col s12 m8 offset-m2">
-            <RegistrationCard />
+            <SignUpCard />
           </div>
         </div>
         <div className="flex justify-center">
@@ -24,4 +24,4 @@ const RegistrationPage = (props: Props) => {
   );
 };
 
-export default RegistrationPage;
+export default SignUpPage;

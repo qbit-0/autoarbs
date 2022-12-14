@@ -24,7 +24,7 @@ const AboutPage = (props: Props) => {
                     <div className="flex justify-center">
                       <Link to="/registration">
                         <button className="btn waves-effect waves-light">
-                          Create an Account
+                          Sign Up
                         </button>
                       </Link>
                     </div>

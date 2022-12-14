@@ -1,21 +1,17 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FormikErrors, FormikHelpers } from "formik/dist/types";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
+type Values = { email: string; password: string };
+const initialValues: Values = { email: "", password: "" };
+
 type Props = {};
 
 const LoginCard = (props: Props) => {
-  const [userNameOrEmail, setUsernameOrEmail] = useState("");
-  const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,70 +19,98 @@ const LoginCard = (props: Props) => {
     M.updateTextFields();
   }, []);
 
-  const handleTextChange = (setText: Dispatch<SetStateAction<string>>) => {
-    return (e: ChangeEvent<HTMLInputElement>) => {
-      setText(e.currentTarget.value);
-    };
+  const validate = (values: Values) => {
+    const errors: FormikErrors<Values> = {};
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!values.password) {
+      errors.password = "Required";
+    }
+
+    return errors;
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (
+    values: Values,
+    { setSubmitting }: FormikHelpers<Values>
+  ) => {
+    try {
+      const res = await login(values.email, values.password);
+      const data = res.data;
 
-    if (!userNameOrEmail || !password) return;
+      console.log(data);
 
-    const res = await login(userNameOrEmail, password);
-    const data = res.data;
-
-    console.log(data);
-
-    switch (data.statusCode) {
-      case "200":
-        dispatch(accountActions.login(data.userData));
-        navigate("/dashboard");
-        break;
-      default:
-        break;
+      switch (data.statusCode) {
+        case "200":
+          dispatch(accountActions.login(data.userData));
+          navigate("/dashboard");
+          break;
+        case "400":
+          switch (data.statusMessage) {
+            case "":
+              break;
+          }
+          break;
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className="card hoverable">
-      <form onSubmit={handleSubmit}>
-        <div className="card-content">
-          <span className="card-title center">Log In</span>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                id="username_or_email"
-                type="text"
-                value={userNameOrEmail}
-                onChange={handleTextChange(setUsernameOrEmail)}
-                className="validate"
-              />
-              <label htmlFor="username_or_email">Username or Email</label>
+      <Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div className="card-content">
+              <span className="card-title center">Log In</span>
+              <div className="row">
+                <div className="input-field col s12">
+                  <Field type="email" id="email" name="email" />
+                  <label htmlFor="email">Email</label>
+                  <ErrorMessage
+                    className="helper-text"
+                    name="email"
+                    component="span"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <Field type="password" id="password" name="password" />
+                  <label htmlFor="password">Password</label>
+                  <ErrorMessage
+                    className="helper-text"
+                    name="password"
+                    component="span"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={handleTextChange(setPassword)}
-                className="validate"
-              />
-              <label htmlFor="password">Password</label>
+            <div className="card-action">
+              <div className="flex justify-end">
+                <button
+                  className="btn waves-effect waves-light"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Next
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="card-action">
-          <div className="flex justify-end">
-            <button className="btn waves-effect waves-light" type="submit">
-              Next
-            </button>
-          </div>
-        </div>
-      </form>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

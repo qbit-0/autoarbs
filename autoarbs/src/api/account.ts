@@ -1,30 +1,37 @@
 import axios from "axios";
 
-const url = "https://autoarbs.herokuapp.com/api";
+const baseUrl = "https://autoarbs.herokuapp.com/api";
 
+const getByUserNameOrEmail = "/auth/GetByUserNameOrEmail";
 const registerEndpoint = "/auth/register";
 const loginEndpoint = "/auth/login";
 const depositEndpoint = "/deposit";
 const withdrawEndpoint = "/withdraw";
 
+export const checkUserNameAvailability = async (userName: string) => {
+  const url = new URL(`${baseUrl}${getByUserNameOrEmail}`);
+  url.searchParams.append("username", userName);
+  return await axios.get(url.href);
+};
+
 export const register = async (
+  email: string,
   firstName: string,
   lastName: string,
-  userName: string,
-  email: string,
   password: string
 ) => {
-  return await axios.post(`${url}${registerEndpoint}`, {
+  const url = new URL(`${baseUrl}${registerEndpoint}`);
+  return await axios.post(url.href, {
     firstName,
     lastName,
-    userName,
     email,
     password,
   });
 };
 
 export const login = async (userNameOrEmail: string, password: string) => {
-  return axios.post(`${url}${loginEndpoint}`, {
+  const url = new URL(`${baseUrl}${loginEndpoint}`);
+  return axios.post(url.href, {
     userName: userNameOrEmail,
     password,
   });
@@ -35,7 +42,8 @@ export const deposit = async (
   amount: number,
   method: string
 ) => {
-  return axios.post(`${url}${depositEndpoint}`, {
+  const url = new URL(`${baseUrl}${depositEndpoint}`);
+  return axios.post(url.href, {
     userName,
     amount,
     method,
@@ -48,7 +56,8 @@ export const withdraw = async (
   method: string,
   accountWidthdrawnTo: string
 ) => {
-  return axios.post(`${url}${withdrawEndpoint}`, {
+  const url = new URL(`${baseUrl}${withdrawEndpoint}`);
+  return axios.post(url.href, {
     userName,
     amount,
     method,

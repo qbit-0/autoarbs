@@ -49,11 +49,7 @@ const Header = (props: Props) => {
       {!userData && (
         <>
           <NavLink name="Login" to="/login" onClick={handleNavClick} />
-          <NavLink
-            name="Create an Account"
-            to="/registration"
-            onClick={handleNavClick}
-          />
+          <NavLink name="Sign Up" to="/Sign Up" onClick={handleNavClick} />
         </>
       )}
     </>

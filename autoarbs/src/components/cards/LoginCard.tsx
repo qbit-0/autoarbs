@@ -1,13 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { FormikErrors, FormikHelpers } from "formik/dist/types";
+import { FormikHelpers } from "formik/dist/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import { login } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
 type Values = { email: string; password: string };
 const initialValues: Values = { email: "", password: "" };
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string().required("Required"),
+});
 
 type Props = {};
 
@@ -18,21 +23,6 @@ const LoginCard = (props: Props) => {
   useEffect(() => {
     M.updateTextFields();
   }, []);
-
-  const validate = (values: Values) => {
-    const errors: FormikErrors<Values> = {};
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
-
-    if (!values.password) {
-      errors.password = "Required";
-    }
-
-    return errors;
-  };
 
   const handleSubmit = async (
     values: Values,
@@ -53,6 +43,8 @@ const LoginCard = (props: Props) => {
           switch (data.statusMessage) {
             case "":
               break;
+            default:
+              break;
           }
           break;
       }
@@ -67,7 +59,7 @@ const LoginCard = (props: Props) => {
     <div className="card hoverable">
       <Formik
         initialValues={initialValues}
-        validate={validate}
+        validationSchema={LoginSchema}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (

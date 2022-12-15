@@ -21,8 +21,8 @@ const AboutPage = (props: Props) => {
                     <p>We make it easy.</p>
                   </div>
                   <div className="card-action">
-                    <div className="flex justify-center">
-                      <Link to="/registration">
+                    <div className="flex justify-end">
+                      <Link to="/signup">
                         <button className="btn waves-effect waves-light">
                           Sign Up
                         </button>
@@ -40,7 +40,7 @@ const AboutPage = (props: Props) => {
                     <p>Let's see your profits.</p>
                   </div>
                   <div className="card-action">
-                    <div className="flex justify-center">
+                    <div className="flex justify-end">
                       <Link to="/login">
                         <button className="btn waves-effect waves-light">
                           Login

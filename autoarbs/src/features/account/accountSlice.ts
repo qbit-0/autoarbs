@@ -2,11 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 type UserData = {
-  userName: string;
   email: string;
   firstName: string;
   lastName: string;
+  password: string;
+  isActive: boolean;
   balance: number;
+  bonus: number;
+  totalBonus: number;
+  totalDeposit: number;
+  totalWithdrawal: number;
+  depositHistory: [];
   withdrawalHistory: [];
 };
 
@@ -27,10 +33,12 @@ const accountSlice = createSlice({
     login: (state, action) => {
       state.isLoggedIn = true;
       state.userData = action.payload;
+      window.localStorage.setItem("userData", JSON.stringify(state.userData));
     },
     logout: (state) => {
       state.isLoggedIn = false;
       state.userData = null;
+      window.localStorage.removeItem("userData");
     },
     deposit: (state, action) => {},
     withdraw: (state, action) => {},

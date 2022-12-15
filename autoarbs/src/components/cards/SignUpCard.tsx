@@ -22,7 +22,7 @@ const initialValues: Values = {
   confirmPassword: "",
 };
 
-const SignUpSchema = Yup.object().shape({
+const signUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   firstName: Yup.string().required("Required"),
   lastName: Yup.string().required("Required"),
@@ -48,7 +48,7 @@ const SignUpCard = (props: Props) => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting, setStatus }: FormikHelpers<Values>
+    { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
       const res = await register(
@@ -65,23 +65,13 @@ const SignUpCard = (props: Props) => {
           dispatch(accountActions.login(data.userData));
           navigate("/dashboard");
           break;
-        case "400":
-          switch (data.statusMessage) {
-            case "Email is not available":
-              setStatus("Email is not available");
-              M.toast({ html: "Email is not available" });
-              break;
-            default:
-              setStatus("Sign up failed, try again later");
-              M.toast({ html: "Sign up failed, try again later" });
-              break;
-          }
+        default:
+          M.toast({ html: data.statusMessage });
           break;
       }
     } catch (err) {
       console.error(err);
-      setStatus("Sign up failed, try again later");
-      M.toast({ html: "Sign up failed, try again later" });
+      M.toast({ html: "Sign up failed" });
     } finally {
       setSubmitting(false);
     }
@@ -91,10 +81,11 @@ const SignUpCard = (props: Props) => {
     <div className="card hoverable">
       <Formik
         initialValues={initialValues}
-        validationSchema={SignUpSchema}
+        validationSchema={signUpSchema}
+        validateOnMount={true}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isValid, isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Create an Account</span>
@@ -161,7 +152,7 @@ const SignUpCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isValid || isValidating}
                 >
                   Next
                 </button>

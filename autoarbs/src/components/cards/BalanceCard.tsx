@@ -9,11 +9,11 @@ const BalanceCard = (props: Props) => {
   if (!userData) return null;
 
   const balance = userData?.balance;
-  const deposited = 0;
-  const withdrawn = 0;
+  const deposited = userData.totalDeposit;
+  const withdrawn = userData.totalWithdrawal;
 
   const profit = balance + withdrawn - deposited;
-  const profitPercent = (profit / deposited) * 100;
+  const profitPercent = deposited === 0 ? 0 : (profit / deposited) * 100;
 
   return (
     <div className="card">

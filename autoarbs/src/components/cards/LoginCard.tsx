@@ -9,7 +9,7 @@ import { accountActions } from "../../features/account/accountSlice";
 
 type Values = { email: string; password: string };
 const initialValues: Values = { email: "", password: "" };
-const LoginSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().required("Required"),
 });
@@ -26,7 +26,7 @@ const LoginCard = (props: Props) => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting, setStatus }: FormikHelpers<Values>
+    { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
       const res = await login(values.email, values.password);
@@ -39,19 +39,17 @@ const LoginCard = (props: Props) => {
           dispatch(accountActions.login(data.userData));
           navigate("/dashboard");
           break;
-        case "400":
+        default:
           switch (data.statusMessage) {
             default:
-              setStatus("Login failed, try again later");
-              M.toast({ html: "Login failed, try again later" });
+              M.toast({ html: data.statusMessage });
               break;
           }
           break;
       }
     } catch (err) {
       console.error(err);
-      setStatus("Login failed, try again later");
-      M.toast({ html: "Login failed, try again later" });
+      M.toast({ html: "Login failed" });
     } finally {
       setSubmitting(false);
     }
@@ -61,10 +59,11 @@ const LoginCard = (props: Props) => {
     <div className="card hoverable">
       <Formik
         initialValues={initialValues}
-        validationSchema={LoginSchema}
+        validationSchema={loginSchema}
+        validateOnMount={true}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, status }) => (
+        {({ isValid, isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Log In</span>
@@ -96,7 +95,7 @@ const LoginCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isValid || isValidating}
                 >
                   Next
                 </button>

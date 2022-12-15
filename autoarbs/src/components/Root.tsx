@@ -4,7 +4,7 @@ import { login } from "../api/account";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   accountActions,
-  selectIsLoggedIn,
+  selectUserData,
 } from "../features/account/accountSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
 import Footer from "./Footer";
@@ -18,7 +18,7 @@ type Props = {};
 
 const Root = (props: Props) => {
   const savedUserData = useLocalStorage("userData");
-  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const userData = useAppSelector(selectUserData);
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Root = (props: Props) => {
 
   useEffect(() => {
     const autoLogin = async () => {
-      if (isLoggedIn) return;
+      if (userData) return;
 
       if (savedUserData) {
         try {
@@ -56,7 +56,7 @@ const Root = (props: Props) => {
     };
 
     autoLogin();
-  }, [isLoggedIn, savedUserData, dispatch, location.pathname, navigate]);
+  }, [userData, savedUserData, dispatch, location.pathname, navigate]);
 
   return (
     <>

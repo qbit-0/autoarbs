@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
 type Values = { amount: number };
-const initialValues = { amount: 100 };
+const initialValues = { amount: 0 };
 const depositSchema = Yup.object().shape({
   amount: Yup.number()
     .positive("Deposit amount must be positive")

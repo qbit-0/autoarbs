@@ -7,18 +7,12 @@ import {
 } from "../../features/account/accountSlice";
 
 type Values = { amount: number };
-const initialValues = { amount: 100 };
-const withdrawSchema = Yup.object().shape({
-  amount: Yup.number()
-    .positive("Deposit amount must be positive")
-    .required("Required"),
-});
+const initialValues = { amount: 0 };
+
 type Props = {};
 
 const WithdrawCard = (props: Props) => {
   const userData = useAppSelector(selectUserData);
-
-  const balance = userData?.balance || 0;
 
   const dispatch = useAppDispatch();
 
@@ -31,6 +25,14 @@ const WithdrawCard = (props: Props) => {
   };
 
   if (!userData) return null;
+
+  const withdrawSchema = Yup.object().shape({
+    balance: Yup.number(),
+    amount: Yup.number()
+      .positive("Withdraw amount must be positive")
+      .max(userData.balance, "Withdraw amount is at most your balance")
+      .required("Required"),
+  });
 
   return (
     <div className="card hoverable">

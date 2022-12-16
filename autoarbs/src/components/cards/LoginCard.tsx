@@ -32,8 +32,6 @@ const LoginCard = (props: Props) => {
       const res = await login(values.email, values.password);
       const data = res.data;
 
-      console.log(data);
-
       switch (data.statusCode) {
         case "200":
           dispatch(accountActions.login(data.userData));
@@ -47,8 +45,8 @@ const LoginCard = (props: Props) => {
           }
           break;
       }
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
       M.toast({ html: "Login failed" });
     } finally {
       setSubmitting(false);

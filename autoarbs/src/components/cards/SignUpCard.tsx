@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { register } from "../../api/account";
+import { getUser, register } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 
@@ -23,7 +23,32 @@ const initialValues: Values = {
 };
 
 const signUpSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .test(
+      "is-email-available",
+      () => "Email is already in use",
+      async (value) => {
+        if (!value) return true;
+
+        try {
+          const res = await getUser(value);
+          const data = res.data;
+          console.log(res);
+
+          switch (data.statusCode) {
+            case "404":
+              return true;
+            default:
+              return false;
+          }
+        } catch (e) {
+          console.error(e);
+          return false;
+        }
+      }
+    )
+    .required("Required"),
   firstName: Yup.string().required("Required"),
   lastName: Yup.string().required("Required"),
   password: Yup.string()
@@ -57,7 +82,6 @@ const SignUpCard = (props: Props) => {
         values.lastName,
         values.password
       );
-      console.log(res);
       const data = res.data;
 
       switch (data.statusCode) {
@@ -69,8 +93,8 @@ const SignUpCard = (props: Props) => {
           M.toast({ html: data.statusMessage });
           break;
       }
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
       M.toast({ html: "Sign up failed" });
     } finally {
       setSubmitting(false);

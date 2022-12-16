@@ -2,14 +2,14 @@ import axios from "axios";
 
 const baseUrl = "https://autoarbs.herokuapp.com/api";
 
-const getByEmail = "/auth/GetByEmail";
+const getUserEndpoint = "/auth/GetUser";
 const registerEndpoint = "/auth/register";
 const loginEndpoint = "/auth/login";
 const depositEndpoint = "/deposit";
 const withdrawEndpoint = "/withdraw";
 
-export const checkEmailAvailability = async (email: string) => {
-  const url = new URL(`${baseUrl}${getByEmail}`);
+export const getUser = async (email: string) => {
+  const url = new URL(`${baseUrl}${getUserEndpoint}`);
   url.searchParams.append("email", email);
   return await axios.get(url.href);
 };

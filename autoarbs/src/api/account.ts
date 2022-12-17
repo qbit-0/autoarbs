@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = "https://autoarbs.herokuapp.com/api";
 
-const getUserEndpoint = "/auth/GetUser";
+const getUserEndpoint = "/user";
 const registerEndpoint = "/auth/register";
 const loginEndpoint = "/auth/login";
 const depositEndpoint = "/deposit";

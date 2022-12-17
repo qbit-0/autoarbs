@@ -1,10 +1,12 @@
-import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
   selectUserData,
 } from "../../features/account/accountSlice";
+import MaterializeErrorMessage from "../MaterializeErrorMessage";
+import MaterializeField from "../MaterializeField";
 
 type Values = { amount: number };
 const initialValues = { amount: 0 };
@@ -52,13 +54,9 @@ const WithdrawCard = (props: Props) => {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field type="number" id="amount" name="amount" />
+                  <MaterializeField type="number" id="amount" name="amount" />
                   <label htmlFor="amount">Amount</label>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="amount"
-                    component="span"
-                  />
+                  <MaterializeErrorMessage name="amount" />
                 </div>
               </div>
             </div>

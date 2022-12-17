@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import { login } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
+import MaterializeErrorMessage from "../MaterializeErrorMessage";
+import MaterializeField from "../MaterializeField";
 
 type Values = { email: string; password: string };
 const initialValues: Values = { email: "", password: "" };
@@ -67,24 +69,20 @@ const LoginCard = (props: Props) => {
               <span className="card-title center">Log In</span>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field type="email" id="email" name="email" />
+                  <MaterializeField type="email" id="email" name="email" />
                   <label htmlFor="email">Email</label>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="email"
-                    component="span"
-                  />
+                  <MaterializeErrorMessage name="email" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field type="password" id="password" name="password" />
-                  <label htmlFor="password">Password</label>
-                  <ErrorMessage
-                    className="helper-text"
+                  <MaterializeField
+                    type="password"
+                    id="password"
                     name="password"
-                    component="span"
                   />
+                  <label htmlFor="password">Password</label>
+                  <MaterializeErrorMessage name="password" />
                 </div>
               </div>
             </div>

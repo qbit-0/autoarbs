@@ -1,10 +1,12 @@
-import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { getUser, register } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
+import MaterializeErrorMessage from "../MaterializeErrorMessage";
+import MaterializeField from "../MaterializeField";
 
 type Values = {
   email: string;
@@ -35,13 +37,7 @@ const signUpSchema = Yup.object().shape({
           const res = await getUser(value);
           const data = res.data;
           console.log(res);
-
-          switch (data.statusCode) {
-            case "404":
-              return true;
-            default:
-              return false;
-          }
+          return !data;
         } catch (e) {
           console.error(e);
           return false;
@@ -115,59 +111,47 @@ const SignUpCard = (props: Props) => {
               <span className="card-title center">Create an Account</span>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field type="email" id="email" name="email" />
+                  <MaterializeField type="email" id="email" name="email" />
                   <label htmlFor="email">Email</label>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="email"
-                    component="span"
-                  />
+                  <MaterializeErrorMessage name="email" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12 m6">
-                  <Field type="text" id="firstName" name="firstName" />
-                  <label htmlFor="firstName">First Name</label>
-                  <ErrorMessage
-                    className="helper-text"
+                  <MaterializeField
+                    type="text"
+                    id="firstName"
                     name="firstName"
-                    component="span"
                   />
+                  <label htmlFor="firstName">First Name</label>
+                  <MaterializeErrorMessage name="firstName" />
                 </div>
                 <div className="input-field col s12 m6">
-                  <Field type="text" id="lastName" name="lastName" />
+                  <MaterializeField type="text" id="lastName" name="lastName" />
                   <label htmlFor="lastName">Last Name</label>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="lastName"
-                    component="span"
-                  />
+                  <MaterializeErrorMessage name="lastName" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field type="password" id="password" name="password" />
-                  <label htmlFor="password">Password</label>
-                  <ErrorMessage
-                    className="helper-text"
+                  <MaterializeField
+                    type="password"
+                    id="password"
                     name="password"
-                    component="span"
                   />
+                  <label htmlFor="password">Password</label>
+                  <MaterializeErrorMessage name="password" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <Field
+                  <MaterializeField
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
                   />
                   <label htmlFor="confirmPassword">Confirm Password</label>
-                  <ErrorMessage
-                    className="helper-text"
-                    name="confirmPassword"
-                    component="span"
-                  />
+                  <MaterializeErrorMessage name="confirmPassword" />
                 </div>
               </div>
             </div>

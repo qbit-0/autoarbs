@@ -3,7 +3,7 @@ import { FormikHelpers } from "formik/dist/types";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { login } from "../../api/account";
+import { createLogin } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 import MaterializeErrorMessage from "../MaterializeErrorMessage";
@@ -23,6 +23,7 @@ const LoginCard = (props: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    M.AutoInit();
     M.updateTextFields();
   }, []);
 
@@ -31,12 +32,14 @@ const LoginCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await login(values.email, values.password);
+      const res = await createLogin(values.email, values.password);
       const data = res.data;
 
       switch (data.statusCode) {
         case "200":
-          dispatch(accountActions.login(data.userData));
+          dispatch(
+            accountActions.login({ userData: data.userData, token: data.token })
+          );
           navigate("/dashboard");
           break;
         default:
@@ -50,9 +53,9 @@ const LoginCard = (props: Props) => {
     } catch (e) {
       console.error(e);
       M.toast({ html: "Login failed" });
-    } finally {
-      setSubmitting(false);
     }
+
+    setSubmitting(false);
   };
 
   return (
@@ -69,18 +72,14 @@ const LoginCard = (props: Props) => {
               <span className="card-title center">Log In</span>
               <div className="row">
                 <div className="input-field col s12">
-                  <MaterializeField type="email" id="email" name="email" />
+                  <MaterializeField type="email" name="email" />
                   <label htmlFor="email">Email</label>
                   <MaterializeErrorMessage name="email" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <MaterializeField
-                    type="password"
-                    id="password"
-                    name="password"
-                  />
+                  <MaterializeField type="password" name="password" />
                   <label htmlFor="password">Password</label>
                   <MaterializeErrorMessage name="password" />
                 </div>

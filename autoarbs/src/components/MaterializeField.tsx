@@ -1,18 +1,25 @@
 import { Field, useFormikContext } from "formik";
-import { FC } from "react";
+import { ComponentProps, FC, ReactNode } from "react";
 
-type Props = { type: string; id: string; name: string };
+type Props = {
+  type?: string;
+  name: string;
+  children?: ReactNode;
+} & ComponentProps<typeof Field>;
 
-const MaterializeField: FC<Props> = ({ type, id, name }) => {
+const MaterializeField: FC<Props> = ({ type, name, children, ...other }) => {
   const { errors } = useFormikContext<any>();
 
   return (
     <Field
       className={errors[name] ? "invalid" : "valid"}
       type={type}
-      id={id}
+      id={name}
       name={name}
-    />
+      {...other}
+    >
+      {children}
+    </Field>
   );
 };
 

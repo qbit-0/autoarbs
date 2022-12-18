@@ -1,6 +1,13 @@
+import { useEffect } from "react";
+
 type Props = {};
 
 const AccountSettingsCard = (props: Props) => {
+  useEffect(() => {
+    M.AutoInit();
+    M.updateTextFields();
+  }, []);
+
   return (
     <div className="card hoverable">
       <form>

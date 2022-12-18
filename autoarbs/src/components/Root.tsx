@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { login } from "../api/account";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   accountActions,
@@ -18,32 +17,21 @@ type Props = {};
 
 const Root = (props: Props) => {
   const savedUserData = useLocalStorage("userData");
+  const savedToken = useLocalStorage("token");
+
   const userData = useAppSelector(selectUserData);
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    M.AutoInit();
-  }, [location]);
-
-  useEffect(() => {
     const autoLogin = async () => {
       if (userData) return;
 
-      if (savedUserData) {
-        try {
-          const res = await login(savedUserData.email, savedUserData.password);
-          const data = res.data;
-          switch (data.statusCode) {
-            case "200":
-              dispatch(accountActions.login(data.userData));
-              break;
-          }
-        } catch (err) {
-          console.error(err);
-        }
-        dispatch(accountActions.login(savedUserData));
+      if (savedUserData && savedToken) {
+        dispatch(
+          accountActions.login({ userData: savedUserData, token: savedToken })
+        );
 
         if (loggedOutOnlyPages.includes(location.pathname)) {
           navigate(loggedInRedirect);

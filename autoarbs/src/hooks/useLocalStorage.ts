@@ -1,10 +1,7 @@
 const useLocalStorage = (key: string) => {
   const localStorageStr = localStorage.getItem(key);
-  if (localStorageStr) {
-    return JSON.parse(localStorageStr);
-  } else {
-    return null;
-  }
+  if (!localStorageStr || localStorageStr === "undefined") return null;
+  return JSON.parse(localStorageStr);
 };
 
 export default useLocalStorage;

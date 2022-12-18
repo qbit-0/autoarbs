@@ -2,19 +2,21 @@ import axios from "axios";
 
 const baseUrl = "https://autoarbs.herokuapp.com/api";
 
-const getUserEndpoint = "/auth/GetUser";
+const getUserEndpoint = "/user";
 const registerEndpoint = "/auth/register";
 const loginEndpoint = "/auth/login";
-const depositEndpoint = "/deposit";
-const withdrawEndpoint = "/withdraw";
+const createDepositEndpoint = "/deposit/create";
+const getDepositEndpoint = "/deposit/get";
+const createWithdrawalEndpoint = "/withdraw/create";
+const getWithdrawalEndpoint = "/withdraw/get";
 
-export const getUser = async (email: string) => {
+export const readUser = async (email: string) => {
   const url = new URL(`${baseUrl}${getUserEndpoint}`);
   url.searchParams.append("email", email);
   return await axios.get(url.href);
 };
 
-export const register = async (
+export const createUser = async (
   email: string,
   firstName: string,
   lastName: string,
@@ -29,7 +31,7 @@ export const register = async (
   });
 };
 
-export const login = async (email: string, password: string) => {
+export const createLogin = async (email: string, password: string) => {
   const url = new URL(`${baseUrl}${loginEndpoint}`);
   return axios.post(url.href, {
     email,
@@ -37,30 +39,44 @@ export const login = async (email: string, password: string) => {
   });
 };
 
-export const deposit = async (
+export const createDeposit = async (
+  token: string,
   email: string,
   amount: number,
   method: string
 ) => {
-  const url = new URL(`${baseUrl}${depositEndpoint}`);
+  const url = new URL(`${baseUrl}${createDepositEndpoint}`);
   return axios.post(url.href, {
+    token,
     email,
     amount,
     method,
   });
 };
 
-export const withdraw = async (
+export const readDeposit = async (token: string, email: string) => {
+  const url = new URL(`${baseUrl}${getDepositEndpoint}`);
+  return axios.post(url.href, { token, email });
+};
+
+export const createWithdrawal = async (
+  token: string,
   email: string,
   amount: number,
   method: string,
   accountWidthdrawnTo: string
 ) => {
-  const url = new URL(`${baseUrl}${withdrawEndpoint}`);
+  const url = new URL(`${baseUrl}${createWithdrawalEndpoint}`);
   return axios.post(url.href, {
+    token,
     email,
     amount,
     method,
     account_withdrawn_to: accountWidthdrawnTo,
   });
+};
+
+export const readWithdrawal = async (token: string, email: string) => {
+  const url = new URL(`${baseUrl}${getWithdrawalEndpoint}`);
+  return axios.post(url.href, { token, email });
 };

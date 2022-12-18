@@ -44,7 +44,14 @@ const Root = (props: Props) => {
     };
 
     autoLogin();
-  }, [userData, savedUserData, dispatch, location.pathname, navigate]);
+  }, [
+    userData,
+    savedUserData,
+    savedToken,
+    dispatch,
+    location.pathname,
+    navigate,
+  ]);
 
   return (
     <>

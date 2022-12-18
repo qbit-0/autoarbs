@@ -7,7 +7,6 @@ import {
   accountActions,
   selectToken,
   selectUserData,
-  updateAccount,
 } from "../../features/account/accountSlice";
 import MaterializeErrorMessage from "../MaterializeErrorMessage";
 import MaterializeField from "../MaterializeField";

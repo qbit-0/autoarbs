@@ -1,4 +1,4 @@
-import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export type UserData = {
@@ -27,25 +27,14 @@ const initialState: AccountState = {
   token: null,
 };
 
-export const updateAccount = (): ThunkAction<
-  void,
-  RootState,
-  unknown,
-  AnyAction
-> => {
-  return async (dispatch) => {
-    try {
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
 const accountSlice = createSlice({
   name: "account",
   initialState,
   reducers: {
-    login: (state, action) => {
+    login: (
+      state,
+      action: PayloadAction<{ userData: UserData; token: string }>
+    ) => {
       state.isLoggedIn = true;
       state.userData = action.payload.userData;
       state.token = action.payload.token;
@@ -65,13 +54,14 @@ const accountSlice = createSlice({
       window.localStorage.removeItem("userData");
       window.localStorage.removeItem("token");
     },
-    deposit: (state, action) => {
+
+    deposit: (state, action: PayloadAction<number>) => {
       if (!state.userData) return;
 
       state.userData.balance += action.payload;
       state.userData.totalDeposit += action.payload;
     },
-    withdraw: (state, action) => {
+    withdraw: (state, action: PayloadAction<number>) => {
       if (!state.userData) return;
 
       state.userData.balance -= action.payload;

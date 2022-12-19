@@ -2,7 +2,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { readUser, createUser, createLogin } from "../../api/account";
+import { createUser, readUserByEmail } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
 import MaterializeErrorMessage from "../MaterializeErrorMessage";
@@ -34,11 +34,16 @@ const signUpSchema = Yup.object().shape({
         if (!value) return true;
 
         try {
-          const res = await readUser(value);
+          const res = await readUserByEmail(value);
           const data = res.data;
-          return !data;
-        } catch (e) {
-          console.error(e);
+
+          if (!data.isSuccess) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch (err) {
+          console.error(err);
           return false;
         }
       }
@@ -72,45 +77,26 @@ const SignUpCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const registerRes = await createUser(
+      const res = await createUser(
         values.email,
         values.firstName,
         values.lastName,
         values.password
       );
-      const registerData = registerRes.data;
+      const data = res.data;
 
-      switch (registerData.statusCode) {
+      switch (data.statusCode) {
         case "201":
-          try {
-            const loginRes = await createLogin(values.email, values.password);
-            const loginData = loginRes.data;
-
-            switch (loginData.statusCode) {
-              case "200":
-                dispatch(
-                  accountActions.login({
-                    userData: loginData.userData,
-                    token: loginData.token,
-                  })
-                );
-                navigate("/dashboard");
-                break;
-              default:
-                switch (loginData.statusMessage) {
-                  default:
-                    M.toast({ html: loginData.statusMessage });
-                    break;
-                }
-                break;
-            }
-          } catch (e) {
-            console.error(e);
-            M.toast({ html: "Login failed" });
-          }
+          dispatch(
+            accountActions.login({
+              userData: data.userData,
+              token: data.token,
+            })
+          );
+          navigate("/dashboard");
           break;
         default:
-          M.toast({ html: registerData.statusMessage });
+          M.toast({ html: data.statusMessage });
           break;
       }
     } catch (e) {

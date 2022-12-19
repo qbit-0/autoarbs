@@ -10,10 +10,14 @@ const getDepositEndpoint = "/deposit/get";
 const createWithdrawalEndpoint = "/withdraw/create";
 const getWithdrawalEndpoint = "/withdraw/get";
 
-export const readUser = async (email: string) => {
+export const readUserByEmail = async (email: string) => {
   const url = new URL(`${baseUrl}${getUserEndpoint}`);
-  url.searchParams.append("email", email);
-  return await axios.get(url.href);
+  return await axios.post(url.href, { email });
+};
+
+export const readUserByToken = async (email: string, token: string) => {
+  const url = new URL(`${baseUrl}${getUserEndpoint}`);
+  return await axios.post(url.href, { email, token });
 };
 
 export const createUser = async (

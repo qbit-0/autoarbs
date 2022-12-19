@@ -30,11 +30,11 @@ const signUpSchema = Yup.object().shape({
     .test(
       "is-email-available",
       () => "Email is already in use",
-      async (value) => {
-        if (!value) return true;
+      async (email) => {
+        if (!email) return true;
 
         try {
-          const res = await readUserByEmail(value);
+          const res = await readUserByEmail(email);
           const data = res.data;
 
           if (!data.isSuccess) {

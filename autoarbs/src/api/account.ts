@@ -12,7 +12,7 @@ const getWithdrawalEndpoint = "/withdraw/get";
 
 export const readUserByEmail = async (email: string) => {
   const url = new URL(`${baseUrl}${getUserEndpoint}`);
-  return await axios.post(url.href, { email });
+  return await axios.post(url.href, { email, token: "" });
 };
 
 export const readUserByToken = async (email: string, token: string) => {

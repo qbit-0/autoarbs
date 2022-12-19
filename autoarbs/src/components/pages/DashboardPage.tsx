@@ -1,5 +1,11 @@
-import { useAppSelector } from "../../app/hooks";
-import { selectUserData } from "../../features/account/accountSlice";
+import { useEffect } from "react";
+import { readUserByToken } from "../../api/account";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  accountActions,
+  selectToken,
+  selectUserData,
+} from "../../features/account/accountSlice";
 import BalanceCard from "../cards/BalanceCard";
 import DepositCard from "../cards/DepositCard";
 import WithdrawCard from "../cards/WithdrawCard";
@@ -8,8 +14,39 @@ type Props = {};
 
 const DashboardPage = (props: Props) => {
   const userData = useAppSelector(selectUserData);
+  const token = useAppSelector(selectToken);
+  const dispatch = useAppDispatch();
 
-  if (!userData) return null;
+  useEffect(() => {
+    if (!userData || !token) return;
+
+    const intervalId = setInterval(async () => {
+      try {
+        const res = await readUserByToken(userData.email, token);
+        const data = res.data;
+        console.log(res);
+
+        switch (data.statusCode) {
+          case "200":
+            dispatch(
+              accountActions.login({
+                userData: data.userData,
+                token: token,
+              })
+            );
+            break;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userData, token, dispatch]);
+
+  if (!userData || !token) return null;
 
   return (
     <div>

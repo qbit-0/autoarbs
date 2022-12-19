@@ -1,7 +1,7 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { useEffect } from "react";
 import * as Yup from "yup";
-import { createDeposit } from "../../api/account";
+import { createDeposit, readUserByToken } from "../../api/account";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
@@ -59,6 +59,25 @@ const DepositCard = (props: Props) => {
         case "201":
           M.toast({ html: data.statusMessage });
           dispatch(accountActions.deposit(values.amount));
+
+          try {
+            const res = await readUserByToken(userData.email, token);
+            const data = res.data;
+            switch (data.statusCode) {
+              case "200":
+                dispatch(
+                  accountActions.login({
+                    userData: data.userData,
+                    token: token,
+                  })
+                );
+                break;
+              default:
+                break;
+            }
+          } catch (err) {
+            console.error(err);
+          }
           break;
         default:
           M.toast({ html: data.statusMessage });

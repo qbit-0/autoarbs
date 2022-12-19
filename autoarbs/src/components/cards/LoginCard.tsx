@@ -50,8 +50,8 @@ const LoginCard = (props: Props) => {
           }
           break;
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
       M.toast({ html: "Login failed" });
     }
 

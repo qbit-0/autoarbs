@@ -112,7 +112,6 @@ const SignUpCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
         {({ isValid, isValidating, isSubmitting }) => (

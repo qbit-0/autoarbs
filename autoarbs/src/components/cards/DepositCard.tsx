@@ -95,7 +95,6 @@ const DepositCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={depositSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
         {({ isValid, isValidating, isSubmitting }) => (

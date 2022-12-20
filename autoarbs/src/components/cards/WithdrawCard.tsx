@@ -83,7 +83,6 @@ const WithdrawCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={withdrawSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
         {({ isValid, isValidating, isSubmitting }) => (

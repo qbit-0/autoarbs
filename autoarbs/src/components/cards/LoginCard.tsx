@@ -63,7 +63,6 @@ const LoginCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={loginSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
         {({ isValid, isValidating, isSubmitting }) => (

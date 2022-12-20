@@ -114,7 +114,7 @@ const SignUpCard = (props: Props) => {
         validationSchema={signUpSchema}
         onSubmit={handleSubmit}
       >
-        {({ isValid, isValidating, isSubmitting }) => (
+        {({ dirty, isValid, isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Create an Account</span>
@@ -157,7 +157,7 @@ const SignUpCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting || !isValid || isValidating}
+                  disabled={isSubmitting || !dirty || !isValid || isValidating}
                 >
                   Next
                 </button>

@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUser, readUserByEmail } from "../../api/account";
-import { useAppDispatch } from "../../app/hooks";
-import { accountActions } from "../../features/account/accountSlice";
 import MaterializeErrorMessage from "../MaterializeErrorMessage";
 import MaterializeField from "../MaterializeField";
 

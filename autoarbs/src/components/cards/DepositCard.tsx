@@ -95,10 +95,9 @@ const DepositCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={depositSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
-        {({ isValid, isValidating, isSubmitting }) => (
+        {({ dirty, isValid, isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <div className="row">
@@ -130,7 +129,7 @@ const DepositCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting || !isValid || isValidating}
+                  disabled={isSubmitting || !dirty || !isValid || isValidating}
                 >
                   Deposit
                 </button>

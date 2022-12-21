@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUser, readUserByEmail } from "../../api/account";
-import { useAppDispatch } from "../../app/hooks";
-import { accountActions } from "../../features/account/accountSlice";
 import MaterializeErrorMessage from "../MaterializeErrorMessage";
 import MaterializeField from "../MaterializeField";
 
@@ -64,7 +62,6 @@ const signUpSchema = Yup.object().shape({
 type Props = {};
 
 const SignUpCard = (props: Props) => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,13 +84,7 @@ const SignUpCard = (props: Props) => {
 
       switch (data.statusCode) {
         case "201":
-          dispatch(
-            accountActions.login({
-              userData: data.userData,
-              token: data.token,
-            })
-          );
-          navigate("/dashboard");
+          navigate("/verification");
           break;
         default:
           M.toast({ html: data.statusMessage });
@@ -112,10 +103,9 @@ const SignUpCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}
-        validateOnMount={true}
         onSubmit={handleSubmit}
       >
-        {({ isValid, isValidating, isSubmitting }) => (
+        {({ dirty, isValid, isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Create an Account</span>
@@ -158,7 +148,7 @@ const SignUpCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting || !isValid || isValidating}
+                  disabled={isSubmitting || !dirty || !isValid || isValidating}
                 >
                   Next
                 </button>

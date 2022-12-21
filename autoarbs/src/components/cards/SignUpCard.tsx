@@ -64,7 +64,6 @@ const signUpSchema = Yup.object().shape({
 type Props = {};
 
 const SignUpCard = (props: Props) => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,13 +86,7 @@ const SignUpCard = (props: Props) => {
 
       switch (data.statusCode) {
         case "201":
-          dispatch(
-            accountActions.login({
-              userData: data.userData,
-              token: data.token,
-            })
-          );
-          navigate("/dashboard");
+          navigate("/verification");
           break;
         default:
           M.toast({ html: data.statusMessage });

@@ -103,9 +103,11 @@ const SignUpCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}
+        validateOnBlur={false}
+        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ dirty, isValid, isValidating, isSubmitting }) => (
+        {({ isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <span className="card-title center">Create an Account</span>
@@ -148,7 +150,7 @@ const SignUpCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting || !dirty || !isValid || isValidating}
+                  disabled={isSubmitting || isValidating}
                 >
                   Next
                 </button>

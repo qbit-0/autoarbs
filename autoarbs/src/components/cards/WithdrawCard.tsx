@@ -83,9 +83,11 @@ const WithdrawCard = (props: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={withdrawSchema}
+        validateOnBlur={false}
+        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ dirty, isValid, isValidating, isSubmitting }) => (
+        {({ isValidating, isSubmitting }) => (
           <Form>
             <div className="card-content">
               <div className="row">
@@ -126,7 +128,7 @@ const WithdrawCard = (props: Props) => {
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
-                  disabled={isSubmitting || !dirty || !isValid || isValidating}
+                  disabled={isSubmitting || isValidating}
                 >
                   Withdraw
                 </button>

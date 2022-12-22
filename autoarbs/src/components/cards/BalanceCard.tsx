@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectUserData } from "../../features/account/accountSlice";
 
@@ -40,6 +41,15 @@ const BalanceCard = (props: Props) => {
               ${profit} ({profitPercent.toFixed(2)}%)
             </h3>
           </div>
+        </div>
+      </div>
+      <div className="card-action">
+        <div className="flex justify-end">
+          <Link to="/history">
+            <button className="btn waves-effect waves-light">
+              View Transaction History
+            </button>
+          </Link>
         </div>
       </div>
     </div>

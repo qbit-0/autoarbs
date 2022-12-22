@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
 
 const WithdrawalHistoryCard = (props: Props) => {
   const userData = useAutoUpdateUserData();
-  const [transactionCount, setTransactionCount] = useState(5);
+  const [numTransactions, setNumTransactions] = useState(5);
 
   useEffect(() => {
     M.AutoInit();
@@ -17,14 +17,14 @@ const WithdrawalHistoryCard = (props: Props) => {
   const withdrawals = userData.withdrawalHistory
     .slice()
     .reverse()
-    .slice(-transactionCount);
+    .slice(-numTransactions);
 
   const handleShowLess = () => {
-    setTransactionCount(transactionCount - 5);
+    setNumTransactions(numTransactions - 5);
   };
 
   const handleShowMore = () => {
-    setTransactionCount(transactionCount + 5);
+    setNumTransactions(numTransactions + 5);
   };
 
   return (
@@ -54,17 +54,18 @@ const WithdrawalHistoryCard = (props: Props) => {
           </table>
         </div>
         <div className="card-action">
-          <div className="flex justify-end">
+          <div className="flex justify-end align-center">
+            <p>Showing {withdrawals.length} transactions.</p>
             <button
               className="btn waves-effect waves-light"
-              disabled={transactionCount <= 5}
+              disabled={numTransactions <= 5}
               onClick={handleShowLess}
             >
               Show Less
             </button>
             <button
               className="btn waves-effect waves-light"
-              disabled={transactionCount > userData.withdrawalHistory.length}
+              disabled={numTransactions >= userData.withdrawalHistory.length}
               onClick={handleShowMore}
             >
               Show More

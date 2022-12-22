@@ -59,9 +59,9 @@ const Header = (props: Props) => {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">
+            <Link to="/" className="brand-logo">
               AutoArbs
-            </a>
+            </Link>
             <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>

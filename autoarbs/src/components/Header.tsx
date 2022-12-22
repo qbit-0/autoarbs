@@ -62,8 +62,7 @@ const Header = (props: Props) => {
             <Link to="/" className="brand-logo">
               AutoArbs
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+            <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
             <ul className="right hide-on-med-and-down">{navLinks}</ul>

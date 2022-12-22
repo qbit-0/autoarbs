@@ -24,7 +24,6 @@ const DashboardPage = (props: Props) => {
       try {
         const res = await readUserByToken(userData.email, token);
         const data = res.data;
-        console.log(res);
 
         switch (data.statusCode) {
           case "200":

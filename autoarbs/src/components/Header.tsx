@@ -61,13 +61,13 @@ const Header = (props: Props) => {
         <nav>
           <div className="nav-wrapper">
             <Link to="/">
-              <p className="brand-logo right">AutoArbs</p>
+              <p className="brand-logo">AutoArbs</p>
             </Link>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#" data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
-            <ul className="hide-on-med-and-down">{navLinks}</ul>
+            <ul className="right hide-on-med-and-down">{navLinks}</ul>
           </div>
         </nav>
       </div>

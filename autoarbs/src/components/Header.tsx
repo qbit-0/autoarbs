@@ -60,9 +60,7 @@ const Header = (props: Props) => {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            {/* <Link to="/">
-              <p className="brand-logo">AutoArbs</p>
-            </Link> */}
+            <p className="brand-logo">AutoArbs</p>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#" data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>

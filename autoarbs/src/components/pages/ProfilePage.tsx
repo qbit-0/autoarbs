@@ -1,12 +1,11 @@
-import { useAppSelector } from "../../app/hooks";
-import { selectUserData } from "../../features/account/accountSlice";
+import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import AccountInfoCard from "../cards/AccountInfoCard";
 import AccountSettingsCard from "../cards/AccountSettingsCard";
 
 type Props = {};
 
 const ProfilePage = (props: Props) => {
-  const userData = useAppSelector(selectUserData);
+  const userData = useAutoUpdateUserData();
 
   if (!userData) return null;
 

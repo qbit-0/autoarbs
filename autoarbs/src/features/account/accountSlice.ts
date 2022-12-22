@@ -1,6 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
+export type Transaction = {
+  transactionId: string;
+  depositEmail: string;
+  amount: number;
+  method: string;
+  status: string;
+  isSuccess: boolean;
+  createdAt: string;
+  updateAt: string;
+};
+
 export type UserData = {
   email: string;
   firstName: string;
@@ -11,20 +22,22 @@ export type UserData = {
   totalBonus: number;
   totalDeposit: number;
   totalWithdrawal: number;
-  depositHistory: [];
-  withdrawalHistory: [];
+  depositHistory: Transaction[];
+  withdrawalHistory: Transaction[];
 };
 
 export type AccountState = {
   isLoggedIn: boolean;
   userData: UserData | null;
   token: string | null;
+  autoUpdateIntervalId: NodeJS.Timer | null;
 };
 
 const initialState: AccountState = {
   isLoggedIn: false,
   userData: null,
   token: null,
+  autoUpdateIntervalId: null,
 };
 
 const accountSlice = createSlice({
@@ -67,6 +80,12 @@ const accountSlice = createSlice({
       state.userData.balance -= action.payload;
       state.userData.totalWithdrawal -= action.payload;
     },
+    setAutoUpdateIntervalId: (
+      state,
+      action: PayloadAction<NodeJS.Timer | null>
+    ) => {
+      state.autoUpdateIntervalId = action.payload;
+    },
   },
 });
 
@@ -74,5 +93,7 @@ export const accountActions = accountSlice.actions;
 
 export const selectUserData = (state: RootState) => state.account.userData;
 export const selectToken = (state: RootState) => state.account.token;
+export const selectAutoUpdateIntervalId = (state: RootState) =>
+  state.account.autoUpdateIntervalId;
 
 export default accountSlice.reducer;

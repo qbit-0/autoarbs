@@ -39,19 +39,24 @@ main {
 
 .justify-start {
   justify-content: start;
+  gap: 1rem;
 }
 
 .justify-end {
   justify-content: end;
+  gap: 1rem;
 }
 
 .justify-center {
   justify-content: center;
+  gap: 1rem;
 }
 
 .space-between {
   justify-content: space-between;
+  gap: 1rem;
 }
+
 
 .pointer {
   cursor: pointer;

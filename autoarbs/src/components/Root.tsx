@@ -9,7 +9,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const loggedInOnlyPages = ["/dashboard", "/profile"];
+const loggedInOnlyPages = ["/dashboard", "/history", "/profile"];
 const loggedOutOnlyPages = ["/login", "signup"];
 const loggedOutRedirect = "/";
 const loggedInRedirect = "/dashboard";

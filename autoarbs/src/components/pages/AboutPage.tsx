@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { selectUserData } from "../../features/account/accountSlice";
+import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
 
 const AboutPage = (props: Props) => {
-  const userData = useAppSelector(selectUserData);
+  const userData = useAutoUpdateUserData();
 
   return (
     <div>

@@ -45,7 +45,7 @@ const DepositHistoryCard = (props: Props) => {
               {deposits.map((deposit) => (
                 <tr>
                   <td>${deposit.amount}</td>
-                  <td>{deposit.createdAt}</td>
+                  <td>{new Date(deposit.createdAt).toLocaleString()}</td>
                   <td>{deposit.method}</td>
                   <td>{deposit.status}</td>
                 </tr>

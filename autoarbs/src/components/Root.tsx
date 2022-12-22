@@ -25,6 +25,10 @@ const Root = (props: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    M.AutoInit();
+  }, []);
+
+  useEffect(() => {
     const autoLogin = async () => {
       if (userData) return;
 

@@ -18,38 +18,40 @@ const BalanceCard = (props: Props) => {
 
   return (
     <div className="card">
-      <div className="card-content">
-        <span className="card-title">Balance</span>
-        <div className="row">
-          <div className="col s12">
-            <h3>${balance}</h3>
+      <div>
+        <div className="card-content">
+          <span className="card-title">Balance</span>
+          <div className="row">
+            <div className="col s12">
+              <h3>${balance}</h3>
+            </div>
+          </div>
+          <div className="row divider" />
+          <div className="row">
+            <div className="col s12 m4">
+              <p className="red-text">Total Deposited</p>
+              <h3 className="red-text">${deposited}</h3>
+            </div>
+            <div className="col s12 m4">
+              <p className="green-text">Total Withdrawn</p>
+              <h3 className="green-text">${withdrawn}</h3>
+            </div>
+            <div className="col s12 m4">
+              <p className="blue-text">Total Profit</p>
+              <h3 className="blue-text">
+                ${profit} ({profitPercent.toFixed(2)}%)
+              </h3>
+            </div>
           </div>
         </div>
-        <div className="row divider" />
-        <div className="row">
-          <div className="col s12 m4">
-            <p className="red-text">Total Deposited</p>
-            <h3 className="red-text">${deposited}</h3>
+        <div className="card-action">
+          <div className="flex justify-end">
+            <Link to="/history">
+              <button className="btn waves-effect waves-light">
+                View Transaction History
+              </button>
+            </Link>
           </div>
-          <div className="col s12 m4">
-            <p className="green-text">Total Withdrawn</p>
-            <h3 className="green-text">${withdrawn}</h3>
-          </div>
-          <div className="col s12 m4">
-            <p className="blue-text">Total Profit</p>
-            <h3 className="blue-text">
-              ${profit} ({profitPercent.toFixed(2)}%)
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div className="card-action">
-        <div className="flex justify-end">
-          <Link to="/history">
-            <button className="btn waves-effect waves-light">
-              View Transaction History
-            </button>
-          </Link>
         </div>
       </div>
     </div>

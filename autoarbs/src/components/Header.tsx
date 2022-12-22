@@ -30,7 +30,7 @@ const Header = (props: Props) => {
   const navLinks = (
     <>
       <NavLink name="About" to="/" onClick={handleNavClick} />
-      {userData && (
+      {userData ? (
         <>
           <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
           <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
@@ -45,8 +45,7 @@ const Header = (props: Props) => {
             </Link>
           </li>
         </>
-      )}
-      {!userData && (
+      ) : (
         <>
           <NavLink name="Login" to="/login" onClick={handleNavClick} />
           <NavLink name="Sign Up" to="/signup" onClick={handleNavClick} />

@@ -16,8 +16,18 @@ const WithdrawalHistoryCard = (props: Props) => {
 
   const withdrawals = userData.withdrawalHistory
     .slice()
-    .reverse()
-    .slice(-numTransactions);
+    .sort((a, b) => {
+      const aDate = new Date(a.createdAt);
+      const bDate = new Date(b.createdAt);
+      if (aDate < bDate) {
+        return 1;
+      } else if (aDate > bDate) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    .slice(0, numTransactions);
 
   const handleShowLess = () => {
     setNumTransactions(numTransactions - 5);
@@ -42,12 +52,13 @@ const WithdrawalHistoryCard = (props: Props) => {
               </tr>
             </thead>
             <tbody>
-              {withdrawals.map((deposit) => (
+              {withdrawals.map((withdrawal) => (
                 <tr>
-                  <td>${deposit.amount}</td>
-                  <td>{deposit.createdAt}</td>
-                  <td>{deposit.method}</td>
-                  <td>{deposit.status}</td>
+                  <td>${withdrawal.amount}</td>
+                  <td>{new Date(withdrawal.createdAt).toLocaleString()}</td>
+                  <td>{withdrawal.createdAt}</td>
+                  <td>{withdrawal.method}</td>
+                  <td>{withdrawal.status}</td>
                 </tr>
               ))}
             </tbody>

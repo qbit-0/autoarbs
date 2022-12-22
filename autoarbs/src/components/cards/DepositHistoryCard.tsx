@@ -16,8 +16,18 @@ const DepositHistoryCard = (props: Props) => {
 
   const deposits = userData.depositHistory
     .slice()
-    .reverse()
-    .slice(-numTransactions);
+    .sort((a, b) => {
+      const aDate = new Date(a.createdAt);
+      const bDate = new Date(b.createdAt);
+      if (aDate < bDate) {
+        return 1;
+      } else if (aDate > bDate) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    .slice(0, numTransactions);
 
   const handleShowLess = () => {
     setNumTransactions(numTransactions - 5);

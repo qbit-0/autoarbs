@@ -36,7 +36,7 @@ const AboutPage = (props: Props) => {
             </Stack>
           </Grid>
           <Grid xs={12}>
-            <Card elevation={12} sx={{ bgcolor: "black" }}>
+            <Card elevation={12} sx={{ bgcolor: "purple" }}>
               <CardContent>
                 <Typography variant="h2" color="white" textAlign="center">
                   Put Money In, Get Money Out.
@@ -47,8 +47,50 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Typography variant="body1">
+              The dream of every investor, making money without having to worry
+              about losing it. AutoArbs is turning this dream into reality. Only
+              a few things are stopping you right now, but these can be solved
+              easily. Sign up and make an account, log in with your personal
+              account and start investing!
+              <br />
+              <br />
               Make 10% Every 10 Days. Guaranteed.
             </Typography>
+          </Grid>
+          <Grid xs={12} container spacing={2}>
+            <Grid xs={4}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h4">1. Make a Deposit</Typography>
+                  <Typography variant="body1">
+                    We make it easy. Sign up and make an account, log in with
+                    your personal account and start investing!
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid xs={4}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h4">2. Grow Your Money</Typography>
+                  <Typography variant="body1">
+                    We reinvest your money every day. Averaging around 1% profit
+                    per day.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid xs={4}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h4">3. Reap the Profits</Typography>
+                  <Typography variant="body1">
+                    We guarantee at least 10% profit on your investment after 10
+                    days.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
           {userData ? (
             <Grid xs={12}>
@@ -62,7 +104,7 @@ const AboutPage = (props: Props) => {
               </Card>
             </Grid>
           ) : (
-            <>
+            <Grid xs={12} container spacing={2}>
               <Grid xs={6}>
                 <Card>
                   <CardContent>
@@ -91,7 +133,7 @@ const AboutPage = (props: Props) => {
                   </CardActions>
                 </Card>
               </Grid>
-            </>
+            </Grid>
           )}
         </Grid>
       </Container>

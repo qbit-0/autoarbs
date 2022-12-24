@@ -3,9 +3,9 @@ import {
   CardActions,
   CardContent,
   MenuItem,
-  Stack,
   Typography,
 } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { createWithdrawal } from "../../api/account";
@@ -17,7 +17,6 @@ import {
 } from "../../features/account/accountSlice";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
-import Grid from "@mui/material/Unstable_Grid2";
 
 type Values = { amount: number; method: string; accountWithdrawnTo: string };
 const methodOptions = ["method0", "method1", "method2"];

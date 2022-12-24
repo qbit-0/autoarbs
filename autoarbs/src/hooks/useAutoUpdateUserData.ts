@@ -1,19 +1,12 @@
-import { useEffect } from "react";
-import { readUserByToken } from "../api/account";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import {
-  accountActions,
-  selectAutoUpdateIntervalId,
-  selectToken,
-  selectUserData,
-} from "../features/account/accountSlice";
+import { useAppSelector } from "../app/hooks";
+import { selectUserData } from "../features/account/accountSlice";
 
 const useAutoUpdateUserData = () => {
   const userData = useAppSelector(selectUserData);
-  const token = useAppSelector(selectToken);
-  const autoUpdateIntervalId = useAppSelector(selectAutoUpdateIntervalId);
+  // const token = useAppSelector(selectToken);
+  // const autoUpdateIntervalId = useAppSelector(selectAutoUpdateIntervalId);
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   // useEffect(() => {
   //   if (!userData || !token) return;

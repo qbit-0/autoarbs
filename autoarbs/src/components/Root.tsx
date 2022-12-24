@@ -1,4 +1,4 @@
-import { Box, Paper, Snackbar, useTheme } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LOGGED_IN_REDIRECT, LOGGED_OUT_REDIRECT, PAGES } from "../App";
@@ -21,8 +21,6 @@ const Root = (props: Props) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const theme = useTheme();
 
   useEffect(() => {
     const autoLogin = async () => {

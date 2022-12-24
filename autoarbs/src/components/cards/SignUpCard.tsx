@@ -1,21 +1,13 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Snackbar,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Card, CardActions, CardContent, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUser, readUserByEmail } from "../../api/account";
-import FormikSubmitButton from "../FormikSubmitButton";
-import FormikTextField from "../FormikTextField";
-import Grid from "@mui/material/Unstable_Grid2";
 import { useAppDispatch } from "../../app/hooks";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
 
 type Values = {
   email: string;

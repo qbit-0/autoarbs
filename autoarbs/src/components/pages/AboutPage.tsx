@@ -42,7 +42,7 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Typography variant="body1">
-              This is where we explain the app.
+              Make 10% Every 10 Days. Guaranteed.
             </Typography>
           </Grid>
           {userData ? (

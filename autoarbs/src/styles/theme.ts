@@ -1,4 +1,4 @@
-import { amber, pink } from "@mui/material/colors";
+import { amber, grey, pink } from "@mui/material/colors";
 import {
   createTheme,
   PaletteOptions,
@@ -11,6 +11,9 @@ const paletteOptions: PaletteOptions = {
   },
   secondary: {
     main: amber[400],
+  },
+  background: {
+    paper: grey[50],
   },
 };
 

@@ -36,7 +36,7 @@ const Header = (props: Props) => {
   return (
     <header>
       <Box>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               size="large"

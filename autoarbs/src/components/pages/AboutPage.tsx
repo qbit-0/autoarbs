@@ -41,8 +41,9 @@ const AboutPage = (props: Props) => {
             <Card elevation={12} sx={{ bgcolor: theme.palette.primary.main }}>
               <CardContent>
                 <Typography variant="h2" color="white" textAlign="center">
-                  Put Money In, Get Money Out.
-                  <br /> It's That Simple.
+                  Doesn't Matter Who Wins.
+                  <br />
+                  You Win.
                 </Typography>
               </CardContent>
             </Card>

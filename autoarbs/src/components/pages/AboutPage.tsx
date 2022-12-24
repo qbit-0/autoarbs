@@ -35,8 +35,8 @@ const AboutPage = (props: Props) => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid xs={12}>
-            <Typography variant="h2">
+          <Grid xs={12} bgcolor="black">
+            <Typography variant="h2" color="white">
               Put Money In, Get Money Out. It's That Simple.
             </Typography>
           </Grid>

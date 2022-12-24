@@ -8,6 +8,7 @@ import {
   Container,
   Stack,
   Typography,
+  useTheme,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
@@ -17,6 +18,7 @@ type Props = {};
 
 const AboutPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
+  const theme = useTheme();
 
   return (
     <Box py={8}>
@@ -36,7 +38,7 @@ const AboutPage = (props: Props) => {
             </Stack>
           </Grid>
           <Grid xs={12}>
-            <Card elevation={12} sx={{ bgcolor: "purple" }}>
+            <Card elevation={12} sx={{ bgcolor: theme.palette.primary.main }}>
               <CardContent>
                 <Typography variant="h2" color="white" textAlign="center">
                   Put Money In, Get Money Out.
@@ -61,11 +63,14 @@ const AboutPage = (props: Props) => {
             <Grid xs={4}>
               <Card>
                 <CardContent>
-                  <Typography variant="h4">1. Make a Deposit</Typography>
-                  <Typography variant="body1">
-                    We make it easy. Sign up and make an account, log in with
-                    your personal account and start investing!
-                  </Typography>
+                  <Stack spacing={2}>
+                    <Typography variant="h4">1. Make a Deposit</Typography>
+                    <img src="images/deposit.jpeg" alt="piggybank" />
+                    <Typography variant="body1">
+                      We make it easy. Sign up and make an account, log in with
+                      your personal account and start investing!
+                    </Typography>
+                  </Stack>
                 </CardContent>
               </Card>
             </Grid>
@@ -83,11 +88,14 @@ const AboutPage = (props: Props) => {
             <Grid xs={4}>
               <Card>
                 <CardContent>
-                  <Typography variant="h4">3. Reap the Profits</Typography>
-                  <Typography variant="body1">
-                    We guarantee at least 10% profit on your investment after 10
-                    days.
-                  </Typography>
+                  <Stack spacing={2}>
+                    <Typography variant="h4">3. Reap the Profits</Typography>
+                    <img src="images/profit.jpeg" alt="moneyplant" />
+                    <Typography variant="body1">
+                      We guarantee at least 10% profit on your investment after
+                      10 days.
+                    </Typography>
+                  </Stack>
                 </CardContent>
               </Card>
             </Grid>

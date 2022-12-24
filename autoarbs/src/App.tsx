@@ -2,15 +2,13 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import HistoryIcon from "@mui/icons-material/History";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PasswordIcon from "@mui/icons-material/Password";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material/SvgIcon";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
 import DashboardPage from "./components/pages/DashboardPage";
@@ -45,7 +43,7 @@ export const PAGES: Page[] = [
   {
     name: "Dashboard",
     path: "/dashboard",
-    icon: <DashboardIcon />,
+    icon: <AccountBalanceWalletIcon />,
     element: <DashboardPage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,

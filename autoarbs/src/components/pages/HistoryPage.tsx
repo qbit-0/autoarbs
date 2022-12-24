@@ -1,3 +1,5 @@
+import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import DepositHistoryCard from "../cards/DepositHistoryCard";
 import WithdrawalHistoryCard from "../cards/WithdrawalHistoryCard";
 
@@ -5,25 +7,21 @@ type Props = {};
 
 const HistoryPage = (props: Props) => {
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col s12">
-            <h1>Transaction History</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s12">
+    <Box paddingY={8}>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid xs={12}>
+            <Typography variant="h1">Transaction History</Typography>
+          </Grid>
+          <Grid xs={12}>
             <DepositHistoryCard />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s12">
+          </Grid>
+          <Grid xs={12}>
             <WithdrawalHistoryCard />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

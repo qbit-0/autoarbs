@@ -1,5 +1,12 @@
+import {
+  Card,
+  CardActions,
+  CardContent,
+  MenuItem,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useEffect } from "react";
 import * as Yup from "yup";
 import { createWithdrawal } from "../../api/account";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -8,8 +15,9 @@ import {
   selectToken,
   selectUserData,
 } from "../../features/account/accountSlice";
-import MaterializeErrorMessage from "../MaterializeErrorMessage";
-import MaterializeField from "../MaterializeField";
+import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
+import Grid from "@mui/material/Unstable_Grid2";
 
 type Values = { amount: number; method: string; accountWithdrawnTo: string };
 const methodOptions = ["method0", "method1", "method2"];
@@ -27,11 +35,6 @@ const WithdrawCard = (props: Props) => {
   const userData = useAppSelector(selectUserData);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
 
   if (!token || !userData) return null;
 
@@ -79,65 +82,54 @@ const WithdrawCard = (props: Props) => {
   };
 
   return (
-    <div className="card hoverable">
+    <Card>
       <Formik
         initialValues={initialValues}
         validationSchema={withdrawSchema}
-        validateOnBlur={false}
-        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ isValidating, isSubmitting }) => (
-          <Form>
-            <div className="card-content">
-              <div className="row">
-                <div className="col s12">
-                  <span className="card-title">Withdraw</span>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="number" name="amount" />
-                  <label htmlFor="amount">Amount</label>
-                  <MaterializeErrorMessage name="amount" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField as="select" name="method">
-                    <option value="method0">Method 0</option>
-                    <option value="method1">Method 1</option>
-                    <option value="method2">Method 2</option>
-                  </MaterializeField>
-                  <label htmlFor="method">Method</label>
-                  <MaterializeErrorMessage name="method" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="text" name="accountWithdrawnTo" />
-                  <label htmlFor="accountWithdrawnTo">
-                    Account Withdrawn To
-                  </label>
-                  <MaterializeErrorMessage name="accountWithdrawnTo" />
-                </div>
-              </div>
-            </div>
-            <div className="card-action">
-              <div className="flex justify-end">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  disabled={isSubmitting || isValidating}
+        <Form>
+          <CardContent>
+            <Grid container spacing={4}>
+              <Grid xs={12}>
+                <Typography variant="h3">Withdraw</Typography>
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  label="Amount"
+                />
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  id="method"
+                  name="method"
+                  label="Method"
+                  select
                 >
-                  Withdraw
-                </button>
-              </div>
-            </div>
-          </Form>
-        )}
+                  <MenuItem value="method0">Method 0</MenuItem>
+                  <MenuItem value="method1">Method 1</MenuItem>
+                  <MenuItem value="method2">Method 2</MenuItem>
+                </FormikTextField>
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  id="accountWithdrawnTo"
+                  name="accountWithdrawnTo"
+                  label="Acount Withdrawn To"
+                  select
+                />
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <FormikSubmitButton>Next</FormikSubmitButton>
+          </CardActions>
+        </Form>
       </Formik>
-    </div>
+    </Card>
   );
 };
 

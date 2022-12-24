@@ -1,10 +1,21 @@
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Snackbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUser, readUserByEmail } from "../../api/account";
-import MaterializeErrorMessage from "../MaterializeErrorMessage";
-import MaterializeField from "../MaterializeField";
+import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
+import Grid from "@mui/material/Unstable_Grid2";
+import { useAppDispatch } from "../../app/hooks";
+import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 
 type Values = {
   email: string;
@@ -53,21 +64,16 @@ const signUpSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .max(32, "Password must be at most 32 characters")
     .required("Required"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password")],
-    "Your passwords must match"
-  ),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Your passwords must match")
+    .required("Required"),
 });
 
 type Props = {};
 
 const SignUpCard = (props: Props) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
 
   const handleSubmit = async (
     values: Values,
@@ -84,82 +90,92 @@ const SignUpCard = (props: Props) => {
 
       switch (data.statusCode) {
         case "201":
+          dispatch(
+            snackbarActions.toast({
+              message: "Signup successful",
+              severity: "success",
+            })
+          );
           navigate("/verification");
           break;
         default:
-          M.toast({ html: data.statusMessage });
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "error",
+            })
+          );
           break;
       }
-    } catch (e) {
-      console.error(e);
-      M.toast({ html: "Sign up failed" });
+    } catch (err) {
+      console.error(err);
+      dispatch(
+        snackbarActions.toast({
+          message: "Signup failed",
+          severity: "error",
+        })
+      );
     }
 
     setSubmitting(false);
   };
 
   return (
-    <div className="card hoverable">
+    <Card>
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}
-        validateOnBlur={false}
-        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ isValidating, isSubmitting }) => (
+        {({ status }) => (
           <Form>
-            <div className="card-content">
-              <span className="card-title center">Create an Account</span>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="email" name="email" />
-                  <label htmlFor="email">Email</label>
-                  <MaterializeErrorMessage name="email" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12 m6">
-                  <MaterializeField type="text" name="firstName" />
-                  <label htmlFor="firstName">First Name</label>
-                  <MaterializeErrorMessage name="firstName" />
-                </div>
-                <div className="input-field col s12 m6">
-                  <MaterializeField type="text" name="lastName" />
-                  <label htmlFor="lastName">Last Name</label>
-                  <MaterializeErrorMessage name="lastName" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="password" name="password" />
-                  <label htmlFor="password">Password</label>
-                  <MaterializeErrorMessage name="password" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="password" name="confirmPassword" />
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <MaterializeErrorMessage name="confirmPassword" />
-                </div>
-              </div>
-            </div>
-            <div className="card-action">
-              <div className="flex justify-end">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  disabled={isSubmitting || isValidating}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid>
+                  <Typography variant="h3">Create an Account</Typography>
+                </Grid>
+                <Grid xs={12}>
+                  <FormikTextField id="email" name="email" label="Email" />
+                </Grid>
+                <Grid xs={6}>
+                  <FormikTextField
+                    id="firstName"
+                    name="firstName"
+                    label="First Name"
+                  />
+                </Grid>
+                <Grid xs={6}>
+                  <FormikTextField
+                    id="lastName"
+                    name="lastName"
+                    label="Last Name"
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <FormikTextField
+                    type="password"
+                    id="password"
+                    name="password"
+                    label="Password"
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <FormikTextField
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    label="Confirm Password"
+                  />
+                </Grid>
+              </Grid>
+            </CardContent>
+            <CardActions>
+              <FormikSubmitButton>Next</FormikSubmitButton>
+            </CardActions>
           </Form>
         )}
       </Formik>
-    </div>
+    </Card>
   );
 };
 

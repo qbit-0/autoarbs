@@ -27,14 +27,12 @@ export type UserData = {
 };
 
 export type AccountState = {
-  isLoggedIn: boolean;
   userData: UserData | null;
   token: string | null;
   autoUpdateIntervalId: NodeJS.Timer | null;
 };
 
 const initialState: AccountState = {
-  isLoggedIn: false,
   userData: null,
   token: null,
   autoUpdateIntervalId: null,
@@ -48,7 +46,6 @@ const accountSlice = createSlice({
       state,
       action: PayloadAction<{ userData: UserData; token: string }>
     ) => {
-      state.isLoggedIn = true;
       state.userData = action.payload.userData;
       state.token = action.payload.token;
       window.localStorage.setItem(
@@ -61,7 +58,6 @@ const accountSlice = createSlice({
       );
     },
     logout: (state) => {
-      state.isLoggedIn = false;
       state.userData = null;
       state.token = null;
       window.localStorage.removeItem("userData");

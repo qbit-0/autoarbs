@@ -1,5 +1,14 @@
-import { Link } from "react-router-dom";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
+import ButtonLink from "../ButtonLink";
 
 type Props = {};
 
@@ -7,84 +16,64 @@ const AboutPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
 
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col s12">
-            <h1>AutoArbs</h1>
-            <h2>Put Money In, Get Money Out. It's That Simple.</h2>
-            <p>This is where we explain the app.</p>
-          </div>
+    <Box paddingY={8}>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid xs={12}>
+            <Typography variant="h1">AutoArbs</Typography>
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="h2">
+              Put Money In, Get Money Out. It's That Simple.
+            </Typography>
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="body1">
+              This is where we explain the app.
+            </Typography>
+          </Grid>
           {userData ? (
-            <div className="row">
-              <div className="col s12">
-                <div className="card hoverable">
-                  <div>
-                    <div className="card-content">
-                      <span className="card-title">
-                        You're already logged in
-                      </span>
-                    </div>
-                    <div className="card-action">
-                      <div className="flex justify-end">
-                        <Link to="/dashboard">
-                          <button className="btn waves-effect waves-light">
-                            View Your Dashboard
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Grid xs={12}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h3">You're already logged in</Typography>
+                </CardContent>
+                <CardActions>
+                  <ButtonLink to="/dashboard">Visit Dashboard</ButtonLink>
+                </CardActions>
+              </Card>
+            </Grid>
           ) : (
-            <div className="row">
-              <div className="col s12 m6">
-                <div className="card hoverable">
-                  <div>
-                    <div className="card-content">
-                      <span className="card-title">First time investor?</span>
-                      <p>We make it easy.</p>
-                    </div>
-                    <div className="card-action">
-                      <div className="flex justify-end">
-                        <Link to="/signup">
-                          <button className="btn waves-effect waves-light">
-                            Sign Up
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col s12 m6">
-                <div className="card hoverable">
-                  <div>
-                    <div className="card-content">
-                      <span className="card-title">
-                        Already have an account?
-                      </span>
-                      <p>Let's see your profits.</p>
-                    </div>
-                    <div className="card-action">
-                      <div className="flex justify-end">
-                        <Link to="/login">
-                          <button className="btn waves-effect waves-light">
-                            Login
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <>
+              <Grid xs={6}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h3">First time investor?</Typography>
+                    <Typography variant="h4">We make it easy</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <ButtonLink to="/signup">Sign Up</ButtonLink>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid xs={6}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h3">
+                      Already have an account?
+                    </Typography>
+                    <Typography variant="h4">Let's see your profits</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <ButtonLink to="/login">Log In</ButtonLink>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </>
           )}
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

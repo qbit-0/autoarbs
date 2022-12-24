@@ -1,4 +1,17 @@
-import { useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
@@ -6,11 +19,6 @@ type Props = {};
 const DepositHistoryCard = (props: Props) => {
   const userData = useAutoUpdateUserData();
   const [numTransactions, setNumTransactions] = useState(5);
-
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
 
   if (!userData) return null;
 
@@ -38,52 +46,54 @@ const DepositHistoryCard = (props: Props) => {
   };
 
   return (
-    <div className="card hoverable">
-      <div>
-        <div className="card-content">
-          <span className="card-title">Deposits</span>
-          <table>
-            <thead>
-              <tr>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Method</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
+    <Card>
+      <CardContent>
+        <Typography variant="h2">Deposits</Typography>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Amount</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Method</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {deposits.map((deposit) => (
-                <tr>
-                  <td>${deposit.amount}</td>
-                  <td>{new Date(deposit.createdAt).toLocaleString()}</td>
-                  <td>{deposit.method}</td>
-                  <td>{deposit.status}</td>
-                </tr>
+                <TableRow>
+                  <TableCell>${deposit.amount}</TableCell>
+                  <TableCell>
+                    {new Date(deposit.createdAt).toLocaleString()}
+                  </TableCell>
+                  <TableCell>{deposit.method}</TableCell>
+                  <TableCell>{deposit.status}</TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="card-action">
-          <div className="flex justify-end align-center">
-            <p>Showing {deposits.length} transactions.</p>
-            <button
-              className="btn waves-effect waves-light"
-              disabled={numTransactions <= 5}
-              onClick={handleShowLess}
-            >
-              Show Less
-            </button>
-            <button
-              className="btn waves-effect waves-light"
-              disabled={numTransactions >= userData.depositHistory.length}
-              onClick={handleShowMore}
-            >
-              Show More
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
+      <CardActions>
+        <Button
+          className="btn waves-effect waves-light"
+          disabled={numTransactions <= 5}
+          onClick={handleShowLess}
+        >
+          Show Less
+        </Button>
+        <Button
+          className="btn waves-effect waves-light"
+          disabled={numTransactions >= userData.depositHistory.length}
+          onClick={handleShowMore}
+        >
+          Show More
+        </Button>
+        <Typography flexGrow={1} textAlign="end">
+          Showing {deposits.length} transactions.
+        </Typography>
+      </CardActions>
+    </Card>
   );
 };
 

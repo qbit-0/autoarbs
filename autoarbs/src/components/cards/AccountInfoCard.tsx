@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from "@mui/material";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
@@ -8,12 +9,12 @@ const AccountInfoCard = (props: Props) => {
   if (!userData) return null;
 
   return (
-    <div className="card">
-      <div className="card-content">
-        <span className="card-title">Info</span>
-        <p>Email: {userData.email}</p>
-      </div>
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h2">Info</Typography>
+        <Typography>{userData.email}</Typography>
+      </CardContent>
+    </Card>
   );
 };
 

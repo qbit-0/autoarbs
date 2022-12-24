@@ -15,38 +15,38 @@ const useAutoUpdateUserData = () => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!userData || !token) return;
-    if (autoUpdateIntervalId !== null) return;
+  // useEffect(() => {
+  //   if (!userData || !token) return;
+  //   if (autoUpdateIntervalId !== null) return;
 
-    const intervalId = setInterval(async () => {
-      try {
-        const res = await readUserByToken(userData.email, token);
-        const data = res.data;
+  //   const intervalId = setInterval(async () => {
+  //     try {
+  //       const res = await readUserByToken(userData.email, token);
+  //       const data = res.data;
 
-        switch (data.statusCode) {
-          case "200":
-            dispatch(
-              accountActions.login({
-                userData: data.userData,
-                token: token,
-              })
-            );
-            break;
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }, 10000);
-    dispatch(accountActions.setAutoUpdateIntervalId(intervalId));
+  //       switch (data.statusCode) {
+  //         case "200":
+  //           dispatch(
+  //             accountActions.login({
+  //               userData: data.userData,
+  //               token: token,
+  //             })
+  //           );
+  //           break;
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }, 10000);
+  //   dispatch(accountActions.setAutoUpdateIntervalId(intervalId));
 
-    return () => {
-      if (intervalId === autoUpdateIntervalId) {
-        clearInterval(intervalId);
-        dispatch(accountActions.setAutoUpdateIntervalId(null));
-      }
-    };
-  }, [userData, token, autoUpdateIntervalId, dispatch]);
+  //   return () => {
+  //     if (intervalId === autoUpdateIntervalId) {
+  //       clearInterval(intervalId);
+  //       dispatch(accountActions.setAutoUpdateIntervalId(null));
+  //     }
+  //   };
+  // }, [userData, token, autoUpdateIntervalId, dispatch]);
 
   return userData;
 };

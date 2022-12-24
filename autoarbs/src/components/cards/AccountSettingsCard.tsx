@@ -1,36 +1,19 @@
-import { useEffect } from "react";
+import { Card, CardContent, MenuItem, Select, Typography } from "@mui/material";
 
 type Props = {};
 
 const AccountSettingsCard = (props: Props) => {
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
-
   return (
-    <div className="card hoverable">
-      <form>
-        <div className="card-content">
-          <div className="card-title">Settings</div>
-          <div className="input-field">
-            <select title="Example Setting" value="1">
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-            <label>Example Setting</label>
-          </div>
-        </div>
-        <div className="card-action">
-          <div className="flex justify-end">
-            <button className="btn waves-effect waves-light" type="submit">
-              Save
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h1">Settings</Typography>
+        <Select value="0" label="Sample Setting">
+          <MenuItem value="0">Option 0</MenuItem>
+          <MenuItem value="1">Option 1</MenuItem>
+          <MenuItem value="2">Option 2</MenuItem>
+        </Select>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,3 +1,5 @@
+import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import BalanceCard from "../cards/BalanceCard";
 import DepositCard from "../cards/DepositCard";
@@ -11,28 +13,26 @@ const DashboardPage = (props: Props) => {
   if (!userData) return null;
 
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col s12">
-            <h1>Hello, {userData.firstName}.</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s12">
+    <Box paddingY={8}>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid xs={12}>
+            <Typography variant="h1">
+              Welcome back, {userData.firstName}.
+            </Typography>
+          </Grid>
+          <Grid xs={12}>
             <BalanceCard />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s12 m6">
+          </Grid>
+          <Grid xs={6}>
             <DepositCard />
-          </div>
-          <div className="col s12 m6">
+          </Grid>
+          <Grid xs={6}>
             <WithdrawCard />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

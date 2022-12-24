@@ -1,3 +1,5 @@
+import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import AccountInfoCard from "../cards/AccountInfoCard";
 import AccountSettingsCard from "../cards/AccountSettingsCard";
@@ -10,25 +12,23 @@ const ProfilePage = (props: Props) => {
   if (!userData) return null;
 
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <h1>
-            {userData.firstName} {userData.lastName}
-          </h1>
-        </div>
-        <div className="row">
-          <div className="col s12">
+    <Box paddingY={8}>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid xs={12}>
+            <Typography variant="h1">
+              {userData.firstName} {userData.lastName}
+            </Typography>
+          </Grid>
+          <Grid xs={12}>
             <AccountInfoCard />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s12">
+          </Grid>
+          <Grid xs={12}>
             <AccountSettingsCard />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

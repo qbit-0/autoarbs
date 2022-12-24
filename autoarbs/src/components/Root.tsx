@@ -1,18 +1,16 @@
+import { Box, Paper, Snackbar, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { LOGGED_IN_REDIRECT, LOGGED_OUT_REDIRECT, PAGES } from "../App";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   accountActions,
   selectUserData,
 } from "../features/account/accountSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
-import Footer from "./Footer";
+import GlobalSnackbar from "./GlobalSnackbar";
 import Header from "./Header";
 
-const loggedInOnlyPages = ["/dashboard", "/history", "/profile"];
-const loggedOutOnlyPages = ["/login", "signup"];
-const loggedOutRedirect = "/";
-const loggedInRedirect = "/dashboard";
 type Props = {};
 
 const Root = (props: Props) => {
@@ -24,25 +22,25 @@ const Root = (props: Props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    M.AutoInit();
-  }, []);
+  const theme = useTheme();
 
   useEffect(() => {
     const autoLogin = async () => {
       if (userData) return;
+
+      const currentPage = PAGES.find((page) => page.path === location.pathname);
 
       if (savedUserData && savedToken) {
         dispatch(
           accountActions.login({ userData: savedUserData, token: savedToken })
         );
 
-        if (loggedOutOnlyPages.includes(location.pathname)) {
-          navigate(loggedInRedirect);
+        if (!currentPage?.allowWhenLoggedIn) {
+          navigate(LOGGED_IN_REDIRECT);
         }
       } else {
-        if (loggedInOnlyPages.includes(location.pathname)) {
-          navigate(loggedOutRedirect);
+        if (!currentPage?.allowWhenLoggedOut) {
+          navigate(LOGGED_OUT_REDIRECT);
         }
       }
     };
@@ -58,13 +56,19 @@ const Root = (props: Props) => {
   ]);
 
   return (
-    <>
+    <Box
+      component={Paper}
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
+    >
       <Header />
-      <main>
+      <Box component="main" flexGrow={1} display="flex" flexDirection="column">
         <Outlet />
-      </main>
-      <Footer />
-    </>
+        <GlobalSnackbar />
+      </Box>
+      {/* <Footer /> */}
+    </Box>
   );
 };
 

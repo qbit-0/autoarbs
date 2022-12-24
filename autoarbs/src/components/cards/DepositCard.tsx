@@ -1,5 +1,9 @@
+import { Card, MenuItem } from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useEffect } from "react";
 import * as Yup from "yup";
 import { createDeposit, readUserByToken } from "../../api/account";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -8,8 +12,9 @@ import {
   selectToken,
   selectUserData,
 } from "../../features/account/accountSlice";
-import MaterializeErrorMessage from "../MaterializeErrorMessage";
-import MaterializeField from "../MaterializeField";
+import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
 
 type Values = { amount: number; method: string };
 const methodOptions = ["method0", "method1", "method2"];
@@ -32,14 +37,7 @@ const DepositCard = (props: Props) => {
   const userData = useAppSelector(selectUserData);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
-
-  if (!token || !userData) {
-    return null;
-  }
+  if (!token || !userData) return null;
 
   const handleSubmit = async (
     values: Values,
@@ -57,7 +55,12 @@ const DepositCard = (props: Props) => {
 
       switch (data.statusCode) {
         case "201":
-          M.toast({ html: data.statusMessage });
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "success",
+            })
+          );
           dispatch(accountActions.deposit(values.amount));
 
           try {
@@ -80,7 +83,12 @@ const DepositCard = (props: Props) => {
           }
           break;
         default:
-          M.toast({ html: data.statusMessage });
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "error",
+            })
+          );
           break;
       }
     } catch (e) {
@@ -91,56 +99,46 @@ const DepositCard = (props: Props) => {
   };
 
   return (
-    <div className="card hoverable">
+    <Card>
       <Formik
         initialValues={initialValues}
         validationSchema={depositSchema}
-        validateOnBlur={false}
-        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ isValidating, isSubmitting }) => (
-          <Form>
-            <div className="card-content">
-              <div className="row">
-                <div className="col s12">
-                  <span className="card-title">Deposit</span>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="number" name="amount" />
-                  <label htmlFor="amount">Amount</label>
-                  <MaterializeErrorMessage name="amount" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField as="select" name="method">
-                    <option value="method0">Method 0</option>
-                    <option value="method1">Method 1</option>
-                    <option value="method2">Method 2</option>
-                  </MaterializeField>
-                  <label htmlFor="method">Method</label>
-                  <MaterializeErrorMessage name="method" />
-                </div>
-              </div>
-            </div>
-            <div className="card-action">
-              <div className="flex justify-end">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  disabled={isSubmitting || isValidating}
+        <Form>
+          <CardContent>
+            <Grid container spacing={4}>
+              <Grid xs={12}>
+                <Typography variant="h3">Deposit</Typography>
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  label="Amount"
+                />
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  id="method"
+                  name="method"
+                  label="Method"
+                  select
                 >
-                  Deposit
-                </button>
-              </div>
-            </div>
-          </Form>
-        )}
+                  <MenuItem value="method0">Method 0</MenuItem>
+                  <MenuItem value="method1">Method 1</MenuItem>
+                  <MenuItem value="method2">Method 2</MenuItem>
+                </FormikTextField>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <FormikSubmitButton>Next</FormikSubmitButton>
+          </CardActions>
+        </Form>
       </Formik>
-    </div>
+    </Card>
   );
 };
 

@@ -1,13 +1,18 @@
+import { Card } from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createLogin } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions } from "../../features/account/accountSlice";
-import MaterializeErrorMessage from "../MaterializeErrorMessage";
-import MaterializeField from "../MaterializeField";
+import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
 
 type Values = { email: string; password: string };
 const initialValues: Values = { email: "", password: "" };
@@ -22,11 +27,6 @@ const LoginCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    M.AutoInit();
-    M.updateTextFields();
-  }, []);
-
   const handleSubmit = async (
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
@@ -40,67 +40,69 @@ const LoginCard = (props: Props) => {
           dispatch(
             accountActions.login({ userData: data.userData, token: data.token })
           );
+          dispatch(
+            snackbarActions.toast({
+              message: "Login successful",
+              severity: "success",
+            })
+          );
           navigate("/dashboard");
           break;
         default:
           switch (data.statusMessage) {
             default:
-              M.toast({ html: data.statusMessage });
+              dispatch(
+                snackbarActions.toast({
+                  message: data.statusMessage,
+                  severity: "error",
+                })
+              );
               break;
           }
           break;
       }
     } catch (err) {
       console.error(err);
-      M.toast({ html: "Login failed" });
+      dispatch(
+        snackbarActions.toast({ message: "Login failed", severity: "error" })
+      );
     }
 
     setSubmitting(false);
   };
 
   return (
-    <div className="card hoverable">
+    <Card>
       <Formik
         initialValues={initialValues}
         validationSchema={loginSchema}
-        validateOnBlur={false}
-        validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ isValid, isValidating, isSubmitting }) => (
-          <Form>
-            <div className="card-content">
-              <span className="card-title center">Log In</span>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="email" name="email" />
-                  <label htmlFor="email">Email</label>
-                  <MaterializeErrorMessage name="email" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <MaterializeField type="password" name="password" />
-                  <label htmlFor="password">Password</label>
-                  <MaterializeErrorMessage name="password" />
-                </div>
-              </div>
-            </div>
-            <div className="card-action">
-              <div className="flex justify-end">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  disabled={isSubmitting || isValidating}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          </Form>
-        )}
+        <Form>
+          <CardContent>
+            <Grid container spacing={4}>
+              <Grid xs={12}>
+                <Typography variant="h3">Log In</Typography>
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField id="email" name="email" label="Email" />
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Password"
+                />
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <FormikSubmitButton>Next</FormikSubmitButton>
+          </CardActions>
+        </Form>
       </Formik>
-    </div>
+    </Card>
   );
 };
 

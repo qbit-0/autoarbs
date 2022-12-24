@@ -1,17 +1,15 @@
-import React from "react";
+import { Box, Container, Typography } from "@mui/material";
 
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="page-footer">
-      <div className="container">
-        <div className="row">
-          <h5>Footer Heading</h5>
-          <p>Footer Text</p>
-        </div>
-      </div>
-    </footer>
+    <Box component="footer" bgcolor="lightblue">
+      <Container>
+        <Typography variant="h5">Footer Heading</Typography>
+        <Typography>Footer Text</Typography>
+      </Container>
+    </Box>
   );
 };
 

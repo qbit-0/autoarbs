@@ -1,78 +1,61 @@
-import M from "materialize-css";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../app/hooks";
-import {
-  accountActions,
-  selectUserData,
-} from "../features/account/accountSlice";
-import NavLink from "./NavLink";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { Stack } from "@mui/system";
+import { useState } from "react";
+import { PAGES } from "../App";
+import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
+import ButtonLink from "./ButtonLink";
+import SideNavDrawer from "./SideNavDrawer";
 
 type Props = {};
 
 const Header = (props: Props) => {
-  const sidenavRef = useRef<HTMLUListElement>(null);
-  const [sidenavInstance, setSidenavInstance] = useState<M.Sidenav>();
-  const userData = useAppSelector(selectUserData);
-  const dispatch = useDispatch();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const userData = useAutoUpdateUserData();
 
-  useEffect(() => {
-    if (sidenavRef.current !== null) {
-      setSidenavInstance(M.Sidenav.getInstance(sidenavRef.current));
-    }
-  }, []);
+  const shownPages = PAGES.filter(
+    (page) =>
+      page.showInNavBar &&
+      ((userData && page.allowWhenLoggedIn) ||
+        (!userData && page.allowWhenLoggedOut))
+  );
 
-  const handleNavClick = () => {
-    sidenavInstance?.close();
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
   };
 
-  const navLinks = (
-    <>
-      <NavLink name="About" to="/" onClick={handleNavClick} />
-      {userData ? (
-        <>
-          <NavLink name="Dashboard" to="/dashboard" onClick={handleNavClick} />
-          <NavLink name="History" to="/history" onClick={handleNavClick} />
-          <NavLink name="Profile" to="/profile" onClick={handleNavClick} />
-          <li>
-            <Link
-              to="/"
-              onClick={() => {
-                dispatch(accountActions.logout());
-              }}
-            >
-              Logout
-            </Link>
-          </li>
-        </>
-      ) : (
-        <>
-          <NavLink name="Login" to="/login" onClick={handleNavClick} />
-          <NavLink name="Sign Up" to="/signup" onClick={handleNavClick} />
-        </>
-      )}
-    </>
-  );
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
 
   return (
     <header>
-      <div className="navbar-fixed">
-        <nav>
-          <div className="nav-wrapper">
-            <Link to="/" className="brand-logo">
-              AutoArbs
-            </Link>
-            <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
-              <i className="material-icons">menu</i>
-            </a>
-            <ul className="right hide-on-med-and-down">{navLinks}</ul>
-          </div>
-        </nav>
-      </div>
-      <ul className="sidenav" id="mobile-nav" ref={sidenavRef}>
-        {navLinks}
-      </ul>
+      <Box>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={openDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography flexGrow={1}>AutoArbs</Typography>
+            <Stack direction="row" spacing={1}>
+              {shownPages.map((page) => (
+                <ButtonLink color="inherit" to={page.path}>
+                  {page.name}
+                </ButtonLink>
+              ))}
+            </Stack>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <SideNavDrawer open={isDrawerOpen} onClose={handleDrawerClose} />
     </header>
   );
 };

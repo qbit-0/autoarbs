@@ -61,7 +61,13 @@ const Root = (props: Props) => {
       minHeight="100vh"
     >
       <Header />
-      <Box component="main" flexGrow={1} display="flex" flexDirection="column">
+      <Box
+        component="main"
+        flexGrow={1}
+        display="flex"
+        flexDirection="column"
+        py={6}
+      >
         <Outlet />
         <GlobalSnackbar />
       </Box>

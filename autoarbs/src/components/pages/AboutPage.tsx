@@ -16,7 +16,7 @@ const AboutPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
 
   return (
-    <Box paddingY={8}>
+    <Box py={8}>
       <Container>
         <Grid container spacing={4}>
           <Grid xs={12}>

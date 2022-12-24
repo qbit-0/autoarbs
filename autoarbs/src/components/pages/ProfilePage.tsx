@@ -12,7 +12,7 @@ const ProfilePage = (props: Props) => {
   if (!userData) return null;
 
   return (
-    <Box paddingY={8}>
+    <Box py={8}>
       <Container>
         <Grid container spacing={4}>
           <Grid xs={12}>

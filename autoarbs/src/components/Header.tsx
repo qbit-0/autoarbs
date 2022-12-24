@@ -48,7 +48,7 @@ const Header = (props: Props) => {
             <MenuIcon />
           </IconButton>
           <Typography flexGrow={1}>{currentPage?.name}</Typography>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={2}>
             {shownPages.map((page) => (
               <ButtonLink
                 startIcon={page === currentPage ? page.icon : null}

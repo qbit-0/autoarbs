@@ -8,13 +8,14 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { createWithdrawal } from "../../api/account";
+import { createWithdrawal, readUserByToken } from "../../api/account";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
   selectToken,
   selectUserData,
 } from "../../features/account/accountSlice";
+import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -66,15 +67,47 @@ const WithdrawCard = (props: Props) => {
 
       switch (data.statusCode) {
         case "201":
-          M.toast({ html: data.statusMessage });
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "success",
+            })
+          );
           dispatch(accountActions.withdraw(values.amount));
+
+          try {
+            const res = await readUserByToken(userData.email, token);
+            const data = res.data;
+            switch (data.statusCode) {
+              case "200":
+                dispatch(
+                  accountActions.login({
+                    userData: data.userData,
+                    token: token,
+                  })
+                );
+                break;
+              default:
+                break;
+            }
+          } catch (err) {
+            console.error(err);
+          }
           break;
         default:
-          M.toast({ html: data.statusMessage });
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "error",
+            })
+          );
           break;
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.error(err);
+      dispatch(
+        snackbarActions.toast({ message: "Withdraw failed", severity: "error" })
+      );
     }
 
     setSubmitting(false);

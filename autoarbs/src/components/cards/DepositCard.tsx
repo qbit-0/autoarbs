@@ -91,8 +91,14 @@ const DepositCard = (props: Props) => {
           );
           break;
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
+      dispatch(
+        snackbarActions.toast({
+          message: "Deposit failed",
+          severity: "error",
+        })
+      );
     }
 
     setSubmitting(false);

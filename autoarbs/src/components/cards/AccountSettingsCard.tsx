@@ -1,4 +1,10 @@
-import { Card, CardContent, MenuItem, Select, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 type Props = {};
 
@@ -7,11 +13,11 @@ const AccountSettingsCard = (props: Props) => {
     <Card>
       <CardContent>
         <Typography variant="h1">Settings</Typography>
-        <Select value="0" label="Sample Setting">
+        <TextField id="sample" name="sample" label="Sample" fullWidth select>
           <MenuItem value="0">Option 0</MenuItem>
           <MenuItem value="1">Option 1</MenuItem>
           <MenuItem value="2">Option 2</MenuItem>
-        </Select>
+        </TextField>
       </CardContent>
     </Card>
   );

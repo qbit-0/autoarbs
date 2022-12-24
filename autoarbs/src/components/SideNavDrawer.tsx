@@ -4,6 +4,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
 } from "@mui/material";
 import { ComponentProps, FC } from "react";
@@ -37,6 +38,7 @@ const SideNavDrawer: FC<Props> = (props) => {
                   navigate(page.path);
                 }}
               >
+                <ListItemIcon>{page.icon}</ListItemIcon>
                 <ListItemText>{page.name}</ListItemText>
               </ListItemButton>
             </ListItem>

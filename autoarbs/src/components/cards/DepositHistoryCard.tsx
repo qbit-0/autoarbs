@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Card,
   CardActions,
   CardContent,
@@ -75,22 +76,19 @@ const DepositHistoryCard = (props: Props) => {
         </TableContainer>
       </CardContent>
       <CardActions>
-        <Button
-          className="btn waves-effect waves-light"
-          disabled={numTransactions <= 5}
-          onClick={handleShowLess}
-        >
-          Show Less
-        </Button>
-        <Button
-          className="btn waves-effect waves-light"
-          disabled={numTransactions >= userData.depositHistory.length}
-          onClick={handleShowMore}
-        >
-          Show More
-        </Button>
+        <ButtonGroup>
+          <Button disabled={numTransactions <= 5} onClick={handleShowLess}>
+            Show Less
+          </Button>
+          <Button
+            disabled={numTransactions >= userData.depositHistory.length}
+            onClick={handleShowMore}
+          >
+            Show More
+          </Button>
+        </ButtonGroup>
         <Typography flexGrow={1} textAlign="end">
-          Showing {deposits.length} transactions.
+          Showing the latest {numTransactions} deposits.
         </Typography>
       </CardActions>
     </Card>

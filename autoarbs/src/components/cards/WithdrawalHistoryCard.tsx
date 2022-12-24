@@ -10,6 +10,7 @@ import {
   TableBody,
   CardActions,
   Button,
+  ButtonGroup,
 } from "@mui/material";
 import { useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
@@ -48,7 +49,7 @@ const WithdrawalHistoryCard = (props: Props) => {
   return (
     <Card>
       <CardContent>
-        <Typography variant="h2">Deposits</Typography>
+        <Typography variant="h2">Withdrawals</Typography>
         <TableContainer>
           <Table>
             <TableHead>
@@ -75,22 +76,19 @@ const WithdrawalHistoryCard = (props: Props) => {
         </TableContainer>
       </CardContent>
       <CardActions>
-        <Button
-          className="btn waves-effect waves-light"
-          disabled={numTransactions <= 5}
-          onClick={handleShowLess}
-        >
-          Show Less
-        </Button>
-        <Button
-          className="btn waves-effect waves-light"
-          disabled={numTransactions >= userData.withdrawalHistory.length}
-          onClick={handleShowMore}
-        >
-          Show More
-        </Button>
+        <ButtonGroup>
+          <Button disabled={numTransactions <= 5} onClick={handleShowLess}>
+            Show Less
+          </Button>
+          <Button
+            disabled={numTransactions >= userData.withdrawalHistory.length}
+            onClick={handleShowMore}
+          >
+            Show More
+          </Button>
+        </ButtonGroup>
         <Typography flexGrow={1} textAlign="end">
-          Showing {withdrawals.length} transactions.
+          Showing the latest {numTransactions} withdrawals.
         </Typography>
       </CardActions>
     </Card>

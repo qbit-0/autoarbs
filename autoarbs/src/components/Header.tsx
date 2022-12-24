@@ -1,5 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, Icon, IconButton, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { useState } from "react";
@@ -35,30 +35,32 @@ const Header = (props: Props) => {
 
   return (
     <header>
-      <Box>
-        <AppBar position="fixed">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={openDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography flexGrow={1}>{currentPage?.name}</Typography>
-            <Stack direction="row" spacing={1}>
-              {shownPages.map((page) => (
-                <ButtonLink color="inherit" to={page.path}>
-                  {page.name}
-                </ButtonLink>
-              ))}
-            </Stack>
-          </Toolbar>
-        </AppBar>
-      </Box>
+      <AppBar position="fixed">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={openDrawer}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography flexGrow={1}>{currentPage?.name}</Typography>
+          <Stack direction="row" spacing={1}>
+            {shownPages.map((page) => (
+              <ButtonLink
+                startIcon={page === currentPage ? page.icon : null}
+                color="inherit"
+                to={page.path}
+              >
+                {page.name}
+              </ButtonLink>
+            ))}
+          </Stack>
+        </Toolbar>
+      </AppBar>
       <SideNavDrawer open={isDrawerOpen} onClose={handleDrawerClose} />
     </header>
   );

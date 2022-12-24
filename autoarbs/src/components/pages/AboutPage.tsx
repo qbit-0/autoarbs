@@ -9,6 +9,8 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import ButtonLink from "../ButtonLink";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import LoginIcon from "@mui/icons-material/Login";
 
 type Props = {};
 
@@ -52,7 +54,9 @@ const AboutPage = (props: Props) => {
                     <Typography variant="h4">We make it easy</Typography>
                   </CardContent>
                   <CardActions>
-                    <ButtonLink to="/signup">Sign Up</ButtonLink>
+                    <ButtonLink startIcon={<PersonAddIcon />} to="/signup">
+                      Sign Up
+                    </ButtonLink>
                   </CardActions>
                 </Card>
               </Grid>
@@ -65,7 +69,9 @@ const AboutPage = (props: Props) => {
                     <Typography variant="h4">Let's see your profits</Typography>
                   </CardContent>
                   <CardActions>
-                    <ButtonLink to="/login">Log In</ButtonLink>
+                    <ButtonLink startIcon={<LoginIcon />} to="/login">
+                      Log In
+                    </ButtonLink>
                   </CardActions>
                 </Card>
               </Grid>

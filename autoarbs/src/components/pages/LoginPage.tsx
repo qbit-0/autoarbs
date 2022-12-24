@@ -1,3 +1,4 @@
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Container, Stack } from "@mui/material";
 import ButtonLink from "../ButtonLink";
 import LoginCard from "../cards/LoginCard";
@@ -15,7 +16,9 @@ const LoginPage = (props: Props) => {
       <Container maxWidth="sm">
         <Stack flexDirection="column" spacing={4}>
           <LoginCard />
-          <ButtonLink to="/signup">Or Sign Up</ButtonLink>
+          <ButtonLink startIcon={<PersonAddIcon />} to="/signup">
+            Or Sign Up
+          </ButtonLink>
         </Stack>
       </Container>
     </Stack>

@@ -1,7 +1,7 @@
 import { amber, grey, pink } from "@mui/material/colors";
 import { PaletteOptions } from "@mui/material/styles";
 
-const paletteOptions: PaletteOptions = {
+const palette: PaletteOptions = {
   primary: {
     main: pink[900],
   },
@@ -13,4 +13,4 @@ const paletteOptions: PaletteOptions = {
   },
 };
 
-export default paletteOptions;
+export default palette;

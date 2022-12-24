@@ -1,21 +1,5 @@
-import { amber, grey, pink } from "@mui/material/colors";
-import {
-  createTheme,
-  PaletteOptions,
-  ThemeOptions,
-} from "@mui/material/styles";
-
-const paletteOptions: PaletteOptions = {
-  primary: {
-    main: pink[900],
-  },
-  secondary: {
-    main: amber[400],
-  },
-  background: {
-    paper: grey[50],
-  },
-};
+import { createTheme, ThemeOptions } from "@mui/material/styles";
+import paletteOptions from "./palette";
 
 const themeOptions: ThemeOptions = {
   palette: paletteOptions,

@@ -11,7 +11,7 @@ const AccountInfoCard = (props: Props) => {
   return (
     <Card>
       <CardContent>
-        <Typography variant="h2">Info</Typography>
+        <Typography variant="h3">Info</Typography>
         <Typography>{userData.email}</Typography>
       </CardContent>
     </Card>

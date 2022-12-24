@@ -9,6 +9,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PasswordIcon from "@mui/icons-material/Password";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
 import DashboardPage from "./components/pages/DashboardPage";
@@ -79,7 +80,7 @@ export const PAGES: Page[] = [
   {
     name: "Log in",
     path: "/login",
-    icon: <LogoutIcon />,
+    icon: <LoginIcon />,
     element: <LoginPage />,
     showInNavBar: true,
     allowWhenLoggedIn: false,
@@ -88,7 +89,7 @@ export const PAGES: Page[] = [
   {
     name: "Sign up",
     path: "/signup",
-    icon: <LoginIcon />,
+    icon: <PersonAddIcon />,
     element: <SignUpPage />,
     showInNavBar: true,
     allowWhenLoggedIn: false,

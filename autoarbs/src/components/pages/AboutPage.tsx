@@ -30,7 +30,9 @@ const AboutPage = (props: Props) => {
               spacing={2}
             >
               <img src="PlaceholderLogo.png" alt="logo" width={100} />
-              <Typography variant="h1">AutoArbs</Typography>
+              <Typography variant="h1" fontWeight={900}>
+                AutoArbs
+              </Typography>
             </Stack>
           </Grid>
           <Grid xs={12}>

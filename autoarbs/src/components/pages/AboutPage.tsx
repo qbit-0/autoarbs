@@ -38,7 +38,7 @@ const AboutPage = (props: Props) => {
           <Grid xs={12}>
             <Card elevation={12} sx={{ bgcolor: "black" }}>
               <CardContent>
-                <Typography variant="h2" color="white">
+                <Typography variant="h2" color="white" textAlign="center">
                   Put Money In, Get Money Out.
                   <br /> It's That Simple.
                 </Typography>

@@ -3,6 +3,7 @@ import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { PAGES } from "../App";
 import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
 import ButtonLink from "./ButtonLink";
@@ -11,6 +12,7 @@ import SideNavDrawer from "./SideNavDrawer";
 type Props = {};
 
 const Header = (props: Props) => {
+  const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const userData = useAutoUpdateUserData();
 
@@ -20,6 +22,8 @@ const Header = (props: Props) => {
       ((userData && page.allowWhenLoggedIn) ||
         (!userData && page.allowWhenLoggedOut))
   );
+
+  const currentPage = PAGES.find((page) => page.path === location.pathname);
 
   const openDrawer = () => {
     setIsDrawerOpen(true);
@@ -44,7 +48,7 @@ const Header = (props: Props) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography flexGrow={1}>AutoArbs</Typography>
+            <Typography flexGrow={1}>{currentPage?.name}</Typography>
             <Stack direction="row" spacing={1}>
               {shownPages.map((page) => (
                 <ButtonLink color="inherit" to={page.path}>

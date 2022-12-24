@@ -39,7 +39,8 @@ const AboutPage = (props: Props) => {
             <Card elevation={12} sx={{ bgcolor: "black" }}>
               <CardContent>
                 <Typography variant="h2" color="white">
-                  Put Money In, Get Money Out. It's That Simple.
+                  Put Money In, Get Money Out.
+                  <br /> It's That Simple.
                 </Typography>
               </CardContent>
             </Card>

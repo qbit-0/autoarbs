@@ -7,7 +7,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { ComponentProps, FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PAGES } from "../App";
 import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
 
@@ -15,6 +15,7 @@ type Props = ComponentProps<typeof Drawer>;
 
 const SideNavDrawer: FC<Props> = (props) => {
   const userData = useAutoUpdateUserData();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const shownPages = PAGES.filter(
@@ -31,6 +32,7 @@ const SideNavDrawer: FC<Props> = (props) => {
           {shownPages.map((page) => (
             <ListItem>
               <ListItemButton
+                selected={page.path === location.pathname}
                 onClick={() => {
                   navigate(page.path);
                 }}

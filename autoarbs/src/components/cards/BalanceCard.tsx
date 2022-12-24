@@ -57,7 +57,7 @@ const BalanceCard = (props: Props) => {
           </Grid>
           <Grid xs={6}>
             <Typography variant="h4" textAlign="end">
-              {profitPercent.toFixed(2)}%
+              ${profit} ({profitPercent.toFixed(2)}%)
             </Typography>
           </Grid>
         </Grid>

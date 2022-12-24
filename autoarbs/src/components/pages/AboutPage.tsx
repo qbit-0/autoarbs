@@ -29,7 +29,7 @@ const AboutPage = (props: Props) => {
               justifyContent="center"
               spacing={2}
             >
-              <img src="PlaceholderLogo.png" width={100} />
+              <img src="PlaceholderLogo.png" alt="logo" width={100} />
               <Typography variant="h1">AutoArbs</Typography>
             </Stack>
           </Grid>

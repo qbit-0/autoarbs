@@ -41,7 +41,7 @@ const AboutPage = (props: Props) => {
                   <Typography variant="h3">You're already logged in</Typography>
                 </CardContent>
                 <CardActions>
-                  <ButtonLink to="/dashboard">Visit Dashboard</ButtonLink>
+                  <ButtonLink to="/wallet">Visit Wallet</ButtonLink>
                 </CardActions>
               </Card>
             </Grid>

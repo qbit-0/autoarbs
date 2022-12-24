@@ -46,7 +46,7 @@ const LoginCard = (props: Props) => {
               severity: "success",
             })
           );
-          navigate("/dashboard");
+          navigate("/wallet");
           break;
         default:
           switch (data.statusMessage) {

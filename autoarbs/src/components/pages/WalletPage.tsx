@@ -7,7 +7,7 @@ import WithdrawCard from "../cards/WithdrawCard";
 
 type Props = {};
 
-const DashboardPage = (props: Props) => {
+const WalletPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
 
   if (!userData) return null;
@@ -36,4 +36,4 @@ const DashboardPage = (props: Props) => {
   );
 };
 
-export default DashboardPage;
+export default WalletPage;

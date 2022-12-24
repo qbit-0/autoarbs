@@ -12,13 +12,13 @@ import PasswordIcon from "@mui/icons-material/Password";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
-import DashboardPage from "./components/pages/DashboardPage";
 import HistoryPage from "./components/pages/HistoryPage";
 import LoginPage from "./components/pages/LoginPage";
 import LogoutPage from "./components/pages/LogoutPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import SignUpPage from "./components/pages/SignUpPage";
 import VerificationPage from "./components/pages/VerificationPage";
+import WalletPage from "./components/pages/WalletPage";
 import Root from "./components/Root";
 
 export type Page = {
@@ -42,10 +42,10 @@ export const PAGES: Page[] = [
     allowWhenLoggedOut: true,
   },
   {
-    name: "Dashboard",
-    path: "/dashboard",
+    name: "Wallet",
+    path: "/wallet",
     icon: <AccountBalanceWalletIcon />,
-    element: <DashboardPage />,
+    element: <WalletPage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,
     allowWhenLoggedOut: false,
@@ -107,7 +107,7 @@ export const PAGES: Page[] = [
 ];
 
 export const LOGGED_OUT_REDIRECT = "/";
-export const LOGGED_IN_REDIRECT = "/dashboard";
+export const LOGGED_IN_REDIRECT = "/wallet";
 
 const router = createBrowserRouter([
   {
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { path: "/", element: <AboutPage /> },
-      { path: "/dashboard", element: <DashboardPage /> },
+      { path: "/wallet", element: <WalletPage /> },
       { path: "/history", element: <HistoryPage /> },
       { path: "/profile", element: <ProfilePage /> },
       { path: "/logout", element: <LogoutPage /> },

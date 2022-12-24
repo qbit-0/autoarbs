@@ -1,16 +1,17 @@
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {
   Box,
   Card,
   CardActions,
   CardContent,
   Container,
+  Stack,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import ButtonLink from "../ButtonLink";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import LoginIcon from "@mui/icons-material/Login";
 
 type Props = {};
 
@@ -22,7 +23,15 @@ const AboutPage = (props: Props) => {
       <Container>
         <Grid container spacing={4}>
           <Grid xs={12}>
-            <Typography variant="h1">AutoArbs</Typography>
+            <Stack
+              flexGrow={1}
+              direction="row"
+              justifyContent="center"
+              spacing={2}
+            >
+              <img src="PlaceholderLogo.png" width={100} />
+              <Typography variant="h1">AutoArbs</Typography>
+            </Stack>
           </Grid>
           <Grid xs={12}>
             <Typography variant="h2">

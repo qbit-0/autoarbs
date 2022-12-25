@@ -100,19 +100,17 @@ const AboutPage = (props: Props) => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid xs={12}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Typography variant="h3">
-                    Luck? We Don't Need Luck.
-                  </Typography>
-                  <Typography variant="body1">
-                    Insert More In Depth Explanation here.
-                  </Typography>
-                </CardContent>
-                <CardActions></CardActions>
-              </Card>
-            </Grid>
+          </Grid>
+          <Grid xs={12}>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography variant="h3">Luck? We Don't Need Luck.</Typography>
+                <Typography variant="body1">
+                  Insert More In Depth Explanation here.
+                </Typography>
+              </CardContent>
+              <CardActions></CardActions>
+            </Card>
           </Grid>
           {userData ? (
             <Grid xs={12}>

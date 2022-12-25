@@ -1,5 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { useState } from "react";
@@ -37,7 +37,9 @@ const Header = (props: Props) => {
     <header>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
+          <Box
+            component={IconButton}
+            display={["block", "none"]}
             size="large"
             edge="start"
             color="inherit"
@@ -46,9 +48,11 @@ const Header = (props: Props) => {
             onClick={openDrawer}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography flexGrow={1}>{currentPage?.name}</Typography>
-          <Stack direction="row" spacing={2}>
+          </Box>
+          <Typography variant="h6" flexGrow={1}>
+            {currentPage?.name}
+          </Typography>
+          <Stack display={["none", "block"]} direction="row" spacing={2}>
             {shownPages.map((page) => (
               <ButtonLink
                 startIcon={page === currentPage ? page.icon : null}
@@ -61,7 +65,12 @@ const Header = (props: Props) => {
           </Stack>
         </Toolbar>
       </AppBar>
-      <SideNavDrawer open={isDrawerOpen} onClose={handleDrawerClose} />
+      <Box
+        display={["block", "none"]}
+        component={SideNavDrawer}
+        open={isDrawerOpen}
+        onClose={handleDrawerClose}
+      />
     </header>
   );
 };

@@ -8,6 +8,7 @@ import {
   selectUserData,
 } from "../features/account/accountSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
+import Footer from "./Footer";
 import GlobalSnackbar from "./GlobalSnackbar";
 import Header from "./Header";
 
@@ -74,7 +75,7 @@ const Root = (props: Props) => {
         <Outlet />
         <GlobalSnackbar />
       </Box>
-      {/* <Footer /> */}
+      <Footer />
     </Box>
   );
 };

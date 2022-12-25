@@ -176,7 +176,11 @@ const AboutPage = (props: Props) => {
                     <Typography variant="h4">We make it easy</Typography>
                   </CardContent>
                   <CardActions>
-                    <ButtonLink startIcon={<PersonAddIcon />} to="/signup">
+                    <ButtonLink
+                      variant="contained"
+                      startIcon={<PersonAddIcon />}
+                      to="/signup"
+                    >
                       Sign Up
                     </ButtonLink>
                   </CardActions>
@@ -189,7 +193,11 @@ const AboutPage = (props: Props) => {
                     <Typography variant="h4">Let's see your profits</Typography>
                   </CardContent>
                   <CardActions>
-                    <ButtonLink startIcon={<LoginIcon />} to="/login">
+                    <ButtonLink
+                      variant="contained"
+                      startIcon={<LoginIcon />}
+                      to="/login"
+                    >
                       Log In
                     </ButtonLink>
                   </CardActions>

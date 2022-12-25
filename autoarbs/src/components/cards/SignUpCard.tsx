@@ -133,7 +133,7 @@ const SignUpCard = (props: Props) => {
           <CardContent>
             <Grid container spacing={4}>
               <Grid>
-                <Typography variant="h3">Create an Account</Typography>
+                <Typography variant="h3">Create an account</Typography>
               </Grid>
               <Grid xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />

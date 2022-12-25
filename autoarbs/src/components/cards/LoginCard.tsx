@@ -95,7 +95,9 @@ const LoginCard = (props: Props) => {
           <CardContent>
             <Grid container spacing={4}>
               <Grid xs={12}>
-                <Typography variant="h3">Log In</Typography>
+                <Typography variant="h3">
+                  Log in to an existing account
+                </Typography>
               </Grid>
               <Grid xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />

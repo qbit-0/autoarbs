@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";

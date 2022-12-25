@@ -1,5 +1,12 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Toolbar,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { useState } from "react";
@@ -15,6 +22,8 @@ const Header = (props: Props) => {
   const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const userData = useAutoUpdateUserData();
+  const theme = useTheme();
+  const useDesktopElements = useMediaQuery(theme.breakpoints.up("md"));
 
   const shownPages = PAGES.filter(
     (page) =>
@@ -33,13 +42,49 @@ const Header = (props: Props) => {
     setIsDrawerOpen(false);
   };
 
+  const mobileElements = (
+    <>
+      <Typography variant="h6">{currentPage?.name}</Typography>
+      <Box flexGrow={1} display="flex" justifyContent="end">
+        <Box
+          component="img"
+          src="images/AutoArbsPurple.jpeg"
+          alt="logo"
+          width={30}
+          height={30}
+          sx={{ mr: 2 }}
+        />
+      </Box>
+    </>
+  );
+
+  const desktopElements = (
+    <>
+      <Box
+        component="img"
+        src="images/AutoArbsPurple.jpeg"
+        alt="logo"
+        width={30}
+        height={30}
+        sx={{ mr: 2 }}
+      />
+      <Typography variant="h6" flexGrow={1}>
+        {currentPage?.name}
+      </Typography>
+    </>
+  );
+
+  const deviceSpecificElements = useDesktopElements
+    ? desktopElements
+    : mobileElements;
+
   return (
     <header>
       <AppBar position="fixed">
         <Toolbar>
           <Box
             component={IconButton}
-            display={["block", "none"]}
+            display={["block", "block", "none"]}
             size="large"
             edge="start"
             color="inherit"
@@ -49,10 +94,12 @@ const Header = (props: Props) => {
           >
             <MenuIcon />
           </Box>
-          <Typography variant="h6" flexGrow={1}>
-            {currentPage?.name}
-          </Typography>
-          <Stack display={["none", "block"]} direction="row" spacing={2}>
+          {deviceSpecificElements}
+          <Stack
+            display={["none", "none", "block"]}
+            direction="row"
+            spacing={2}
+          >
             {shownPages.map((page) => (
               <ButtonLink
                 startIcon={page === currentPage ? page.icon : null}
@@ -66,7 +113,7 @@ const Header = (props: Props) => {
         </Toolbar>
       </AppBar>
       <Box
-        display={["block", "none"]}
+        display={["block", "block", "none"]}
         component={SideNavDrawer}
         open={isDrawerOpen}
         onClose={handleDrawerClose}

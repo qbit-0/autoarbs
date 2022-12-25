@@ -1,4 +1,4 @@
-import { Box, Paper, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LOGGED_IN_REDIRECT, LOGGED_OUT_REDIRECT, PAGES } from "../App";

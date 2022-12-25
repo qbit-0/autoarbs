@@ -34,7 +34,12 @@ const AboutPage = (props: Props) => {
               alignItems="end"
               spacing={2}
             >
-              <img src="images/AutoArbsPurple.jpeg" alt="logo" height={75} />
+              <Box
+                component="img"
+                src="images/AutoArbsPurple.jpeg"
+                alt="logo"
+                height={75}
+              />
               <Typography variant="h1" fontWeight={900} lineHeight={0.7}>
                 AutoArbs
               </Typography>

@@ -1,7 +1,6 @@
 import { Button, Card, CardMedia } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";

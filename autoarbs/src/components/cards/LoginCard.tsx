@@ -3,7 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -11,6 +11,8 @@ import { createLogin } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions, UserData } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import CardForm from "../CardForm";
+import CardTitle from "../CardTitle";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -102,18 +104,15 @@ const LoginCard = (props: Props) => {
         validationSchema={loginSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <CardForm>
           <CardMedia
             image="https://picsum.photos/1000/1000"
             sx={{ height: 300 }}
           />
           <CardContent>
+            <CardTitle>Log into an existing account</CardTitle>
             <Grid container spacing={4}>
-              <Grid xs={12}>
-                <Typography variant="h3">
-                  Log in to an existing account
-                </Typography>
-              </Grid>
+              <Grid xs={12}></Grid>
               <Grid xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />
               </Grid>
@@ -128,6 +127,7 @@ const LoginCard = (props: Props) => {
             </Grid>
           </CardContent>
           <CardActions>
+            <FormikSubmitButton>Next</FormikSubmitButton>
             <Button
               color="error"
               onClick={() => {
@@ -147,9 +147,8 @@ const LoginCard = (props: Props) => {
             >
               Debug
             </Button>
-            <FormikSubmitButton>Next</FormikSubmitButton>
           </CardActions>
-        </Form>
+        </CardForm>
       </Formik>
     </Card>
   );

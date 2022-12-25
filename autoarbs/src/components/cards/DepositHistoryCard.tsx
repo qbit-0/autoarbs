@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
+import CardTitle from "../CardTitle";
 
 type Props = {};
 
@@ -47,9 +48,9 @@ const DepositHistoryCard = (props: Props) => {
   };
 
   return (
-    <Card>
+    <Card sx={{ width: "100%" }}>
       <CardContent>
-        <Typography variant="h2">Deposits</Typography>
+        <CardTitle>Deposits</CardTitle>
         <TableContainer>
           <Table>
             <TableHead>

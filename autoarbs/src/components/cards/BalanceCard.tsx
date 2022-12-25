@@ -25,10 +25,10 @@ const BalanceCard = (props: Props) => {
       <CardContent>
         <Grid container spacing={2}>
           <Grid xs={6}>
-            <Typography variant="h2">Balance</Typography>
+            <Typography variant="h3">Balance</Typography>
           </Grid>
           <Grid xs={6}>
-            <Typography variant="h2" textAlign="end">
+            <Typography variant="h3" textAlign="end">
               ${balance}
             </Typography>
           </Grid>

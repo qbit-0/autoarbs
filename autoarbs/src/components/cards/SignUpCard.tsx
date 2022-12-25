@@ -6,12 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Form, Formik, FormikHelpers } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUser, readUserByEmail } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import CardForm from "../CardForm";
+import CardTitle from "../CardTitle";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -125,16 +127,15 @@ const SignUpCard = (props: Props) => {
         validationSchema={signUpSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <CardForm>
           <CardMedia
             image="https://picsum.photos/1000/1000"
             sx={{ height: 300 }}
           />
           <CardContent>
-            <Grid container spacing={4}>
-              <Grid>
-                <Typography variant="h3">Create an account</Typography>
-              </Grid>
+            <CardTitle>Create an account</CardTitle>
+            <Grid container rowSpacing={4} columnSpacing={2}>
+              <Grid></Grid>
               <Grid xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />
               </Grid>
@@ -173,7 +174,7 @@ const SignUpCard = (props: Props) => {
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>
           </CardActions>
-        </Form>
+        </CardForm>
       </Formik>
     </Card>
   );

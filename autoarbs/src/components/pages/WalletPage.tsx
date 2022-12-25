@@ -15,12 +15,10 @@ const WalletPage = (props: Props) => {
   return (
     <Box py={8}>
       <Container>
+        <Typography variant="h1" gutterBottom>
+          Welcome back, {userData.firstName}.
+        </Typography>
         <Grid container spacing={4}>
-          <Grid xs={12}>
-            <Typography variant="h1">
-              Welcome back, {userData.firstName}.
-            </Typography>
-          </Grid>
           <Grid xs={12}>
             <BalanceCard />
           </Grid>

@@ -3,11 +3,20 @@ import { Components } from "@mui/material";
 import { grey, pink } from "@mui/material/colors";
 
 const components: Components<Omit<Theme, "components">> = {
-  MuiCard: {
+  MuiGrid2: {
     styleOverrides: {
       root: {
         display: "flex",
+      },
+    },
+  },
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        width: "100%",
+        display: "flex",
         flexDirection: "column",
+        justifyContent: "start",
       },
     },
   },

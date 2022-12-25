@@ -3,17 +3,18 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Form, Formik, FormikHelpers } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { createDeposit, readUserByToken } from "../../api/account";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
   selectToken,
-  selectUserData,
 } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
+import CardForm from "../CardForm";
+import CardTitle from "../CardTitle";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -112,12 +113,10 @@ const DepositCard = (props: Props) => {
         validationSchema={depositSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <CardForm>
           <CardContent>
+            <CardTitle>Deposit</CardTitle>
             <Grid container spacing={4}>
-              <Grid xs={12}>
-                <Typography variant="h3">Deposit</Typography>
-              </Grid>
               <Grid xs={12}>
                 <FormikTextField
                   type="number"
@@ -143,7 +142,7 @@ const DepositCard = (props: Props) => {
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>
           </CardActions>
-        </Form>
+        </CardForm>
       </Formik>
     </Card>
   );

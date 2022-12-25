@@ -5,12 +5,11 @@ import { ComponentProps, FC } from "react";
 type Props = ComponentProps<typeof Button>;
 
 const FormikSubmitButton: FC<Props> = (props) => {
-  const { isValidating, isSubmitting } = useFormikContext();
+  const { isValid, isValidating, isSubmitting } = useFormikContext();
   return (
     <Button
       type="submit"
-      disabled={isValidating || isSubmitting}
-      fullWidth={true}
+      disabled={!isValid || isValidating || isSubmitting}
       {...props}
     />
   );

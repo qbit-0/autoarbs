@@ -1,10 +1,12 @@
 import { Card, CardActions, CardContent, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import { FormikHelpers } from "formik/dist/types";
 import Grid from "@mui/material/Unstable_Grid2";
+import { Formik } from "formik";
+import { FormikHelpers } from "formik/dist/types";
 import * as Yup from "yup";
-import FormikTextField from "../FormikTextField";
+import CardForm from "../CardForm";
+import CardTitle from "../CardTitle";
 import FormikSubmitButton from "../FormikSubmitButton";
+import FormikTextField from "../FormikTextField";
 
 type Values = { code: string };
 const initialValues: Values = { code: "" };
@@ -29,14 +31,12 @@ const OtpCard = (props: Props) => {
         validationSchema={otpSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <CardForm>
           <CardContent>
+            <CardTitle>
+              We've sent you a verification code, check your emails.
+            </CardTitle>
             <Grid container spacing={4}>
-              <Grid xs={12}>
-                <Typography variant="h3">
-                  We've sent you a verification code, check your emails.
-                </Typography>
-              </Grid>
               <Grid xs={12}>
                 <FormikTextField
                   id="otp"
@@ -49,7 +49,7 @@ const OtpCard = (props: Props) => {
           <CardActions>
             <FormikSubmitButton>Confirm</FormikSubmitButton>
           </CardActions>
-        </Form>
+        </CardForm>
       </Formik>
     </Card>
   );

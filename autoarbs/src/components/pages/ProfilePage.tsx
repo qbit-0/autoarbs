@@ -14,10 +14,10 @@ const ProfilePage = (props: Props) => {
   return (
     <Box py={8}>
       <Container>
+        <Typography variant="h1" gutterBottom>
+          Your Profile
+        </Typography>
         <Grid container spacing={4}>
-          <Grid xs={12}>
-            <Typography variant="h1">Your Profile</Typography>
-          </Grid>
           <Grid xs={12}>
             <AccountInfoCard />
           </Grid>

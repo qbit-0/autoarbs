@@ -5,7 +5,6 @@ const components: Components<Omit<Theme, "components">> = {
   MuiCard: {
     styleOverrides: {
       root: {
-        flex: "1 1 1",
         display: "flex",
         flexDirection: "column",
       },
@@ -14,7 +13,7 @@ const components: Components<Omit<Theme, "components">> = {
   MuiCardContent: {
     styleOverrides: {
       root: {
-        flex: "1 1 0",
+        flex: "1 1 1",
       },
     },
   },

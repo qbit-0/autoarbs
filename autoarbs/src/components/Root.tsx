@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LOGGED_IN_REDIRECT, LOGGED_OUT_REDIRECT, PAGES } from "../App";
@@ -14,6 +14,7 @@ import Header from "./Header";
 type Props = {};
 
 const Root = (props: Props) => {
+  const theme = useTheme();
   const savedUserData = useLocalStorage("userData");
   const savedToken = useLocalStorage("token");
 
@@ -59,6 +60,7 @@ const Root = (props: Props) => {
       display="flex"
       flexDirection="column"
       minHeight="100vh"
+      bgcolor={theme.palette.background.default}
     >
       <Header />
       <Box

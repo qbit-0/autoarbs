@@ -10,6 +10,7 @@ const palette: PaletteOptions = {
   },
   background: {
     paper: grey[50],
+    default: grey[100],
   },
 };
 

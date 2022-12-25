@@ -33,7 +33,7 @@ const AboutPage = (props: Props) => {
               alignItems="center"
               spacing={2}
             >
-              <img src="images/AutoArbsPurple.jpeg" alt="logo" height={100} />
+              <img src="images/AutoArbsPurple.jpeg" alt="logo" height={125} />
               <Typography variant="h1" fontWeight={900}>
                 AutoArbs
               </Typography>

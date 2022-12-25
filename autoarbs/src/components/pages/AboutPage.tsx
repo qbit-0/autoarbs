@@ -41,9 +41,13 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Container maxWidth="md">
-              <Card elevation={12} sx={{ bgcolor: theme.palette.primary.main }}>
+              <Card elevation={12} sx={{ bgcolor: "white" }}>
                 <CardContent>
-                  <Typography variant="h2" color="white" textAlign="center">
+                  <Typography
+                    variant="h2"
+                    color={theme.palette.secondary.dark}
+                    textAlign="center"
+                  >
                     Doesn't Matter Who Wins.
                     <br />
                     You Win.

@@ -77,7 +77,7 @@ const AboutPage = (props: Props) => {
             <Stack direction="row" spacing={2}>
               <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
-                  image="images/deposit.jpeg"
+                  image="images/piggybank.jpeg"
                   title="piggybank"
                   sx={{ height: 300 }}
                 />
@@ -96,7 +96,7 @@ const AboutPage = (props: Props) => {
               </Card>
               <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
-                  image="images/profit.jpeg"
+                  image="images/moneyplant.jpeg"
                   title="moneyplant"
                   sx={{ height: 300 }}
                 />

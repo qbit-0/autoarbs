@@ -13,6 +13,7 @@ import {
   selectUserData,
 } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -33,8 +34,8 @@ const depositSchema = Yup.object().shape({
 type Props = {};
 
 const DepositCard = (props: Props) => {
+  const userData = useAutoUpdateUserData();
   const token = useAppSelector(selectToken);
-  const userData = useAppSelector(selectUserData);
   const dispatch = useAppDispatch();
 
   if (!token || !userData) return null;

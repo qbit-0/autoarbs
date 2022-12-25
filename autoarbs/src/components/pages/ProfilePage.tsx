@@ -16,9 +16,7 @@ const ProfilePage = (props: Props) => {
       <Container>
         <Grid container spacing={4}>
           <Grid xs={12}>
-            <Typography variant="h1">
-              {userData.firstName} {userData.lastName}
-            </Typography>
+            <Typography variant="h1">Your Profile</Typography>
           </Grid>
           <Grid xs={12}>
             <AccountInfoCard />

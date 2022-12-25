@@ -25,11 +25,13 @@ const Root = (props: Props) => {
 
   useEffect(() => {
     const autoLogin = async () => {
-      if (userData) return;
-
       const currentPage = PAGES.find((page) => page.path === location.pathname);
 
-      if (savedUserData && savedToken) {
+      if (userData) {
+        if (!currentPage?.allowWhenLoggedIn) {
+          navigate(LOGGED_IN_REDIRECT);
+        }
+      } else if (savedUserData && savedToken) {
         dispatch(
           accountActions.login({ userData: savedUserData, token: savedToken })
         );

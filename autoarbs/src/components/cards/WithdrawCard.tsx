@@ -13,9 +13,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   accountActions,
   selectToken,
-  selectUserData,
 } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
+import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
 
@@ -31,8 +31,8 @@ const initialValues = {
 type Props = {};
 
 const WithdrawCard = (props: Props) => {
+  const userData = useAutoUpdateUserData();
   const token = useAppSelector(selectToken);
-  const userData = useAppSelector(selectUserData);
 
   const dispatch = useAppDispatch();
 

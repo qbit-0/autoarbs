@@ -2,15 +2,14 @@ import { Button, Card } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { selectUserData } from "../../features/account/accountSlice";
 import Grid from "@mui/material/Unstable_Grid2";
+import { Link } from "react-router-dom";
+import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
 
 const BalanceCard = (props: Props) => {
-  const userData = useAppSelector(selectUserData);
+  const userData = useAutoUpdateUserData();
 
   if (!userData) return null;
 

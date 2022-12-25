@@ -30,9 +30,10 @@ const AboutPage = (props: Props) => {
               flexGrow={1}
               direction="row"
               justifyContent="center"
+              alignItems="center"
               spacing={2}
             >
-              <img src="PlaceholderLogo.png" alt="logo" width={100} />
+              <img src="images/AutoArbsPurple.jpeg" alt="logo" height={100} />
               <Typography variant="h1" fontWeight={900}>
                 AutoArbs
               </Typography>

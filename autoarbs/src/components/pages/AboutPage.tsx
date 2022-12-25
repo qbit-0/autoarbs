@@ -119,7 +119,6 @@ const AboutPage = (props: Props) => {
                   image="https://picsum.photos/1000/1000"
                   sx={{ height: 300 }}
                 />
-
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">Reap Your Profits</Typography>

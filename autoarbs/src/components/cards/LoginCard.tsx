@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import { Card, CardMedia } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -88,6 +88,10 @@ const LoginCard = (props: Props) => {
         onSubmit={handleSubmit}
       >
         <Form>
+          <CardMedia
+            image="https://picsum.photos/1000/1000"
+            sx={{ height: 300 }}
+          />
           <CardContent>
             <Grid container spacing={4}>
               <Grid xs={12}>

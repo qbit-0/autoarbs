@@ -1,4 +1,10 @@
-import { Card, CardActions, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -119,53 +125,55 @@ const SignUpCard = (props: Props) => {
         validationSchema={signUpSchema}
         onSubmit={handleSubmit}
       >
-        {({ status }) => (
-          <Form>
-            <CardContent>
-              <Grid container spacing={4}>
-                <Grid>
-                  <Typography variant="h3">Create an Account</Typography>
-                </Grid>
-                <Grid xs={12}>
-                  <FormikTextField id="email" name="email" label="Email" />
-                </Grid>
-                <Grid xs={6}>
-                  <FormikTextField
-                    id="firstName"
-                    name="firstName"
-                    label="First Name"
-                  />
-                </Grid>
-                <Grid xs={6}>
-                  <FormikTextField
-                    id="lastName"
-                    name="lastName"
-                    label="Last Name"
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <FormikTextField
-                    type="password"
-                    id="password"
-                    name="password"
-                    label="Password"
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <FormikTextField
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    label="Confirm Password"
-                  />
-                </Grid>
+        <Form>
+          <CardMedia
+            image="https://picsum.photos/1000/1000"
+            sx={{ height: 300 }}
+          />
+          <CardContent>
+            <Grid container spacing={4}>
+              <Grid>
+                <Typography variant="h3">Create an Account</Typography>
               </Grid>
-            </CardContent>
-            <CardActions>
-              <FormikSubmitButton>Next</FormikSubmitButton>
-            </CardActions>
-          </Form>
-        )}
+              <Grid xs={12}>
+                <FormikTextField id="email" name="email" label="Email" />
+              </Grid>
+              <Grid xs={6}>
+                <FormikTextField
+                  id="firstName"
+                  name="firstName"
+                  label="First Name"
+                />
+              </Grid>
+              <Grid xs={6}>
+                <FormikTextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                />
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Password"
+                />
+              </Grid>
+              <Grid xs={12}>
+                <FormikTextField
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  label="Confirm Password"
+                />
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <FormikSubmitButton>Next</FormikSubmitButton>
+          </CardActions>
+        </Form>
       </Formik>
     </Card>
   );

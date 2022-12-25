@@ -48,6 +48,15 @@ const LoginCard = (props: Props) => {
           );
           navigate("/wallet");
           break;
+        case "400":
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "error",
+            })
+          );
+          navigate("/verification");
+          break;
         default:
           switch (data.statusMessage) {
             default:

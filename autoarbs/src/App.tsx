@@ -2,14 +2,16 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import HistoryIcon from "@mui/icons-material/History";
+import {
+  AccountBalanceWallet,
+  AccountCircle,
+  History,
+  Login,
+  Logout,
+  Password,
+  PersonAdd,
+} from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import PasswordIcon from "@mui/icons-material/Password";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
 import HistoryPage from "./components/pages/HistoryPage";
@@ -44,7 +46,7 @@ export const PAGES: Page[] = [
   {
     name: "Wallet",
     path: "/wallet",
-    icon: <AccountBalanceWalletIcon />,
+    icon: <AccountBalanceWallet />,
     element: <WalletPage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,
@@ -53,7 +55,7 @@ export const PAGES: Page[] = [
   {
     name: "History",
     path: "/history",
-    icon: <HistoryIcon />,
+    icon: <History />,
     element: <HistoryPage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,
@@ -62,7 +64,7 @@ export const PAGES: Page[] = [
   {
     name: "Profile",
     path: "/profile",
-    icon: <AccountCircleIcon />,
+    icon: <AccountCircle />,
     element: <ProfilePage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,
@@ -71,7 +73,7 @@ export const PAGES: Page[] = [
   {
     name: "Log out",
     path: "/logout",
-    icon: <LogoutIcon />,
+    icon: <Logout />,
     element: <LogoutPage />,
     showInNavBar: true,
     allowWhenLoggedIn: true,
@@ -80,7 +82,7 @@ export const PAGES: Page[] = [
   {
     name: "Log in",
     path: "/login",
-    icon: <LoginIcon />,
+    icon: <Login />,
     element: <LoginPage />,
     showInNavBar: true,
     allowWhenLoggedIn: false,
@@ -89,7 +91,7 @@ export const PAGES: Page[] = [
   {
     name: "Sign up",
     path: "/signup",
-    icon: <PersonAddIcon />,
+    icon: <PersonAdd />,
     element: <SignUpPage />,
     showInNavBar: true,
     allowWhenLoggedIn: false,
@@ -98,7 +100,7 @@ export const PAGES: Page[] = [
   {
     name: "Verification",
     path: "/verification",
-    icon: <PasswordIcon />,
+    icon: <Password />,
     element: <VerificationPage />,
     showInNavBar: false,
     allowWhenLoggedIn: false,

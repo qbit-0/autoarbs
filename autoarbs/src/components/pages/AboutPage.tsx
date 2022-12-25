@@ -1,5 +1,4 @@
-import LoginIcon from "@mui/icons-material/Login";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { AccountBalanceWallet, Login, PersonAdd } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -167,12 +166,22 @@ const AboutPage = (props: Props) => {
           </Grid>
           {userData ? (
             <Grid xs={12}>
-              <Card>
+              <Card sx={{ flex: "1 1 0" }}>
+                <CardMedia
+                  image="https://picsum.photos/1000/1000"
+                  sx={{ height: 300 }}
+                />
                 <CardContent>
                   <Typography variant="h3">You're already logged in</Typography>
                 </CardContent>
                 <CardActions>
-                  <ButtonLink to="/wallet">Visit Wallet</ButtonLink>
+                  <ButtonLink
+                    variant="outlined"
+                    startIcon={<AccountBalanceWallet />}
+                    to="/wallet"
+                  >
+                    Visit Wallet
+                  </ButtonLink>
                 </CardActions>
               </Card>
             </Grid>
@@ -193,7 +202,7 @@ const AboutPage = (props: Props) => {
                   <CardActions>
                     <ButtonLink
                       variant="outlined"
-                      startIcon={<PersonAddIcon />}
+                      startIcon={<PersonAdd />}
                       to="/signup"
                     >
                       Sign Up
@@ -218,7 +227,7 @@ const AboutPage = (props: Props) => {
                   <CardActions>
                     <ButtonLink
                       variant="outlined"
-                      startIcon={<LoginIcon />}
+                      startIcon={<Login />}
                       to="/login"
                     >
                       Log In

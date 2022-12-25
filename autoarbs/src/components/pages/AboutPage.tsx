@@ -188,7 +188,7 @@ const AboutPage = (props: Props) => {
                   </CardContent>
                   <CardActions>
                     <ButtonLink
-                      variant="contained"
+                      variant="outlined"
                       startIcon={<PersonAddIcon />}
                       to="/signup"
                     >
@@ -213,7 +213,7 @@ const AboutPage = (props: Props) => {
                   </CardContent>
                   <CardActions>
                     <ButtonLink
-                      variant="contained"
+                      variant="outlined"
                       startIcon={<LoginIcon />}
                       to="/login"
                     >

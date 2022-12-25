@@ -38,15 +38,17 @@ const AboutPage = (props: Props) => {
             </Stack>
           </Grid>
           <Grid xs={12}>
-            <Card elevation={12} sx={{ bgcolor: theme.palette.primary.main }}>
-              <CardContent>
-                <Typography variant="h2" color="white" textAlign="center">
-                  Doesn't Matter Who Wins.
-                  <br />
-                  You Win.
-                </Typography>
-              </CardContent>
-            </Card>
+            <Container maxWidth="md">
+              <Card elevation={12} sx={{ bgcolor: theme.palette.primary.main }}>
+                <CardContent>
+                  <Typography variant="h2" color="white" textAlign="center">
+                    Doesn't Matter Who Wins.
+                    <br />
+                    You Win.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Container>
           </Grid>
           <Grid xs={12}>
             <Typography variant="body1">

@@ -96,7 +96,8 @@ const AboutPage = (props: Props) => {
               </Card>
               <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
-                  image="https://picsum.photos/1000/1000"
+                  image="images/profit.jpeg"
+                  title="moneyplant"
                   sx={{ height: 300 }}
                 />
                 <CardContent>
@@ -115,10 +116,10 @@ const AboutPage = (props: Props) => {
               </Card>
               <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
-                  image="images/profit.jpeg"
-                  title="moneyplant"
+                  image="https://picsum.photos/1000/1000"
                   sx={{ height: 300 }}
                 />
+
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">Reap Your Profits</Typography>

@@ -62,11 +62,12 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Typography variant="body1">
-              The dream of every investor, making money without having to worry
-              about losing it. AutoArbs is turning this dream into reality. Only
-              a few things are stopping you right now, but these can be solved
-              easily. Sign up and make an account, log in with your personal
-              account and start investing!
+              Put money in. Get money out. It's that simple. The dream of every
+              investor, making money without having to worry about losing it.
+              AutoArbs is turning this dream into reality. Only a few things are
+              stopping you right now, but these can be solved easily. Sign up
+              and make an account, log in with your personal account and start
+              investing!
               <br />
               <br />
               Make 10% Every 10 Days. Guaranteed.

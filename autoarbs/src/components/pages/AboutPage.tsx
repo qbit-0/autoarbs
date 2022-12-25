@@ -60,9 +60,9 @@ const AboutPage = (props: Props) => {
               Make 10% Every 10 Days. Guaranteed.
             </Typography>
           </Grid>
-          <Grid xs={12} container spacing={2}>
-            <Grid xs={4}>
-              <Card variant="outlined">
+          <Grid xs={12}>
+            <Stack direction="row" spacing={2}>
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">1. Make a Deposit</Typography>
@@ -74,20 +74,18 @@ const AboutPage = (props: Props) => {
                   </Stack>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid xs={4}>
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardContent>
-                  <Typography variant="h4">2. Grow Your Money</Typography>
-                  <Typography variant="body1">
-                    We reinvest your money every day. Averaging around 1% profit
-                    per day. You will never, ever lose money.
-                  </Typography>
+                  <Stack spacing={2}>
+                    <Typography variant="h4">2. Grow Your Money</Typography>
+                    <Typography variant="body1">
+                      We reinvest your money every day. Averaging around 1%
+                      profit per day. You will never, ever lose money.
+                    </Typography>
+                  </Stack>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid xs={4}>
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">3. Reap the Profits</Typography>
@@ -99,15 +97,19 @@ const AboutPage = (props: Props) => {
                   </Stack>
                 </CardContent>
               </Card>
-            </Grid>
+            </Stack>
           </Grid>
           <Grid xs={12}>
             <Card variant="outlined">
               <CardContent>
-                <Typography variant="h3">Luck? We Don't Need Luck.</Typography>
-                <Typography variant="body1">
-                  Insert More In Depth Explanation here.
-                </Typography>
+                <Stack spacing={2}>
+                  <Typography variant="h3">
+                    Luck? We Don't Need Luck.
+                  </Typography>
+                  <Typography variant="body1">
+                    Insert More In Depth Explanation here.
+                  </Typography>
+                </Stack>
               </CardContent>
               <CardActions></CardActions>
             </Card>
@@ -124,9 +126,9 @@ const AboutPage = (props: Props) => {
               </Card>
             </Grid>
           ) : (
-            <Grid xs={12} container spacing={2}>
-              <Grid xs={6}>
-                <Card>
+            <Grid xs={12}>
+              <Stack direction="row" spacing={2}>
+                <Card sx={{ flex: "1 1 0" }}>
                   <CardContent>
                     <Typography variant="h3">First time investor?</Typography>
                     <Typography variant="h4">We make it easy</Typography>
@@ -137,9 +139,7 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
-              </Grid>
-              <Grid xs={6}>
-                <Card>
+                <Card sx={{ flex: "1 1 0" }}>
                   <CardContent>
                     <Typography variant="h3">
                       Already have an account?
@@ -152,7 +152,7 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
-              </Grid>
+              </Stack>
             </Grid>
           )}
         </Grid>

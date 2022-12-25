@@ -1,10 +1,13 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {
   Box,
+  Button,
   Card,
   CardActions,
   CardContent,
+  CardMedia,
   Container,
   Stack,
   Typography,
@@ -64,19 +67,30 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Stack direction="row" spacing={2}>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <Card sx={{ flex: "1 1 0" }}>
+                <CardMedia
+                  image="images/deposit.jpeg"
+                  title="piggybank"
+                  sx={{ height: 300 }}
+                />
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">1. Make a Deposit</Typography>
-                    <img src="images/deposit.jpeg" alt="piggybank" />
                     <Typography variant="body1">
                       We make it easy. Sign up and make an account, log in with
                       your personal account and start investing!
                     </Typography>
                   </Stack>
                 </CardContent>
+                <CardActions>
+                  <Button>Learn More</Button>
+                </CardActions>
               </Card>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <Card sx={{ flex: "1 1 0" }}>
+                <CardMedia
+                  image="https://picsum.photos/200/200"
+                  sx={{ height: 300 }}
+                />
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">2. Grow Your Money</Typography>
@@ -86,31 +100,57 @@ const AboutPage = (props: Props) => {
                     </Typography>
                   </Stack>
                 </CardContent>
+                <CardActions>
+                  <Button>Learn More</Button>
+                </CardActions>
               </Card>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <Card sx={{ flex: "1 1 0" }}>
+                <CardMedia
+                  image="images/profit.jpeg"
+                  title="moneyplant"
+                  sx={{ height: 300 }}
+                />
                 <CardContent>
                   <Stack spacing={2}>
                     <Typography variant="h4">3. Reap the Profits</Typography>
-                    <img src="images/profit.jpeg" alt="moneyplant" />
                     <Typography variant="body1">
                       We guarantee at least 10% profit on your investment after
                       10 days.
                     </Typography>
                   </Stack>
                 </CardContent>
+                <CardActions>
+                  <Button>Learn More</Button>
+                </CardActions>
               </Card>
             </Stack>
           </Grid>
           <Grid xs={12}>
             <Card variant="outlined">
+              <CardMedia
+                image="https://picsum.photos/200/200"
+                sx={{ height: 300 }}
+              />
               <CardContent>
-                <Stack spacing={2}>
-                  <Typography variant="h3">
-                    Luck? We Don't Need Luck.
-                  </Typography>
-                  <Typography variant="body1">
-                    Insert More In Depth Explanation here.
-                  </Typography>
+                <Stack direction="row" spacing={2}>
+                  <Stack spacing={2}>
+                    <Typography variant="h3">
+                      Luck? We Don't Need Luck.
+                    </Typography>
+                    <Typography variant="body1">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Doloremque repellendus amet dignissimos neque blanditiis
+                      hic provident debitis eius beatae. Eum praesentium rerum
+                      atque nesciunt perferendis hic aliquid, incidunt dolorem
+                      at.
+                      <br />
+                      <br />
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Quo nihil similique pariatur, doloremque temporibus quam
+                      minus impedit, error repellat, a modi assumenda? Eligendi
+                      aliquid tempora beatae magni fugiat, nulla quae!
+                    </Typography>
+                  </Stack>
                 </Stack>
               </CardContent>
               <CardActions></CardActions>

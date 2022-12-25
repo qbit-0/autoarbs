@@ -79,7 +79,7 @@ const AboutPage = (props: Props) => {
               Make 10% Every 10 Days. Guaranteed.
             </Typography>
           </Grid>
-          <Grid xs={4} display="flex">
+          <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="images/piggybank.jpeg"
@@ -98,7 +98,7 @@ const AboutPage = (props: Props) => {
               </CardActions>
             </Card>
           </Grid>
-          <Grid xs={4} display="flex">
+          <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="images/moneyplant.jpeg"
@@ -118,7 +118,7 @@ const AboutPage = (props: Props) => {
               </CardActions>
             </Card>
           </Grid>
-          <Grid xs={4} display="flex">
+          <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="https://picsum.photos/1000/1000"

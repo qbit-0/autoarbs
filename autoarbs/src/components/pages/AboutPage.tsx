@@ -82,7 +82,7 @@ const AboutPage = (props: Props) => {
                 />
                 <CardContent>
                   <Stack spacing={2}>
-                    <Typography variant="h4">1. Make a Deposit</Typography>
+                    <Typography variant="h4">1. Make Your Deposit</Typography>
                     <Typography variant="body1">
                       We make it easy. Sign up and make an account, log in with
                       your personal account and start investing!
@@ -120,7 +120,7 @@ const AboutPage = (props: Props) => {
                 />
                 <CardContent>
                   <Stack spacing={2}>
-                    <Typography variant="h4">3. Reap the Profits</Typography>
+                    <Typography variant="h4">3. Reap Your Profits</Typography>
                     <Typography variant="body1">
                       We guarantee at least 10% profit on your investment after
                       10 days.

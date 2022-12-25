@@ -40,10 +40,10 @@ const SideNavDrawer: FC<Props> = (props) => {
                   navigate(page.path);
                 }}
               >
-                <ListItemIcon sx={{ color: theme.palette.secondary.dark }}>
+                <ListItemIcon sx={{ color: theme.palette.primary.main }}>
                   {page.icon}
                 </ListItemIcon>
-                <ListItemText sx={{ color: theme.palette.secondary.dark }}>
+                <ListItemText sx={{ color: theme.palette.primary.main }}>
                   {page.name}
                 </ListItemText>
               </ListItemButton>

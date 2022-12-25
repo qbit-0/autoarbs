@@ -41,7 +41,7 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Container maxWidth="md">
-              <Card elevation={12} sx={{ bgcolor: "white" }}>
+              <Card elevation={12}>
                 <CardContent>
                   <Typography
                     variant="h2"

@@ -6,6 +6,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 import { ComponentProps, FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -15,6 +16,7 @@ import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
 type Props = ComponentProps<typeof Drawer>;
 
 const SideNavDrawer: FC<Props> = (props) => {
+  const theme = useTheme();
   const userData = useAutoUpdateUserData();
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,8 +40,12 @@ const SideNavDrawer: FC<Props> = (props) => {
                   navigate(page.path);
                 }}
               >
-                <ListItemIcon>{page.icon}</ListItemIcon>
-                <ListItemText>{page.name}</ListItemText>
+                <ListItemIcon sx={{ color: theme.palette.secondary.dark }}>
+                  {page.icon}
+                </ListItemIcon>
+                <ListItemText sx={{ color: theme.palette.secondary.dark }}>
+                  {page.name}
+                </ListItemText>
               </ListItemButton>
             </ListItem>
           ))}

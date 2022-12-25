@@ -22,10 +22,10 @@ const WalletPage = (props: Props) => {
           <Grid xs={12}>
             <BalanceCard />
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} md={6}>
             <DepositCard />
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} md={6}>
             <WithdrawCard />
           </Grid>
         </Grid>

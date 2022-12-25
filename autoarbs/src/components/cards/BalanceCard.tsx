@@ -24,37 +24,37 @@ const BalanceCard = (props: Props) => {
     <Card>
       <CardContent>
         <Grid container spacing={2}>
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h3">Balance</Typography>
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h3" textAlign="end">
               ${balance}
             </Typography>
           </Grid>
 
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Deposited</Typography>
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4" textAlign="end">
               ${deposited}
             </Typography>
           </Grid>
 
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Withdrawn</Typography>
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4" textAlign="end">
               ${withdrawn}
             </Typography>
           </Grid>
 
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Profit</Typography>
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} sm={6}>
             <Typography variant="h4" textAlign="end">
               ${profit} ({profitPercent.toFixed(2)}%)
             </Typography>

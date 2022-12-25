@@ -25,7 +25,7 @@ const AboutPage = (props: Props) => {
   return (
     <Box py={8}>
       <Container>
-        <Grid container spacing={12}>
+        <Grid container spacing={16}>
           <Grid xs={12}>
             <Stack
               flexGrow={1}

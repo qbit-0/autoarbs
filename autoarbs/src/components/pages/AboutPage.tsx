@@ -30,7 +30,7 @@ const AboutPage = (props: Props) => {
               flexGrow={1}
               direction="row"
               justifyContent="center"
-              alignItems="center"
+              alignItems="end"
               spacing={2}
             >
               <img src="images/AutoArbsPurple.jpeg" alt="logo" height={125} />

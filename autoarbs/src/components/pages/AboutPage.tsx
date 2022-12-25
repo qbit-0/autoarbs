@@ -75,7 +75,7 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Stack direction="row" spacing={2}>
-              <Card sx={{ flex: "1 1 0" }}>
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
                   image="images/deposit.jpeg"
                   title="piggybank"
@@ -94,7 +94,7 @@ const AboutPage = (props: Props) => {
                   <Button>Learn More</Button>
                 </CardActions>
               </Card>
-              <Card sx={{ flex: "1 1 0" }}>
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
                   image="https://picsum.photos/1000/1000"
                   sx={{ height: 300 }}
@@ -113,7 +113,7 @@ const AboutPage = (props: Props) => {
                   <Button>Learn More</Button>
                 </CardActions>
               </Card>
-              <Card sx={{ flex: "1 1 0" }}>
+              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
                 <CardMedia
                   image="images/profit.jpeg"
                   title="moneyplant"

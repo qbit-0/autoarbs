@@ -24,7 +24,7 @@ const AboutPage = (props: Props) => {
   return (
     <Box py={8}>
       <Container>
-        <Grid container spacing={16}>
+        <Grid container rowSpacing={16} columnSpacing={2}>
           <Grid xs={12}>
             <Stack
               flexGrow={1}
@@ -73,66 +73,68 @@ const AboutPage = (props: Props) => {
               Make 10% Every 10 Days. Guaranteed.
             </Typography>
           </Grid>
-          <Grid xs={12}>
-            <Stack direction="row" spacing={2}>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
-                <CardMedia
-                  image="images/piggybank.jpeg"
-                  title="piggybank"
-                  sx={{ height: 300 }}
-                />
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Typography variant="h4">Make your deposit</Typography>
-                    <Typography variant="body1">
-                      We make it easy. Sign up and make an account, log in with
-                      your personal account and start investing!
-                    </Typography>
-                  </Stack>
-                </CardContent>
-                <CardActions>
-                  <Button>Learn More</Button>
-                </CardActions>
-              </Card>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
-                <CardMedia
-                  image="images/moneyplant.jpeg"
-                  title="moneyplant"
-                  sx={{ height: 300 }}
-                />
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Typography variant="h4">Grow your money</Typography>
-                    <Typography variant="body1">
-                      We reinvest your money every day. Averaging around 1%
-                      profit per day. You can withdraw anytime. And we promise
-                      that you will never, ever lose money.
-                    </Typography>
-                  </Stack>
-                </CardContent>
-                <CardActions>
-                  <Button>Learn More</Button>
-                </CardActions>
-              </Card>
-              <Card variant="outlined" sx={{ flex: "1 1 0" }}>
-                <CardMedia
-                  image="https://picsum.photos/1000/1000"
-                  sx={{ height: 300 }}
-                />
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Typography variant="h4">Reap your profits</Typography>
-                    <Typography variant="body1">
-                      We guarantee at least 10% profit on your investment after
-                      10 days.
-                    </Typography>
-                  </Stack>
-                </CardContent>
-                <CardActions>
-                  <Button>Learn More</Button>
-                </CardActions>
-              </Card>
-            </Stack>
+          <Grid xs={4} display="flex">
+            <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <CardMedia
+                image="images/piggybank.jpeg"
+                title="piggybank"
+                sx={{ height: 300 }}
+              />
+              <CardContent>
+                <Stack spacing={2}>
+                  <Typography variant="h4">Make your deposit</Typography>
+                  <Typography variant="body1">
+                    We make it easy. Sign up and make an account, log in with
+                    your personal account and start investing!
+                  </Typography>
+                </Stack>
+              </CardContent>
+              <CardActions>
+                <Button>Learn More</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid xs={4} display="flex">
+            <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <CardMedia
+                image="images/moneyplant.jpeg"
+                title="moneyplant"
+                sx={{ height: 300 }}
+              />
+              <CardContent>
+                <Stack spacing={2}>
+                  <Typography variant="h4">Grow your money</Typography>
+                  <Typography variant="body1">
+                    We reinvest your money every day. Averaging around 1% profit
+                    per day. You can withdraw anytime. And we promise that you
+                    will never, ever lose money.
+                  </Typography>
+                </Stack>
+              </CardContent>
+              <CardActions>
+                <Button>Learn More</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid xs={4} display="flex">
+            <Card variant="outlined" sx={{ flex: "1 1 0" }}>
+              <CardMedia
+                image="https://picsum.photos/1000/1000"
+                sx={{ height: 300 }}
+              />
+              <CardContent>
+                <Stack spacing={2}>
+                  <Typography variant="h4">Reap your profits</Typography>
+                  <Typography variant="body1">
+                    We guarantee at least 10% profit on your investment after 10
+                    days.
+                  </Typography>
+                </Stack>
+              </CardContent>
+              <CardActions>
+                <Button>Learn More</Button>
+              </CardActions>
+            </Card>
           </Grid>
           <Grid xs={12}>
             <Card variant="outlined">
@@ -187,8 +189,8 @@ const AboutPage = (props: Props) => {
               </Card>
             </Grid>
           ) : (
-            <Grid xs={12}>
-              <Stack direction="row" spacing={2}>
+            <>
+              <Grid xs={6} display="flex">
                 <Card sx={{ flex: "1 1 0" }}>
                   <CardMedia
                     image="https://picsum.photos/1000/1000"
@@ -210,6 +212,8 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
+              </Grid>
+              <Grid xs={6} display="flex">
                 <Card sx={{ flex: "1 1 0" }}>
                   <CardMedia
                     image="https://picsum.photos/1000/1000"
@@ -235,8 +239,8 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
-              </Stack>
-            </Grid>
+              </Grid>
+            </>
           )}
         </Grid>
       </Container>

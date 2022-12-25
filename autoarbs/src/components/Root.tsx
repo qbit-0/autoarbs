@@ -56,7 +56,6 @@ const Root = (props: Props) => {
 
   return (
     <Box
-      component={Paper}
       display="flex"
       flexDirection="column"
       minHeight="100vh"

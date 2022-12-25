@@ -50,6 +50,10 @@ const AboutPage = (props: Props) => {
                     You Win.
                   </Typography>
                 </CardContent>
+                <CardMedia
+                  image="https://picsum.photos/1000/1000"
+                  sx={{ height: 300 }}
+                />
               </Card>
             </Container>
           </Grid>
@@ -88,7 +92,7 @@ const AboutPage = (props: Props) => {
               </Card>
               <Card sx={{ flex: "1 1 0" }}>
                 <CardMedia
-                  image="https://picsum.photos/200/200"
+                  image="https://picsum.photos/1000/1000"
                   sx={{ height: 300 }}
                 />
                 <CardContent>
@@ -96,7 +100,8 @@ const AboutPage = (props: Props) => {
                     <Typography variant="h4">2. Grow Your Money</Typography>
                     <Typography variant="body1">
                       We reinvest your money every day. Averaging around 1%
-                      profit per day. You will never, ever lose money.
+                      profit per day. You can withdraw anytime. And we promise
+                      that you will never, ever lose money.
                     </Typography>
                   </Stack>
                 </CardContent>
@@ -171,9 +176,15 @@ const AboutPage = (props: Props) => {
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Card sx={{ flex: "1 1 0" }}>
+                  <CardMedia
+                    image="https://picsum.photos/1000/1000"
+                    sx={{ height: 300 }}
+                  />
                   <CardContent>
-                    <Typography variant="h3">First time investor?</Typography>
-                    <Typography variant="h4">We make it easy</Typography>
+                    <Stack spacing={2}>
+                      <Typography variant="h3">First time investor?</Typography>
+                      <Typography variant="h4">We make it easy</Typography>
+                    </Stack>
                   </CardContent>
                   <CardActions>
                     <ButtonLink
@@ -186,11 +197,19 @@ const AboutPage = (props: Props) => {
                   </CardActions>
                 </Card>
                 <Card sx={{ flex: "1 1 0" }}>
+                  <CardMedia
+                    image="https://picsum.photos/1000/1000"
+                    sx={{ height: 300 }}
+                  />
                   <CardContent>
-                    <Typography variant="h3">
-                      Already have an account?
-                    </Typography>
-                    <Typography variant="h4">Let's see your profits</Typography>
+                    <Stack spacing={2}>
+                      <Typography variant="h3">
+                        Already have an account?
+                      </Typography>
+                      <Typography variant="h4">
+                        Let's see your profits
+                      </Typography>
+                    </Stack>
                   </CardContent>
                   <CardActions>
                     <ButtonLink

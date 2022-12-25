@@ -128,7 +128,7 @@ const AboutPage = (props: Props) => {
           <Grid xs={12}>
             <Card variant="outlined">
               <CardMedia
-                image="https://picsum.photos/200/200"
+                image="https://picsum.photos/1000/1000"
                 sx={{ height: 300 }}
               />
               <CardContent>

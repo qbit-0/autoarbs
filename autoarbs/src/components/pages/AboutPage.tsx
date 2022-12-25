@@ -48,9 +48,9 @@ const AboutPage = (props: Props) => {
                     color={theme.palette.secondary.dark}
                     textAlign="center"
                   >
-                    Doesn't Matter Who Wins.
+                    Doesn't matter who wins.
                     <br />
-                    You Win.
+                    You win.
                   </Typography>
                 </CardContent>
                 <CardMedia

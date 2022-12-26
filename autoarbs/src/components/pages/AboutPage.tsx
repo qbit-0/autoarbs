@@ -26,7 +26,7 @@ const AboutPage = (props: Props) => {
     <Box position="relative" py={8}>
       <Box
         position="absolute"
-        top={0}
+        top={-1000}
         left="50%"
         width="100%"
         component="img"

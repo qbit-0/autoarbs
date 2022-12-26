@@ -23,8 +23,17 @@ const AboutPage = (props: Props) => {
   const theme = useTheme();
 
   return (
-    <Box py={8}>
-      <Container>
+    <Box position="relative" py={8}>
+      <Box
+        position="absolute"
+        top={0}
+        left="50%"
+        width="100%"
+        component="img"
+        src="images/SloganBg.jpeg"
+        sx={{ transform: "translateX(-50%)" }}
+      />
+      <Box component={Container} position="relative" mt={16} zIndex={10}>
         <Grid container rowSpacing={16} columnSpacing={2}>
           <Grid xs={12}>
             <Stack
@@ -60,8 +69,8 @@ const AboutPage = (props: Props) => {
                   </Typography>
                 </CardContent>
                 <CardMedia
-                  image="https://picsum.photos/1000/1000"
-                  sx={{ height: 300 }}
+                  image="/images/SloganImage.jpeg"
+                  sx={{ height: 400 }}
                 />
               </Card>
             </Container>
@@ -233,7 +242,7 @@ const AboutPage = (props: Props) => {
             </>
           )}
         </Grid>
-      </Container>
+      </Box>
     </Box>
   );
 };

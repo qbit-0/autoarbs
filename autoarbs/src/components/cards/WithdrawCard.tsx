@@ -32,7 +32,8 @@ const WithdrawCard = (props: Props) => {
 
   const dispatch = useAppDispatch();
 
-  if (!token || !userData) return null;
+  if (!userData || !token) return null;
+  const email = userData.email;
 
   const withdrawSchema = Yup.object().shape({
     balance: Yup.number(),
@@ -47,17 +48,17 @@ const WithdrawCard = (props: Props) => {
   });
 
   const handleSubmit = async (
-    values: Values,
+    { amount, method, accountWithdrawnTo }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createWithdrawal(
+      const res = await createWithdrawal({
         token,
-        userData.email,
-        values.amount,
-        values.method,
-        values.accountWithdrawnTo
-      );
+        email,
+        amount,
+        method,
+        accountWithdrawnTo,
+      });
       console.log(res);
       const data = res.data;
 
@@ -69,10 +70,10 @@ const WithdrawCard = (props: Props) => {
               severity: "success",
             })
           );
-          dispatch(accountActions.withdraw(values.amount));
+          dispatch(accountActions.withdraw(amount));
 
           try {
-            const res = await readUserByToken(userData.email, token);
+            const res = await readUserByToken({ email, token });
             const data = res.data;
             switch (data.statusCode) {
               case "200":

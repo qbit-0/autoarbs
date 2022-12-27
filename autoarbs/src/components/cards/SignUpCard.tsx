@@ -37,7 +37,7 @@ const signUpSchema = Yup.object().shape({
         if (!email) return true;
 
         try {
-          const res = await readUserByEmail(email);
+          const res = await readUserByEmail({ email });
           const data = res.data;
 
           if (!data.isSuccess) {
@@ -70,16 +70,11 @@ const SignUpCard = (props: Props) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (
-    values: Values,
+    { email, firstName, lastName, password }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createUser(
-        values.email,
-        values.firstName,
-        values.lastName,
-        values.password
-      );
+      const res = await createUser({ email, firstName, lastName, password });
       const data = res.data;
 
       switch (data.statusCode) {

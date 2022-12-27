@@ -38,19 +38,16 @@ const DepositCard = (props: Props) => {
   const token = useAppSelector(selectToken);
   const dispatch = useAppDispatch();
 
-  if (!token || !userData) return null;
+  if (!userData || !token) return null;
+
+  const email = userData.email;
 
   const handleSubmit = async (
-    values: Values,
+    { amount, method }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createDeposit(
-        token,
-        userData.email,
-        values.amount,
-        values.method
-      );
+      const res = await createDeposit({ token, email, amount, method });
       console.log(res);
       const data = res.data;
 
@@ -62,10 +59,10 @@ const DepositCard = (props: Props) => {
               severity: "success",
             })
           );
-          dispatch(accountActions.deposit(values.amount));
+          dispatch(accountActions.deposit(amount));
 
           try {
-            const res = await readUserByToken(userData.email, token);
+            const res = await readUserByToken({ email, token });
             const data = res.data;
             switch (data.statusCode) {
               case "200":

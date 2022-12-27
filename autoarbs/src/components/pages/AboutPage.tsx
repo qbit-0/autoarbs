@@ -49,7 +49,12 @@ const AboutPage = (props: Props) => {
                 alt="logo"
                 height={75}
               />
-              <Typography variant="h1" fontWeight={900} lineHeight={0.7}>
+              <Typography
+                variant="h1"
+                color="white"
+                fontWeight={900}
+                lineHeight={0.7}
+              >
                 AutoArbs
               </Typography>
             </Stack>

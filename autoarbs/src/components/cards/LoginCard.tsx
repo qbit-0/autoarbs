@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { createLogin } from "../../api/account";
+import { createLogin, createSendOtp } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
 import { accountActions, UserData } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
@@ -44,12 +44,53 @@ const LoginCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const handleSendAccountVerificationOtp = async (email: string) => {
+    try {
+      const res = await createSendOtp({
+        token: "",
+        email,
+        transactionId: "",
+        action: "1",
+      });
+      const data = res.data;
+      switch (data.statusCode) {
+        case "200":
+          dispatch(
+            snackbarActions.toast({
+              message: "Verification code sent",
+              severity: "success",
+            })
+          );
+          navigate("/verification", {
+            state: { email, referenceId: data.referenceId, action: "1" },
+          });
+          break;
+        default:
+          dispatch(
+            snackbarActions.toast({
+              message: data.statusMessage,
+              severity: "error",
+            })
+          );
+          break;
+      }
+    } catch (err) {
+      console.error(err);
+      dispatch(
+        snackbarActions.toast({
+          message: "Failed to send verification code",
+          severity: "error",
+        })
+      );
+    }
+  };
+
   const handleSubmit = async (
-    values: Values,
+    { email, password }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createLogin(values.email, values.password);
+      const res = await createLogin({ email, password });
       const data = res.data;
 
       switch (data.statusCode) {
@@ -65,13 +106,7 @@ const LoginCard = (props: Props) => {
           );
           break;
         case "400":
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          navigate("/verification");
+          handleSendAccountVerificationOtp(email);
           break;
         default:
           switch (data.statusMessage) {

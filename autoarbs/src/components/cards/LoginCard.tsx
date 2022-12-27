@@ -77,6 +77,8 @@ const LoginCard = (props: Props) => {
       const res = await createLogin({ email, password });
       const data = res.data;
 
+      console.log(data);
+
       switch (data.statusCode) {
         case "200":
           dispatch(
@@ -90,7 +92,19 @@ const LoginCard = (props: Props) => {
           );
           break;
         case "400":
-          sendAccountOtp(email);
+          switch (data.statusMessage) {
+            case "Kindly verify your email before proceeding to login":
+              sendAccountOtp(email);
+              break;
+            default:
+              dispatch(
+                snackbarActions.toast({
+                  message: data.statusMessage,
+                  severity: "error",
+                })
+              );
+              break;
+          }
           break;
         default:
           switch (data.statusMessage) {

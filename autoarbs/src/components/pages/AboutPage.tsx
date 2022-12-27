@@ -26,11 +26,10 @@ const AboutPage = (props: Props) => {
     <Box position="relative" py={8}>
       <Box
         position="absolute"
-        top={-1000}
         left="50%"
         width="100%"
         component="img"
-        src="images/SloganBg.jpeg"
+        src="images/Sport with colored background + transition.png"
         sx={{ transform: "translateX(-50%)" }}
       />
       <Box component={Container} position="relative" mt={16} zIndex={10}>
@@ -74,7 +73,7 @@ const AboutPage = (props: Props) => {
                   </Typography>
                 </CardContent>
                 <CardMedia
-                  image="/images/SloganImage.jpeg"
+                  image="/images/Javelin throw - Basketball - Football - Athletics - Tennis.png"
                   sx={{ height: 400 }}
                 />
               </Card>
@@ -155,9 +154,9 @@ const AboutPage = (props: Props) => {
           <Grid xs={12}>
             <Card variant="outlined">
               <CardMedia
-                image="images/No luck needed.png"
+                image="images/No luck needed, four leaf clover one on the ground.png"
                 title="deposit"
-                sx={{ height: 300 }}
+                sx={{ height: 600 }}
               />
               <CardContent>
                 <Stack direction="row" spacing={2}>
@@ -207,10 +206,7 @@ const AboutPage = (props: Props) => {
             <>
               <Grid xs={6}>
                 <Card>
-                  <CardMedia
-                    image="https://picsum.photos/1000/1000"
-                    sx={{ height: 300 }}
-                  />
+                  <CardMedia image="images/Sign up.jpg" sx={{ height: 300 }} />
                   <CardContent>
                     <CardTitle>First time investor?</CardTitle>
                     <Typography variant="h6">We make it easy</Typography>
@@ -228,10 +224,7 @@ const AboutPage = (props: Props) => {
               </Grid>
               <Grid xs={6}>
                 <Card>
-                  <CardMedia
-                    image="https://picsum.photos/1000/1000"
-                    sx={{ height: 300 }}
-                  />
+                  <CardMedia image="images/login.jpg" sx={{ height: 300 }} />
                   <CardContent>
                     <CardTitle>Already have an account?</CardTitle>
                     <Typography variant="h6">Let's see your profits</Typography>

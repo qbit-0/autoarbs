@@ -184,10 +184,7 @@ const SignUpCard = (props: Props) => {
         onSubmit={handleSubmit}
       >
         <CardForm>
-          <CardMedia
-            image="https://picsum.photos/1000/1000"
-            sx={{ height: 300 }}
-          />
+          <CardMedia image="images/Sign up.jpg" sx={{ height: 300 }} />
           <CardContent>
             <CardTitle>Create an account</CardTitle>
             <Grid container rowSpacing={4} columnSpacing={2}>

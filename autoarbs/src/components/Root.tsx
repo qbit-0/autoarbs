@@ -70,7 +70,7 @@ const Root = (props: Props) => {
         flexGrow={1}
         display="flex"
         flexDirection="column"
-        py={6}
+        pb={6}
       >
         <Outlet />
         <GlobalSnackbar />

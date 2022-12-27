@@ -13,7 +13,7 @@ const WalletPage = (props: Props) => {
   if (!userData) return null;
 
   return (
-    <Box py={8}>
+    <Box py={16}>
       <Container>
         <Typography variant="h1" gutterBottom>
           Welcome back, {userData.firstName}.

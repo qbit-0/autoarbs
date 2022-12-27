@@ -23,7 +23,7 @@ const AboutPage = (props: Props) => {
   const theme = useTheme();
 
   return (
-    <Box position="relative" py={8}>
+    <Box position="relative">
       <Box
         position="absolute"
         left="50%"
@@ -32,7 +32,7 @@ const AboutPage = (props: Props) => {
         src="images/Sport with colored background + transition.png"
         sx={{ transform: "translateX(-50%)" }}
       />
-      <Box component={Container} position="relative" mt={16} zIndex={10}>
+      <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>
         <Grid container rowSpacing={16} columnSpacing={2}>
           <Grid xs={12}>
             <Stack

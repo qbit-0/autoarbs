@@ -7,7 +7,7 @@ type Props = {};
 
 const HistoryPage = (props: Props) => {
   return (
-    <Box py={8}>
+    <Box py={16}>
       <Container>
         <Typography variant="h1" gutterBottom>
           Transaction History

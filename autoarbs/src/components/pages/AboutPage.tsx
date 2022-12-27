@@ -45,7 +45,7 @@ const AboutPage = (props: Props) => {
             >
               <Box
                 component="img"
-                src="images/AutoArbsPurple.jpeg"
+                src="images/Logo AA.png"
                 alt="logo"
                 height={75}
               />
@@ -96,8 +96,8 @@ const AboutPage = (props: Props) => {
           <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
-                image="images/piggybank.jpeg"
-                title="piggybank"
+                image="images/Piggy bank.png"
+                title="deposit"
                 sx={{ height: 300 }}
               />
               <CardContent>
@@ -115,8 +115,8 @@ const AboutPage = (props: Props) => {
           <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
-                image="images/moneyplant.jpeg"
-                title="moneyplant"
+                image="images/money tree triple.png"
+                title="grow"
                 sx={{ height: 300 }}
               />
               <CardContent>
@@ -135,9 +135,11 @@ const AboutPage = (props: Props) => {
           <Grid xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
-                image="https://picsum.photos/1000/1000"
+                image="images/Profit .png"
+                title="profit"
                 sx={{ height: 300 }}
               />
+
               <CardContent>
                 <CardTitle variant="h4">Reap your profits</CardTitle>
                 <Typography variant="body1">
@@ -153,7 +155,8 @@ const AboutPage = (props: Props) => {
           <Grid xs={12}>
             <Card variant="outlined">
               <CardMedia
-                image="https://picsum.photos/1000/1000"
+                image="images/No luck needed.png"
+                title="deposit"
                 sx={{ height: 300 }}
               />
               <CardContent>

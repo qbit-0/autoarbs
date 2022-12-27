@@ -47,6 +47,27 @@ const WithdrawCard = (props: Props) => {
     accountWithdrawnTo: Yup.string().required("Required"),
   });
 
+  const updateUserData = async () => {
+    try {
+      const res = await readUserByToken({ email, token });
+      const data = res.data;
+      switch (data.statusCode) {
+        case "200":
+          dispatch(
+            accountActions.login({
+              userData: data.userData,
+              token: token,
+            })
+          );
+          break;
+        default:
+          break;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleSubmit = async (
     { amount, method, accountWithdrawnTo }: Values,
     { setSubmitting }: FormikHelpers<Values>
@@ -71,25 +92,7 @@ const WithdrawCard = (props: Props) => {
             })
           );
           dispatch(accountActions.withdraw(amount));
-
-          try {
-            const res = await readUserByToken({ email, token });
-            const data = res.data;
-            switch (data.statusCode) {
-              case "200":
-                dispatch(
-                  accountActions.login({
-                    userData: data.userData,
-                    token: token,
-                  })
-                );
-                break;
-              default:
-                break;
-            }
-          } catch (err) {
-            console.error(err);
-          }
+          updateUserData();
           break;
         default:
           dispatch(

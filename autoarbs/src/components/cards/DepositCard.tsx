@@ -42,6 +42,27 @@ const DepositCard = (props: Props) => {
 
   const email = userData.email;
 
+  const updateUserData = async () => {
+    try {
+      const res = await readUserByToken({ email, token });
+      const data = res.data;
+      switch (data.statusCode) {
+        case "200":
+          dispatch(
+            accountActions.login({
+              userData: data.userData,
+              token: token,
+            })
+          );
+          break;
+        default:
+          break;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleSubmit = async (
     { amount, method }: Values,
     { setSubmitting }: FormikHelpers<Values>
@@ -60,25 +81,7 @@ const DepositCard = (props: Props) => {
             })
           );
           dispatch(accountActions.deposit(amount));
-
-          try {
-            const res = await readUserByToken({ email, token });
-            const data = res.data;
-            switch (data.statusCode) {
-              case "200":
-                dispatch(
-                  accountActions.login({
-                    userData: data.userData,
-                    token: token,
-                  })
-                );
-                break;
-              default:
-                break;
-            }
-          } catch (err) {
-            console.error(err);
-          }
+          updateUserData();
           break;
         default:
           dispatch(

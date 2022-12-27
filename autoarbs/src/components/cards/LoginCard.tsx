@@ -44,7 +44,7 @@ const LoginCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSendAccountVerificationOtp = async (email: string) => {
+  const sendAccountOtp = async (email: string) => {
     try {
       const res = await createSendOtp({
         token: "",
@@ -106,7 +106,7 @@ const LoginCard = (props: Props) => {
           );
           break;
         case "400":
-          handleSendAccountVerificationOtp(email);
+          sendAccountOtp(email);
           break;
         default:
           switch (data.statusMessage) {

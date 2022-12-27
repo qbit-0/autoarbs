@@ -61,7 +61,7 @@ const Header = (props: Props) => {
     <>
       <Box
         component="img"
-        src="images/AutoArbsPurple.jpeg"
+        src="images/Logo AA.png"
         alt="logo"
         width={30}
         height={30}

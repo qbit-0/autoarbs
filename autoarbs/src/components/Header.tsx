@@ -63,7 +63,6 @@ const Header = (props: Props) => {
         component="img"
         src="images/Logo AA.png"
         alt="logo"
-        width={30}
         height={30}
         sx={{ mr: 2 }}
       />

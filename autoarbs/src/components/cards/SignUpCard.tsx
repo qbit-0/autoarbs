@@ -184,7 +184,10 @@ const SignUpCard = (props: Props) => {
         onSubmit={handleSubmit}
       >
         <CardForm>
-          <CardMedia image="images/Sign up.jpg" sx={{ height: 300 }} />
+          <CardMedia
+            image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+            sx={{ height: 300 }}
+          />
           <CardContent>
             <CardTitle>Create an account</CardTitle>
             <Grid container rowSpacing={4} columnSpacing={2}>

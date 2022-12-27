@@ -104,7 +104,10 @@ const LoginCard = (props: Props) => {
         onSubmit={handleSubmit}
       >
         <CardForm>
-          <CardMedia image="images/login.jpg" sx={{ height: 300 }} />
+          <CardMedia
+            image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+            sx={{ height: 300 }}
+          />
           <CardContent>
             <CardTitle>Log into an existing account</CardTitle>
             <Grid container spacing={4}>

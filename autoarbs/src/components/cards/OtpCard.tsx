@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
@@ -83,6 +83,10 @@ const OtpCard = (props: Props) => {
         onSubmit={handleSubmit}
       >
         <CardForm>
+          <CardMedia
+            image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+            sx={{ height: 300 }}
+          />
           <CardContent>
             <CardTitle>We've sent a verification code to {email}.</CardTitle>
             <Grid container spacing={4}>

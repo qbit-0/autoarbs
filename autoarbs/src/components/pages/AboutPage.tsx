@@ -154,9 +154,9 @@ const AboutPage = (props: Props) => {
           <Grid xs={12}>
             <Card variant="outlined">
               <CardMedia
-                image="images/No luck needed, four leaf clover one on the ground.png"
+                image="https://c8.alamy.com/comp/TAP9B3/seamless-pattern-of-playing-cards-falling-in-various-positions-diamonds-spades-hearts-aces-flat-vector-illustration-TAP9B3.jpg"
                 title="deposit"
-                sx={{ height: 600 }}
+                sx={{ height: 200 }}
               />
               <CardContent>
                 <Stack direction="row" spacing={2}>
@@ -184,7 +184,7 @@ const AboutPage = (props: Props) => {
             <Grid xs={12}>
               <Card>
                 <CardMedia
-                  image="https://picsum.photos/1000/1000"
+                  image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
                   sx={{ height: 300 }}
                 />
                 <CardContent>
@@ -206,7 +206,10 @@ const AboutPage = (props: Props) => {
             <>
               <Grid xs={6}>
                 <Card>
-                  <CardMedia image="images/Sign up.jpg" sx={{ height: 300 }} />
+                  <CardMedia
+                    image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+                    sx={{ height: 300 }}
+                  />
                   <CardContent>
                     <CardTitle>First time investor?</CardTitle>
                     <Typography variant="h6">We make it easy</Typography>
@@ -224,7 +227,10 @@ const AboutPage = (props: Props) => {
               </Grid>
               <Grid xs={6}>
                 <Card>
-                  <CardMedia image="images/login.jpg" sx={{ height: 300 }} />
+                  <CardMedia
+                    image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+                    sx={{ height: 300 }}
+                  />
                   <CardContent>
                     <CardTitle>Already have an account?</CardTitle>
                     <Typography variant="h6">Let's see your profits</Typography>

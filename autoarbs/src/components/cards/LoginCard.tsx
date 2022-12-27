@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia } from "@mui/material";
+import { Card, CardMedia } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -8,28 +8,12 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createLogin, createSendOtp } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
-import { accountActions, UserData } from "../../features/account/accountSlice";
+import { accountActions } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 import CardForm from "../CardForm";
 import CardTitle from "../CardTitle";
 import FormikSubmitButton from "../FormikSubmitButton";
 import FormikTextField from "../FormikTextField";
-
-const sampleUserData: UserData = {
-  email: "test@gmail.com",
-  firstName: "First",
-  lastName: "Last",
-  isActive: true,
-  balance: 1000,
-  bonus: 100,
-  totalBonus: 100,
-  totalDeposit: 200,
-  totalWithdrawal: 50,
-  depositHistory: [],
-  withdrawalHistory: [],
-};
-
-const sampleToken = "asdf";
 
 type Values = { email: string; password: string };
 const initialValues: Values = { email: "", password: "" };
@@ -162,25 +146,6 @@ const LoginCard = (props: Props) => {
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>
-            <Button
-              color="error"
-              onClick={() => {
-                dispatch(
-                  accountActions.login({
-                    userData: sampleUserData,
-                    token: sampleToken,
-                  })
-                );
-                dispatch(
-                  snackbarActions.toast({
-                    message: "Login successful",
-                    severity: "success",
-                  })
-                );
-              }}
-            >
-              Debug
-            </Button>
           </CardActions>
         </CardForm>
       </Formik>

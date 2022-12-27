@@ -1,10 +1,17 @@
 import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { createUser, readUserByEmail } from "../../api/account";
+import {
+  createLogin,
+  createSendOtp,
+  createUser,
+  readUserByEmail,
+} from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
+import { accountActions } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 import CardForm from "../CardForm";
 import CardTitle from "../CardTitle";
@@ -37,16 +44,17 @@ const signUpSchema = Yup.object().shape({
         if (!email) return true;
 
         try {
-          const res = await readUserByEmail({ email });
-          const data = res.data;
-
-          if (!data.isSuccess) {
-            return true;
-          } else {
-            return false;
+          await readUserByEmail({ email });
+          return false;
+        } catch (error) {
+          if (axios.isAxiosError(error) && error.response) {
+            switch (error.response.data.statusCode) {
+              case "44":
+                return true;
+              default:
+                return false;
+            }
           }
-        } catch (err) {
-          console.error(err);
           return false;
         }
       }
@@ -69,41 +77,100 @@ const SignUpCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const sendAccountOtp = async (email: string) => {
+    try {
+      const response = await createSendOtp({
+        token: "",
+        email,
+        transactionId: "",
+        action: "1",
+      });
+      dispatch(
+        snackbarActions.toast({
+          message: response.data.statusMessage,
+          severity: "success",
+        })
+      );
+      navigate("/verification", {
+        state: { email, referenceId: response.data.referenceId, action: "1" },
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        dispatch(
+          snackbarActions.toast({
+            message: error.response.data.statusMessage,
+            severity: "error",
+          })
+        );
+      }
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await createLogin({ email, password });
+      dispatch(
+        snackbarActions.toast({
+          message: response.data.statusMessage,
+          severity: "success",
+        })
+      );
+      dispatch(
+        accountActions.login({
+          userData: response.data.userData,
+          token: response.data.token,
+        })
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          case "23":
+            sendAccountOtp(email);
+            break;
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
+      }
+    }
+  };
+
   const handleSubmit = async (
     { email, firstName, lastName, password }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createUser({ email, firstName, lastName, password });
-      const data = res.data;
-
-      switch (data.statusCode) {
-        case "201":
-          dispatch(
-            snackbarActions.toast({
-              message: "Signup successful",
-              severity: "success",
-            })
-          );
-          navigate("/verification");
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (err) {
-      console.error(err);
+      const response = await createUser({
+        email,
+        firstName,
+        lastName,
+        password,
+      });
       dispatch(
         snackbarActions.toast({
-          message: "Signup failed",
-          severity: "error",
+          message: response.data.statusMessage,
+          severity: "success",
         })
       );
+      login(email, password);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
+      }
     }
 
     setSubmitting(false);

@@ -2,6 +2,7 @@ import { Card, CardMedia } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import { useNavigate } from "react-router-dom";
@@ -30,42 +31,30 @@ const LoginCard = (props: Props) => {
 
   const sendAccountOtp = async (email: string) => {
     try {
-      const res = await createSendOtp({
+      const response = await createSendOtp({
         token: "",
         email,
         transactionId: "",
         action: "1",
       });
-      const data = res.data;
-      switch (data.statusCode) {
-        case "200":
-          dispatch(
-            snackbarActions.toast({
-              message: "Verification code sent",
-              severity: "success",
-            })
-          );
-          navigate("/verification", {
-            state: { email, referenceId: data.referenceId, action: "1" },
-          });
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (err) {
-      console.error(err);
       dispatch(
         snackbarActions.toast({
-          message: "Failed to send verification code",
-          severity: "error",
+          message: response.data.statusMessage,
+          severity: "success",
         })
       );
+      navigate("/verification", {
+        state: { email, referenceId: response.data.referenceId, action: "1" },
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        dispatch(
+          snackbarActions.toast({
+            message: error.response.data.statusMessage,
+            severity: "error",
+          })
+        );
+      }
     }
   };
 
@@ -74,58 +63,36 @@ const LoginCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createLogin({ email, password });
-      const data = res.data;
-
-      console.log(data);
-
-      switch (data.statusCode) {
-        case "200":
-          dispatch(
-            accountActions.login({ userData: data.userData, token: data.token })
-          );
-          dispatch(
-            snackbarActions.toast({
-              message: "Login successful",
-              severity: "success",
-            })
-          );
-          break;
-        case "400":
-          switch (data.statusMessage) {
-            case "Kindly verify your email before proceeding to login":
-              sendAccountOtp(email);
-              break;
-            default:
-              dispatch(
-                snackbarActions.toast({
-                  message: data.statusMessage,
-                  severity: "error",
-                })
-              );
-              break;
-          }
-          break;
-        default:
-          switch (data.statusMessage) {
-            default:
-              dispatch(
-                snackbarActions.toast({
-                  message: data.statusMessage,
-                  severity: "error",
-                })
-              );
-              break;
-          }
-          break;
-      }
-    } catch (err) {
-      console.error(err);
+      const response = await createLogin({ email, password });
       dispatch(
-        snackbarActions.toast({ message: "Login failed", severity: "error" })
+        snackbarActions.toast({
+          message: response.data.statusMessage,
+          severity: "success",
+        })
       );
+      dispatch(
+        accountActions.login({
+          userData: response.data.userData,
+          token: response.data.token,
+        })
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          case "23":
+            sendAccountOtp(email);
+            break;
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
+      }
     }
-
     setSubmitting(false);
   };
 

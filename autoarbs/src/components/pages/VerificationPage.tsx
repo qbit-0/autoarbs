@@ -1,4 +1,5 @@
 import { Button, Container, Stack } from "@mui/material";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createSendOtp } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
@@ -17,44 +18,32 @@ const VerificationPage = (props: Props) => {
 
   if (!email || !referenceId || !action) return null;
 
-  const handleResendCode = async () => {
+  const handleSendCode = async () => {
     try {
-      const res = await createSendOtp({
+      const response = await createSendOtp({
         token: "",
         email,
         transactionId: "",
-        action,
+        action: "1",
       });
-      const data = res.data;
-      switch (data.statusCode) {
-        case "200":
-          dispatch(
-            snackbarActions.toast({
-              message: "Verification code sent",
-              severity: "success",
-            })
-          );
-          navigate("/verification", {
-            state: { email, referenceId: data.referenceId, action },
-          });
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (err) {
-      console.error(err);
       dispatch(
         snackbarActions.toast({
-          message: "Failed to send verification code",
-          severity: "error",
+          message: response.data.statusCode,
+          severity: "success",
         })
       );
+      navigate("/verification", {
+        state: { email, referenceId: response.data.referenceId, action: "1" },
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        dispatch(
+          snackbarActions.toast({
+            message: error.response?.data.statusMessage,
+            severity: "error",
+          })
+        );
+      }
     }
   };
 
@@ -68,7 +57,7 @@ const VerificationPage = (props: Props) => {
       <Container maxWidth="sm">
         <Stack flexDirection="column" spacing={4}>
           <OtpCard />
-          <Button onClick={handleResendCode}>Resend code</Button>
+          <Button onClick={handleSendCode}>Resend code</Button>
         </Stack>
       </Container>
     </Stack>

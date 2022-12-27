@@ -1,5 +1,6 @@
 import { Card, CardActions, CardContent, MenuItem } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { createWithdrawal, readUserByToken } from "../../api/account";
@@ -49,22 +50,26 @@ const WithdrawCard = (props: Props) => {
 
   const updateUserData = async () => {
     try {
-      const res = await readUserByToken({ email, token });
-      const data = res.data;
-      switch (data.statusCode) {
-        case "200":
-          dispatch(
-            accountActions.login({
-              userData: data.userData,
-              token: token,
-            })
-          );
-          break;
-        default:
-          break;
+      const response = await readUserByToken({ email, token });
+      dispatch(
+        accountActions.login({
+          userData: response.data.userData,
+          token: token,
+        })
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 
@@ -73,41 +78,35 @@ const WithdrawCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createWithdrawal({
+      const response = await createWithdrawal({
         token,
         email,
         amount,
         method,
         accountWithdrawnTo,
       });
-      console.log(res);
-      const data = res.data;
 
-      switch (data.statusCode) {
-        case "201":
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "success",
-            })
-          );
-          dispatch(accountActions.withdraw(amount));
-          updateUserData();
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (err) {
-      console.error(err);
       dispatch(
-        snackbarActions.toast({ message: "Withdraw failed", severity: "error" })
+        snackbarActions.toast({
+          message: response.data.statusMessage,
+          severity: "success",
+        })
       );
+      dispatch(accountActions.withdraw(amount));
+      updateUserData();
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
+      }
     }
 
     setSubmitting(false);

@@ -2,6 +2,7 @@ import { Card, MenuItem } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { createDeposit, readUserByToken } from "../../api/account";
@@ -44,22 +45,28 @@ const DepositCard = (props: Props) => {
 
   const updateUserData = async () => {
     try {
-      const res = await readUserByToken({ email, token });
-      const data = res.data;
-      switch (data.statusCode) {
-        case "200":
-          dispatch(
-            accountActions.login({
-              userData: data.userData,
-              token: token,
-            })
-          );
-          break;
-        default:
-          break;
+      const response = await readUserByToken({ email, token });
+      dispatch(
+        accountActions.login({
+          userData: response.data.userData,
+          token: token,
+        })
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          case "1":
+            break;
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+            break;
+        }
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 
@@ -68,38 +75,27 @@ const DepositCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createDeposit({ token, email, amount, method });
-      console.log(res);
-      const data = res.data;
-
-      switch (data.statusCode) {
-        case "201":
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "success",
-            })
-          );
-          dispatch(accountActions.deposit(amount));
-          updateUserData();
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (err) {
-      console.log(err);
+      const response = await createDeposit({ token, email, amount, method });
       dispatch(
         snackbarActions.toast({
-          message: "Deposit failed",
-          severity: "error",
+          message: response.data.statusMessage,
+          severity: "success",
         })
       );
+      dispatch(accountActions.deposit(amount));
+      updateUserData();
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        switch (error.response.data.statusCode) {
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+        }
+      }
     }
 
     setSubmitting(false);

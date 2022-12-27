@@ -48,9 +48,8 @@ const Header = (props: Props) => {
       <Box flexGrow={1} display="flex" justifyContent="end">
         <Box
           component="img"
-          src="images/AutoArbsPurple.jpeg"
+          src="images/Logo AA.png"
           alt="logo"
-          width={30}
           height={30}
           sx={{ mr: 2 }}
         />

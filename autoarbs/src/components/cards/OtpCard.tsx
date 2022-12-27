@@ -45,7 +45,7 @@ const OtpCard = (props: Props) => {
       const data = res.data;
 
       switch (data.statusCode) {
-        case "200":
+        case "20":
           dispatch(
             snackbarActions.toast({
               message: "Email successfully verified",
@@ -63,8 +63,7 @@ const OtpCard = (props: Props) => {
           );
           break;
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
       dispatch(
         snackbarActions.toast({
           message: "Failed to verify code.",

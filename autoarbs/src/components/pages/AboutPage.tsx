@@ -36,9 +36,7 @@ const AboutPage = (props: Props) => {
         position="absolute"
         width="100%"
         height={500}
-        sx={{
-          backgroundImage: `linear-gradient(${theme.palette.primary.dark}, ${theme.palette.background.default})`,
-        }}
+        bgcolor={theme.palette.primary.main}
       />
       <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>
         <Grid container rowSpacing={[8, 16]} columnSpacing={2}>

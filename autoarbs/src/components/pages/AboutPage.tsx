@@ -37,7 +37,7 @@ const AboutPage = (props: Props) => {
         width="100%"
         height={500}
         sx={{
-          backgroundImage: `linear-gradient(${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+          backgroundImage: `linear-gradient(${theme.palette.primary.dark}, ${theme.palette.background.default})`,
         }}
       />
       <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>

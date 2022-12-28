@@ -23,7 +23,7 @@ const BalanceCard = (props: Props) => {
   return (
     <Card>
       <CardContent>
-        <Grid container spacing={2}>
+        <Grid container rowSpacing={0.5} columnSpacing={2}>
           <Grid xs={12} sm={6}>
             <Typography variant="h3">Balance</Typography>
           </Grid>
@@ -32,7 +32,9 @@ const BalanceCard = (props: Props) => {
               ${balance}
             </Typography>
           </Grid>
+        </Grid>
 
+        <Grid xs={12} container rowSpacing={0.5} columnSpacing={2}>
           <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Deposited</Typography>
           </Grid>
@@ -41,7 +43,9 @@ const BalanceCard = (props: Props) => {
               ${deposited}
             </Typography>
           </Grid>
+        </Grid>
 
+        <Grid xs={12} container rowSpacing={0.5} columnSpacing={2}>
           <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Withdrawn</Typography>
           </Grid>
@@ -50,7 +54,9 @@ const BalanceCard = (props: Props) => {
               ${withdrawn}
             </Typography>
           </Grid>
+        </Grid>
 
+        <Grid xs={12} container rowSpacing={0.5} columnSpacing={2}>
           <Grid xs={12} sm={6}>
             <Typography variant="h4">Total Profit</Typography>
           </Grid>

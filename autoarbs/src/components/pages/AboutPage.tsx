@@ -29,11 +29,11 @@ const AboutPage = (props: Props) => {
         left="50%"
         width="100%"
         component="img"
-        src="images/Sport with colored background + transition.png"
+        src="images/Transition purple - three sports.png"
         sx={{ transform: "translateX(-50%)" }}
       />
       <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>
-        <Grid container rowSpacing={16} columnSpacing={2}>
+        <Grid container rowSpacing={[8, 16]} columnSpacing={2}>
           <Grid xs={12}>
             <Stack
               flexGrow={1}
@@ -43,6 +43,7 @@ const AboutPage = (props: Props) => {
               spacing={2}
             >
               <Box
+                display={["none", "block"]}
                 component="img"
                 src="images/Logo AA.png"
                 alt="logo"
@@ -207,7 +208,7 @@ const AboutPage = (props: Props) => {
               <Grid xs={6}>
                 <Card>
                   <CardMedia
-                    image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+                    image="images/Login_signup Stripes.jpg"
                     sx={{ height: 300 }}
                   />
                   <CardContent>
@@ -228,7 +229,7 @@ const AboutPage = (props: Props) => {
               <Grid xs={6}>
                 <Card>
                   <CardMedia
-                    image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+                    image="images/Login_signup Waves.jpg"
                     sx={{ height: 300 }}
                   />
                   <CardContent>

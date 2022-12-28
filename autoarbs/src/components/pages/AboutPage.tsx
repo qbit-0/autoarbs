@@ -24,14 +24,6 @@ const AboutPage = (props: Props) => {
 
   return (
     <Box position="relative">
-      {/* <Box
-        position="absolute"
-        left="50%"
-        width="100%"
-        component="img"
-        src="images/Transition purple - three sports.png"
-        sx={{ transform: "translateX(-50%)" }}
-      /> */}
       <Box
         position="absolute"
         width="100%"

@@ -11,9 +11,6 @@ const themeOptions: ThemeOptions = {
   components,
   palette,
   typography,
-  shape: {
-    borderRadius: 16,
-  },
 };
 
 let theme = createTheme(themeOptions);

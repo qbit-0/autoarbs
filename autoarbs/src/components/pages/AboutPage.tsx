@@ -30,7 +30,7 @@ const AboutPage = (props: Props) => {
         height={500}
         bgcolor={theme.palette.primary.main}
       />
-      <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>
+      <Box component={Container} position="relative" mt={20} pb={8} zIndex={10}>
         <Grid container rowSpacing={[8, 16]} columnSpacing={2}>
           <Grid xs={12}>
             <Typography

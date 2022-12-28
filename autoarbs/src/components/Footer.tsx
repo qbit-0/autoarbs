@@ -13,7 +13,7 @@ const Footer = (props: Props) => {
             AutoArbs
           </Typography>
           <Typography color="white">
-            We bring arbitrage sports-betting to everyone. Guaranteed profits,
+            We bring arbitrage sports betting to everyone. Guaranteed profits,
             withdraw anytime.
           </Typography>
         </Container>

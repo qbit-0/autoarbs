@@ -100,6 +100,7 @@ const Header = (props: Props) => {
           >
             {shownPages.map((page) => (
               <ButtonLink
+                key={page.name}
                 startIcon={page === currentPage ? page.icon : null}
                 color="inherit"
                 to={page.path}

@@ -33,7 +33,7 @@ const SideNavDrawer: FC<Props> = (props) => {
       <Box sx={{ width: 250 }}>
         <List>
           {shownPages.map((page) => (
-            <ListItem>
+            <ListItem key={page.name}>
               <ListItemButton
                 selected={page.path === location.pathname}
                 onClick={() => {

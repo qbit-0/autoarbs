@@ -185,7 +185,7 @@ const AboutPage = (props: Props) => {
             <Grid xs={12}>
               <Card>
                 <CardMedia
-                  image="https://img.freepik.com/premium-vector/flat-design-abstract-background-with-colorful-shapes_23-2149110182.jpg?w=1380"
+                  image="images/Login_signup Waves.jpg"
                   sx={{ height: 300 }}
                 />
                 <CardContent>

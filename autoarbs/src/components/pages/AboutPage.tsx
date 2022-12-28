@@ -24,40 +24,35 @@ const AboutPage = (props: Props) => {
 
   return (
     <Box position="relative">
-      <Box
+      {/* <Box
         position="absolute"
         left="50%"
         width="100%"
         component="img"
         src="images/Transition purple - three sports.png"
         sx={{ transform: "translateX(-50%)" }}
+      /> */}
+      <Box
+        position="absolute"
+        width="100%"
+        height={500}
+        sx={{
+          backgroundImage: `linear-gradient(${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        }}
       />
       <Box component={Container} position="relative" mt={16} pb={8} zIndex={10}>
         <Grid container rowSpacing={[8, 16]} columnSpacing={2}>
           <Grid xs={12}>
-            <Stack
-              flexGrow={1}
-              direction="row"
-              justifyContent="center"
-              alignItems="end"
-              spacing={2}
+            <Typography
+              variant="h1"
+              color="white"
+              fontWeight={900}
+              lineHeight={0.7}
+              textAlign="center"
+              mx="auto"
             >
-              <Box
-                display={["none", "block"]}
-                component="img"
-                src="images/Logo AA.png"
-                alt="logo"
-                height={75}
-              />
-              <Typography
-                variant="h1"
-                color="white"
-                fontWeight={900}
-                lineHeight={0.7}
-              >
-                AutoArbs
-              </Typography>
-            </Stack>
+              AutoArbs
+            </Typography>
           </Grid>
           <Grid xs={12}>
             <Container maxWidth="md">

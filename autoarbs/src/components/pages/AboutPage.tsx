@@ -70,13 +70,10 @@ const AboutPage = (props: Props) => {
               Put money in. Get money out. It's that simple. We're a
               sports-betting app that guarantees profits. That's right, no luck
               is involved. No risk of losing your money if the other team wins.
-              How? We utilize a system that automates arbitrage betting. Usually
-              only avialble to programmers and experienced bettors, we intend to
-              make arbitrage betting to everyone.
-              <br />
-              <br />
-              We guarantee that you will make 10% of your investment every 10
-              Days. And that's a promise.
+              And you can withdraw anytime. How? We utilize a system that
+              automates arbitrage betting. Usually only available to programmers
+              and experienced bettors, we intend to bring arbitrage betting to
+              everyone.
             </Typography>
           </Grid>
           <Grid xs={12} md={4} display="flex">
@@ -90,7 +87,10 @@ const AboutPage = (props: Props) => {
                 <CardTitle variant="h4">Make your deposit</CardTitle>
                 <Typography variant="body1">
                   We make it easy. Sign up and make an account, log in with your
-                  personal account and start investing!
+                  personal account and start investing! We want to bring
+                  arbitrage betting to everyone, from the most experienced
+                  bettors to the absolute newbie. As long as you're willing to
+                  invest, you're in.
                 </Typography>
               </CardContent>
               <CardActions>
@@ -109,8 +109,8 @@ const AboutPage = (props: Props) => {
                 <CardTitle variant="h4">Grow your money</CardTitle>
                 <Typography variant="body1">
                   We reinvest your money every day. Averaging around 1% profit
-                  per day. You can withdraw anytime. And we promise that you
-                  will never, ever lose money.
+                  per day. You can withdraw anytime and you will never, ever
+                  lose money. AutoArbs is absolutely risk-free.
                 </Typography>
               </CardContent>
               <CardActions>
@@ -130,8 +130,9 @@ const AboutPage = (props: Props) => {
                 <CardTitle variant="h4">Reap your profits</CardTitle>
                 <Typography variant="body1">
                   We guarantee at least 10% profit on your investment after 10
-                  days. This guarantee refreshes every 10 days, meaning that you
-                  will make even more profit after every round.
+                  days. And that's a promise. This guarantee refreshes every 10
+                  days, meaning that you will make even more profit after every
+                  round.
                 </Typography>
               </CardContent>
               <CardActions>

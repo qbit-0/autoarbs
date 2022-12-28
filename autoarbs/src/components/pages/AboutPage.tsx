@@ -67,15 +67,16 @@ const AboutPage = (props: Props) => {
           </Grid>
           <Grid xs={12}>
             <Typography variant="body1">
-              Put money in. Get money out. It's that simple. The dream of every
-              investor, making money without having to worry about losing it.
-              AutoArbs is turning this dream into reality. Only a few things are
-              stopping you right now, but these can be solved easily. Sign up
-              and make an account, log in with your personal account and start
-              investing!
+              Put money in. Get money out. It's that simple. We're a
+              sports-betting app that guarantees profits. That's right, no luck
+              is involved. No risk of losing your money if the other team wins.
+              How? We utilize a system that automates arbitrage betting. Usually
+              only avialble to programmers and experienced bettors, we intend to
+              make arbitrage betting to everyone.
               <br />
               <br />
-              Make 10% Every 10 Days. Guaranteed.
+              We guarantee that you will make 10% of your investment every 10
+              Days. And that's a promise.
             </Typography>
           </Grid>
           <Grid xs={12} md={4} display="flex">
@@ -129,7 +130,8 @@ const AboutPage = (props: Props) => {
                 <CardTitle variant="h4">Reap your profits</CardTitle>
                 <Typography variant="body1">
                   We guarantee at least 10% profit on your investment after 10
-                  days.
+                  days. This guarantee refreshes every 10 days, meaning that you
+                  will make even more profit after every round.
                 </Typography>
               </CardContent>
               <CardActions>
@@ -149,17 +151,29 @@ const AboutPage = (props: Props) => {
                   <Stack spacing={2}>
                     <CardTitle>Luck? We don't need luck.</CardTitle>
                     <Typography variant="body1">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Doloremque repellendus amet dignissimos neque blanditiis
-                      hic provident debitis eius beatae. Eum praesentium rerum
-                      atque nesciunt perferendis hic aliquid, incidunt dolorem
-                      at.
+                      Here's how sports betting normally works. You put money on
+                      your favorite team. If they win, you get a paycheck. But
+                      if they lose, you lose your investment. It's fun, we
+                      admit. But it's a lottery. AutoArbs is the opposite of
+                      this.
                       <br />
                       <br />
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Quo nihil similique pariatur, doloremque temporibus quam
-                      minus impedit, error repellat, a modi assumenda? Eligendi
-                      aliquid tempora beatae magni fugiat, nulla quae!
+                      Using our proprietary state-of-the-art arbitrage betting
+                      software, we quicky and efficently identify favorable
+                      discrepancies in betting odds between bookies. Then, we
+                      make a bet on both teams. When the dust settles and one
+                      team emerges victorious, we make a profit no matter who
+                      wins. That's the secret of arbitrage. It's perfectly
+                      legal. And even encouraged by some bookies.
+                      <br />
+                      <br />
+                      Sounds good? What's the catch? If this is so simple, why
+                      aren't more people participating in arbitrage betting?
+                      That's because we've made it sound a lot easier than it
+                      is. To find arbitrages requires both genius-tier
+                      programmers and experienced bettors who can make the most
+                      out of every bet. We can handle that part for you. All
+                      that's left is for you to start investing.
                     </Typography>
                   </Stack>
                 </Stack>

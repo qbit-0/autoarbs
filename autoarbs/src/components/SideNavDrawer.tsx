@@ -8,14 +8,16 @@ import {
   ListItemText,
   useTheme,
 } from "@mui/material";
-import { ComponentProps, FC } from "react";
+import { ComponentProps, Dispatch, FC, SetStateAction } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PAGES } from "../App";
 import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
 
-type Props = ComponentProps<typeof Drawer>;
+type Props = { setIsOpen: Dispatch<SetStateAction<boolean>> } & ComponentProps<
+  typeof Drawer
+>;
 
-const SideNavDrawer: FC<Props> = (props) => {
+const SideNavDrawer: FC<Props> = ({ setIsOpen, ...props }) => {
   const theme = useTheme();
   const userData = useAutoUpdateUserData();
   const location = useLocation();
@@ -37,6 +39,7 @@ const SideNavDrawer: FC<Props> = (props) => {
               <ListItemButton
                 selected={page.path === location.pathname}
                 onClick={() => {
+                  setIsOpen(false);
                   navigate(page.path);
                 }}
               >

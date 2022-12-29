@@ -38,6 +38,10 @@ const Header = (props: Props) => {
     setIsDrawerOpen(true);
   };
 
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
+  };
+
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
@@ -116,6 +120,7 @@ const Header = (props: Props) => {
         component={SideNavDrawer}
         open={isDrawerOpen}
         onClose={handleDrawerClose}
+        setIsOpen={setIsDrawerOpen}
       />
     </header>
   );

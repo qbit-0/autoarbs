@@ -65,7 +65,7 @@ const AboutPage = (props: Props) => {
             </Container>
           </Grid>
           <Grid xs={12}>
-            <Typography variant="body1">
+            <Typography variant="h6" textAlign="center">
               Put money in. Get money out. It's that simple. We're a
               sports-betting app that guarantees profits. That's right, no luck
               is involved. No risk of losing your money if the other team wins.

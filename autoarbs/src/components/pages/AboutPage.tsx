@@ -93,9 +93,6 @@ const AboutPage = (props: Props) => {
                   invest, you're in.
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button>Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid xs={12} md={4} display="flex">
@@ -113,9 +110,6 @@ const AboutPage = (props: Props) => {
                   lose money. AutoArbs is absolutely risk-free.
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button>Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid xs={12} md={4} display="flex">
@@ -135,9 +129,6 @@ const AboutPage = (props: Props) => {
                   round.
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button>Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid xs={12}>

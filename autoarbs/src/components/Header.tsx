@@ -38,10 +38,6 @@ const Header = (props: Props) => {
     setIsDrawerOpen(true);
   };
 
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-  };
-
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };

@@ -1,11 +1,13 @@
 import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import axios from "axios";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
 import { createVerification } from "../../api/account";
 import { useAppDispatch } from "../../app/hooks";
+import { accountActions } from "../../features/account/accountSlice";
 import { snackbarActions } from "../../features/snackbar/snackbarSlice";
 import CardForm from "../CardForm";
 import CardTitle from "../CardTitle";
@@ -22,7 +24,6 @@ type Props = {};
 
 const OtpCard = (props: Props) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
   const email = location.state.email;
   const referenceId = location.state.referenceId;
@@ -35,43 +36,38 @@ const OtpCard = (props: Props) => {
     { setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const res = await createVerification({
+      const response = await createVerification({
         token: "",
         email,
         referenceId,
         action,
         code,
       });
-      const data = res.data;
-
-      switch (data.statusCode) {
-        case "20":
-          dispatch(
-            snackbarActions.toast({
-              message: "Email successfully verified",
-              severity: "success",
-            })
-          );
-          navigate("/login");
-          break;
-        default:
-          dispatch(
-            snackbarActions.toast({
-              message: data.statusMessage,
-              severity: "error",
-            })
-          );
-          break;
-      }
-    } catch (error) {
       dispatch(
         snackbarActions.toast({
-          message: "Failed to verify code.",
-          severity: "error",
+          message: response.data.statusMessage,
+          severity: "success",
         })
       );
+      dispatch(
+        accountActions.login({
+          userData: response.data.userData,
+          token: response.data.token,
+        })
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.data) {
+        switch (error.response.data.statusCode) {
+          default:
+            dispatch(
+              snackbarActions.toast({
+                message: error.response.data.statusMessage,
+                severity: "error",
+              })
+            );
+        }
+      }
     }
-
     setSubmitting(false);
   };
 

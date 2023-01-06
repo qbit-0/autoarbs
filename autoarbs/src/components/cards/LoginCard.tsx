@@ -1,7 +1,7 @@
 import { Card, CardMedia } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
@@ -110,20 +110,19 @@ const LoginCard = (props: Props) => {
           />
           <CardContent>
             <CardTitle>Log into an existing account</CardTitle>
-            <Grid container spacing={4}>
-              <Grid xs={12}></Grid>
-              <Grid xs={12}>
+            <Grid2 container spacing={4}>
+              <Grid2 xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   type="password"
                   id="password"
                   name="password"
                   label="Password"
                 />
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>

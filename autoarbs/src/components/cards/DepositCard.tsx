@@ -1,7 +1,7 @@
 import { Card, MenuItem } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
@@ -111,16 +111,16 @@ const DepositCard = (props: Props) => {
         <CardForm>
           <CardContent>
             <CardTitle>Deposit</CardTitle>
-            <Grid container spacing={4}>
-              <Grid xs={12}>
+            <Grid2 container spacing={4}>
+              <Grid2 xs={12}>
                 <FormikTextField
                   type="number"
                   id="amount"
                   name="amount"
                   label="Amount"
                 />
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   id="method"
                   name="method"
@@ -131,8 +131,8 @@ const DepositCard = (props: Props) => {
                   <MenuItem value="method1">Method 1</MenuItem>
                   <MenuItem value="method2">Method 2</MenuItem>
                 </FormikTextField>
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>

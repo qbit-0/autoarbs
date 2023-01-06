@@ -9,7 +9,7 @@ import {
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 
 type Props = {};
@@ -31,18 +31,18 @@ const BalanceCard = (props: Props) => {
   return (
     <Card>
       <CardContent>
-        <Grid container>
-          <Grid sm={12}>
+        <Grid2 container>
+          <Grid2 sm={12}>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMore />}>
-                <Grid sm={12} container>
-                  <Grid sm={6}>
+                <Grid2 sm={12} container>
+                  <Grid2 sm={6}>
                     <Typography variant="h3">Balance</Typography>
-                  </Grid>
-                  <Grid sm={6}>
+                  </Grid2>
+                  <Grid2 sm={6}>
                     <Typography variant="h3">${balance}</Typography>
-                  </Grid>
-                </Grid>
+                  </Grid2>
+                </Grid2>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography variant="h6">
@@ -54,8 +54,8 @@ const BalanceCard = (props: Props) => {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-          </Grid>
-          <Grid sm={12}>
+          </Grid2>
+          <Grid2 sm={12}>
             <Typography variant="h4">
               The next cycle will occur at 10:30 am, 3 hours from now.
             </Typography>
@@ -63,8 +63,8 @@ const BalanceCard = (props: Props) => {
               You're in the middle of a cycle. Money in your invested account
               will be transfered back into your balance at the end of the cycle.
             </Typography> */}
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </CardContent>
       <CardActions>
         <Button>View Stats</Button>

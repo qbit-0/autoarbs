@@ -10,7 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import ButtonLink from "../ButtonLink";
 import CardTitle from "../CardTitle";
@@ -30,8 +30,8 @@ const AboutPage = (props: Props) => {
         bgcolor={theme.palette.primary.main}
       />
       <Box component={Container} position="relative" mt={20} pb={8} zIndex={10}>
-        <Grid container rowSpacing={[8, 16]} columnSpacing={2}>
-          <Grid xs={12}>
+        <Grid2 container rowSpacing={[8, 16]} columnSpacing={2}>
+          <Grid2 xs={12}>
             <Typography
               variant="h1"
               color="white"
@@ -42,8 +42,8 @@ const AboutPage = (props: Props) => {
             >
               AutoArbs
             </Typography>
-          </Grid>
-          <Grid xs={12}>
+          </Grid2>
+          <Grid2 xs={12}>
             <Container maxWidth="md">
               <Card elevation={12}>
                 <CardContent>
@@ -63,8 +63,8 @@ const AboutPage = (props: Props) => {
                 />
               </Card>
             </Container>
-          </Grid>
-          <Grid xs={12}>
+          </Grid2>
+          <Grid2 xs={12}>
             <Typography variant="h6" textAlign="center">
               Put money in. Get money out. It's that simple. We're a
               sports-betting app that guarantees profits. That's right, no luck
@@ -74,8 +74,8 @@ const AboutPage = (props: Props) => {
               and experienced bettors, we intend to bring arbitrage betting to
               everyone.
             </Typography>
-          </Grid>
-          <Grid xs={12} md={4} display="flex">
+          </Grid2>
+          <Grid2 xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="images/Piggy bank.png"
@@ -93,8 +93,8 @@ const AboutPage = (props: Props) => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-          <Grid xs={12} md={4} display="flex">
+          </Grid2>
+          <Grid2 xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="images/money tree triple.png"
@@ -110,8 +110,8 @@ const AboutPage = (props: Props) => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-          <Grid xs={12} md={4} display="flex">
+          </Grid2>
+          <Grid2 xs={12} md={4} display="flex">
             <Card variant="outlined">
               <CardMedia
                 image="images/Profit .png"
@@ -129,8 +129,8 @@ const AboutPage = (props: Props) => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-          <Grid xs={12}>
+          </Grid2>
+          <Grid2 xs={12}>
             <Card variant="outlined">
               <CardMedia
                 image="https://c8.alamy.com/comp/TAP9B3/seamless-pattern-of-playing-cards-falling-in-various-positions-diamonds-spades-hearts-aces-flat-vector-illustration-TAP9B3.jpg"
@@ -170,9 +170,9 @@ const AboutPage = (props: Props) => {
                 </Stack>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
           {userData ? (
-            <Grid xs={12}>
+            <Grid2 xs={12}>
               <Card>
                 <CardMedia
                   image="images/Login_signup Waves.jpg"
@@ -192,10 +192,10 @@ const AboutPage = (props: Props) => {
                   </ButtonLink>
                 </CardActions>
               </Card>
-            </Grid>
+            </Grid2>
           ) : (
             <>
-              <Grid xs={6}>
+              <Grid2 xs={6}>
                 <Card>
                   <CardMedia
                     image="images/Login_signup Stripes.jpg"
@@ -215,8 +215,8 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
-              </Grid>
-              <Grid xs={6}>
+              </Grid2>
+              <Grid2 xs={6}>
                 <Card>
                   <CardMedia
                     image="images/Login_signup Waves.jpg"
@@ -236,10 +236,10 @@ const AboutPage = (props: Props) => {
                     </ButtonLink>
                   </CardActions>
                 </Card>
-              </Grid>
+              </Grid2>
             </>
           )}
-        </Grid>
+        </Grid2>
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
@@ -85,15 +85,15 @@ const OtpCard = (props: Props) => {
           />
           <CardContent>
             <CardTitle>We've sent a verification code to {email}.</CardTitle>
-            <Grid container spacing={4}>
-              <Grid xs={12}>
+            <Grid2 container spacing={4}>
+              <Grid2 xs={12}>
                 <FormikTextField
                   id="code"
                   name="code"
                   label="Verification Code"
                 />
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Confirm</FormikSubmitButton>

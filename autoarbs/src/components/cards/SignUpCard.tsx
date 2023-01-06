@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -190,42 +190,42 @@ const SignUpCard = (props: Props) => {
           />
           <CardContent>
             <CardTitle>Create an account</CardTitle>
-            <Grid container rowSpacing={4} columnSpacing={2}>
-              <Grid></Grid>
-              <Grid xs={12}>
+            <Grid2 container rowSpacing={4} columnSpacing={2}>
+              <Grid2></Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField id="email" name="email" label="Email" />
-              </Grid>
-              <Grid xs={6}>
+              </Grid2>
+              <Grid2 xs={6}>
                 <FormikTextField
                   id="firstName"
                   name="firstName"
                   label="First Name"
                 />
-              </Grid>
-              <Grid xs={6}>
+              </Grid2>
+              <Grid2 xs={6}>
                 <FormikTextField
                   id="lastName"
                   name="lastName"
                   label="Last Name"
                 />
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   type="password"
                   id="password"
                   name="password"
                   label="Password"
                 />
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
                   label="Confirm Password"
                 />
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>

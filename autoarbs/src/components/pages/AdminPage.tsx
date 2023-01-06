@@ -1,4 +1,5 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
 import AdminUsersCard from "../cards/AdminUsersCard";
 import AdminUserTransactionCard from "../cards/AdminUserTransactionCard";
@@ -16,14 +17,14 @@ const AdminPage = (props: Props) => {
         <Typography variant="h1" gutterBottom>
           Admin Panel
         </Typography>
-        <Grid container spacing={4}>
-          <Grid xs={12}>
+        <Grid2 container spacing={4}>
+          <Grid2 xs={12}>
             <AdminUsersCard />
-          </Grid>
-          <Grid xs={12}>
+          </Grid2>
+          <Grid2 xs={12}>
             <AdminUserTransactionCard />
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </Container>
     </Box>
   );

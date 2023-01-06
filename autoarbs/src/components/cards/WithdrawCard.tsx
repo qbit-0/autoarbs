@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, MenuItem } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
@@ -122,16 +122,16 @@ const WithdrawCard = (props: Props) => {
         <CardForm>
           <CardContent>
             <CardTitle>Withdraw</CardTitle>
-            <Grid container spacing={4}>
-              <Grid xs={12}>
+            <Grid2 container spacing={4}>
+              <Grid2 xs={12}>
                 <FormikTextField
                   type="number"
                   id="amount"
                   name="amount"
                   label="Amount"
                 />
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   id="method"
                   name="method"
@@ -142,16 +142,16 @@ const WithdrawCard = (props: Props) => {
                   <MenuItem value="method1">Method 1</MenuItem>
                   <MenuItem value="method2">Method 2</MenuItem>
                 </FormikTextField>
-              </Grid>
-              <Grid xs={12}>
+              </Grid2>
+              <Grid2 xs={12}>
                 <FormikTextField
                   id="accountWithdrawnTo"
                   name="accountWithdrawnTo"
                   label="Acount Withdrawn To"
                   select
                 />
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </CardContent>
           <CardActions>
             <FormikSubmitButton>Next</FormikSubmitButton>

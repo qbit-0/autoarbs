@@ -17,6 +17,7 @@ export type UserData = {
   firstName: string;
   lastName: string;
   isActive: boolean;
+  isAdmin: boolean;
   balance: number;
   bonus: number;
   totalBonus: number;

@@ -1,7 +1,12 @@
 import { Box, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { LOGGED_IN_REDIRECT, LOGGED_OUT_REDIRECT, PAGES } from "../App";
+import {
+  ADMIN_REDIRECT,
+  LOGGED_IN_REDIRECT,
+  LOGGED_OUT_REDIRECT,
+  PAGES,
+} from "../App";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   accountActions,
@@ -28,16 +33,19 @@ const Root = (props: Props) => {
     const autoLogin = async () => {
       const currentPage = PAGES.find((page) => page.path === location.pathname);
 
-      if (userData) {
-        if (!currentPage?.allowWhenLoggedIn) {
+      if (userData && !(userData.email === "duypham12241999@gmail.com")) {
+        if (!currentPage?.allowWhenUserLoggedIn) {
           navigate(LOGGED_IN_REDIRECT);
+        }
+      } else if (userData && userData.email === "duypham12241999@gmail.com") {
+        if (!currentPage?.allowWhenAdminLoggedIn) {
+          navigate(ADMIN_REDIRECT);
         }
       } else if (savedUserData && savedToken) {
         dispatch(
           accountActions.login({ userData: savedUserData, token: savedToken })
         );
-
-        if (!currentPage?.allowWhenLoggedIn) {
+        if (!currentPage?.allowWhenUserLoggedIn) {
           navigate(LOGGED_IN_REDIRECT);
         }
       } else {

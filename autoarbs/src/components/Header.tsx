@@ -28,7 +28,10 @@ const Header = (props: Props) => {
   const shownPages = PAGES.filter(
     (page) =>
       page.showInNavBar &&
-      ((userData && page.allowWhenLoggedIn) ||
+      ((userData && page.allowWhenUserLoggedIn) ||
+        (userData &&
+          userData.email === "duypham12241999@gmail.com" &&
+          page.allowWhenAdminLoggedIn) ||
         (!userData && page.allowWhenLoggedOut))
   );
 
@@ -116,7 +119,7 @@ const Header = (props: Props) => {
         component={SideNavDrawer}
         open={isDrawerOpen}
         onClose={handleDrawerClose}
-        setIsOpen={setIsDrawerOpen}
+        shownPages={shownPages}
       />
     </header>
   );

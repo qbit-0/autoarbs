@@ -4,6 +4,7 @@ import "@fontsource/roboto-slab";
 import {
   AccountBalanceWallet,
   AccountCircle,
+  AdminPanelSettings,
   History,
   Login,
   Logout,
@@ -13,6 +14,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
+import AdminPage from "./components/pages/AdminPage";
 import HistoryPage from "./components/pages/HistoryPage";
 import LoginPage from "./components/pages/LoginPage";
 import LogoutPage from "./components/pages/LogoutPage";
@@ -28,7 +30,8 @@ export type Page = {
   icon: JSX.Element;
   element: JSX.Element;
   showInNavBar: boolean;
-  allowWhenLoggedIn: boolean;
+  allowWhenUserLoggedIn: boolean;
+  allowWhenAdminLoggedIn: boolean;
   allowWhenLoggedOut: boolean;
 };
 
@@ -39,8 +42,19 @@ export const PAGES: Page[] = [
     icon: <InfoIcon />,
     element: <AboutPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: true,
+    allowWhenUserLoggedIn: true,
+    allowWhenAdminLoggedIn: true,
     allowWhenLoggedOut: true,
+  },
+  {
+    name: "Admin",
+    path: "/admin",
+    icon: <AdminPanelSettings />,
+    element: <AdminPage />,
+    showInNavBar: true,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: true,
+    allowWhenLoggedOut: false,
   },
   {
     name: "Wallet",
@@ -48,7 +62,8 @@ export const PAGES: Page[] = [
     icon: <AccountBalanceWallet />,
     element: <WalletPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: true,
+    allowWhenUserLoggedIn: true,
+    allowWhenAdminLoggedIn: true,
     allowWhenLoggedOut: false,
   },
   {
@@ -57,7 +72,8 @@ export const PAGES: Page[] = [
     icon: <History />,
     element: <HistoryPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: true,
+    allowWhenUserLoggedIn: true,
+    allowWhenAdminLoggedIn: true,
     allowWhenLoggedOut: false,
   },
   {
@@ -66,7 +82,8 @@ export const PAGES: Page[] = [
     icon: <AccountCircle />,
     element: <ProfilePage />,
     showInNavBar: true,
-    allowWhenLoggedIn: true,
+    allowWhenUserLoggedIn: true,
+    allowWhenAdminLoggedIn: true,
     allowWhenLoggedOut: false,
   },
   {
@@ -75,7 +92,8 @@ export const PAGES: Page[] = [
     icon: <Logout />,
     element: <LogoutPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: true,
+    allowWhenUserLoggedIn: true,
+    allowWhenAdminLoggedIn: true,
     allowWhenLoggedOut: false,
   },
   {
@@ -84,7 +102,8 @@ export const PAGES: Page[] = [
     icon: <Login />,
     element: <LoginPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: false,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: false,
     allowWhenLoggedOut: true,
   },
   {
@@ -93,7 +112,8 @@ export const PAGES: Page[] = [
     icon: <PersonAdd />,
     element: <SignUpPage />,
     showInNavBar: true,
-    allowWhenLoggedIn: false,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: false,
     allowWhenLoggedOut: true,
   },
   {
@@ -102,13 +122,15 @@ export const PAGES: Page[] = [
     icon: <Password />,
     element: <VerificationPage />,
     showInNavBar: false,
-    allowWhenLoggedIn: false,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: false,
     allowWhenLoggedOut: true,
   },
 ];
 
 export const LOGGED_OUT_REDIRECT = "/";
 export const LOGGED_IN_REDIRECT = "/wallet";
+export const ADMIN_REDIRECT = "/admin";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +145,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/signup", element: <SignUpPage /> },
       { path: "/verification", element: <VerificationPage /> },
+      { path: "/admin", element: <AdminPage /> },
     ],
   },
 ]);

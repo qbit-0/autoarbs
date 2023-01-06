@@ -8,27 +8,16 @@ import {
   ListItemText,
   useTheme,
 } from "@mui/material";
-import { ComponentProps, Dispatch, FC, SetStateAction } from "react";
+import { ComponentProps, FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PAGES } from "../App";
-import useAutoUpdateUserData from "../hooks/useAutoUpdateUserData";
+import { Page } from "../App";
 
-type Props = { setIsOpen: Dispatch<SetStateAction<boolean>> } & ComponentProps<
-  typeof Drawer
->;
+type Props = { shownPages: Page[] } & ComponentProps<typeof Drawer>;
 
-const SideNavDrawer: FC<Props> = ({ setIsOpen, ...props }) => {
+const SideNavDrawer: FC<Props> = ({ shownPages, ...props }) => {
   const theme = useTheme();
-  const userData = useAutoUpdateUserData();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const shownPages = PAGES.filter(
-    (page) =>
-      page.showInNavBar &&
-      ((userData && page.allowWhenLoggedIn) ||
-        (!userData && page.allowWhenLoggedOut))
-  );
 
   return (
     <Drawer {...props}>
@@ -39,8 +28,8 @@ const SideNavDrawer: FC<Props> = ({ setIsOpen, ...props }) => {
               <ListItemButton
                 selected={page.path === location.pathname}
                 onClick={() => {
-                  setIsOpen(false);
                   navigate(page.path);
+                  if (props.onClose) props.onClose({}, "backdropClick");
                 }}
               >
                 <ListItemIcon sx={{ color: theme.palette.primary.main }}>

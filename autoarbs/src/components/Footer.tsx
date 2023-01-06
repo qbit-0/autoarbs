@@ -7,7 +7,7 @@ const Footer = (props: Props) => {
 
   return (
     <Box component="footer" bgcolor={theme.palette.primary.main}>
-      <Box py={2}>
+      <Box py={8}>
         <Container>
           <Typography variant="h5" color="white">
             AutoArbs

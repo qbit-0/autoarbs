@@ -1,6 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import { useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
+import AdminUserProfileCard from "../cards/AdminUserProfileCard";
 import AdminUsersCard from "../cards/AdminUsersCard";
 import AdminUserTransactionCard from "../cards/AdminUserTransactionCard";
 
@@ -8,6 +10,7 @@ type Props = {};
 
 const AdminPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
+  const [email, setEmail] = useState("");
 
   if (!userData) return null;
 
@@ -22,7 +25,10 @@ const AdminPage = (props: Props) => {
             <AdminUsersCard />
           </Grid2>
           <Grid2 xs={12}>
-            <AdminUserTransactionCard />
+            <AdminUserTransactionCard email={email} />
+          </Grid2>
+          <Grid2 xs={12}>
+            <AdminUserProfileCard email={email} />
           </Grid2>
         </Grid2>
       </Container>

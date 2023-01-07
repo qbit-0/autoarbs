@@ -1,6 +1,5 @@
 import { Box, Card, CardContent } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { DataGrid } from "@mui/x-data-grid";
 import { FC, useMemo } from "react";
 import CardTitle from "../CardTitle";
 
@@ -12,11 +11,9 @@ const AdminUserTransactionCard: FC<Props> = ({ email }) => {
   return (
     <Box component={Card}>
       <CardContent>
-        <CardTitle>Transactions</CardTitle>
+        <CardTitle>Profile</CardTitle>
         <Grid2 container spacing={4}>
-          <Grid2 xs={12}>
-            <DataGrid columns={[]} rows={[]} />
-          </Grid2>
+          <Grid2 xs={12}></Grid2>
         </Grid2>
       </CardContent>
     </Box>

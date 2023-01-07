@@ -11,7 +11,7 @@ const AdminUserTransactionCard: FC<Props> = ({ email }) => {
   return (
     <Box component={Card}>
       <CardContent>
-        <CardTitle>Profile</CardTitle>
+        <CardTitle>User Profile</CardTitle>
         <Grid2 container spacing={4}>
           <Grid2 xs={12}></Grid2>
         </Grid2>

@@ -12,7 +12,7 @@ const AdminUserTransactionCard: FC<Props> = ({ email }) => {
   return (
     <Card>
       <CardContent>
-        <CardTitle>Transactions</CardTitle>
+        <CardTitle>User Transactions</CardTitle>
         <Grid2 container spacing={4}>
           <Grid2 xs={12}>
             <DataGrid columns={[]} rows={[]} />

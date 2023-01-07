@@ -10,7 +10,7 @@ type Props = {};
 
 const AdminPage = (props: Props) => {
   const userData = useAutoUpdateUserData();
-  const [email, setEmail] = useState("");
+  const [email] = useState("");
 
   if (!userData) return null;
 

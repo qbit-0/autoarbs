@@ -1,12 +1,12 @@
 import { Box, Card, CardContent } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import CardTitle from "../CardTitle";
 
 type Props = { email: string };
 
 const AdminUserTransactionCard: FC<Props> = ({ email }) => {
-  const userData = useMemo(() => {}, [email]);
+  // const userData = useMemo(() => {}, [email]);
 
   return (
     <Box component={Card}>

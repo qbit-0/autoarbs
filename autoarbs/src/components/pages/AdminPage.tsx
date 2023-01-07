@@ -2,6 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import useAutoUpdateUserData from "../../hooks/useAutoUpdateUserData";
+import AdminRecentTransactionsCard from "../cards/AdminRecentTransactionsCard";
 import AdminUserProfileCard from "../cards/AdminUserProfileCard";
 import AdminUsersCard from "../cards/AdminUsersCard";
 import AdminUserTransactionCard from "../cards/AdminUserTransactionCard";
@@ -22,13 +23,16 @@ const AdminPage = (props: Props) => {
         </Typography>
         <Grid2 container spacing={4}>
           <Grid2 xs={12}>
+            <AdminRecentTransactionsCard />
+          </Grid2>
+          <Grid2 xs={12}>
             <AdminUsersCard />
           </Grid2>
           <Grid2 xs={12}>
-            <AdminUserTransactionCard email={email} />
+            <AdminUserProfileCard email={email} />
           </Grid2>
           <Grid2 xs={12}>
-            <AdminUserProfileCard email={email} />
+            <AdminUserTransactionCard email={email} />
           </Grid2>
         </Grid2>
       </Container>

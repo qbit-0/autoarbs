@@ -29,9 +29,7 @@ const Header = (props: Props) => {
     (page) =>
       page.showInNavBar &&
       ((userData && page.allowWhenUserLoggedIn) ||
-        (userData &&
-          userData.email === "duypham12241999@gmail.com" &&
-          page.allowWhenAdminLoggedIn) ||
+        (userData && userData.isAdmin && page.allowWhenAdminLoggedIn) ||
         (!userData && page.allowWhenLoggedOut))
   );
 

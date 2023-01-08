@@ -33,11 +33,11 @@ const Root = (props: Props) => {
     const autoLogin = async () => {
       const currentPage = PAGES.find((page) => page.path === location.pathname);
 
-      if (userData && !(userData.email === "duypham12241999@gmail.com")) {
+      if (userData && !userData.isAdmin) {
         if (!currentPage?.allowWhenUserLoggedIn) {
           navigate(LOGGED_IN_REDIRECT);
         }
-      } else if (userData && userData.email === "duypham12241999@gmail.com") {
+      } else if (userData && userData.isAdmin) {
         if (!currentPage?.allowWhenAdminLoggedIn) {
           navigate(ADMIN_REDIRECT);
         }

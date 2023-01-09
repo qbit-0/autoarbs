@@ -1,40 +1,38 @@
 import axios from "axios";
 
-const baseUrl = "https://autoarbs.herokuapp.com/api";
+const baseURL = "https://autoarbs.herokuapp.com/api";
+
+const AxiosClient = axios.create({ baseURL });
 
 // User
-const readUserEndpoint = "/user";
+const userEndpoint = "/user";
 export const readUserByEmail = async (body: { email: string }) => {
-  const url = new URL(`${baseUrl}${readUserEndpoint}`);
-  return await axios.post(url.href, { ...body, token: "" });
+  return await AxiosClient.post(userEndpoint, { ...body, token: "" });
 };
 export const readUserByToken = async (body: {
   email: string;
   token: string;
 }) => {
-  const url = new URL(`${baseUrl}${readUserEndpoint}`);
-  return await axios.post(url.href, body);
+  return await AxiosClient.post(userEndpoint, body);
 };
 
 // Auth
-const createRegisterEndpoint = "/auth/register";
+const registerEndpoint = "/auth/register";
 export const createUser = async (body: {
   email: string;
   firstName: string;
   lastName: string;
   password: string;
 }) => {
-  const url = new URL(`${baseUrl}${createRegisterEndpoint}`);
-  return await axios.post(url.href, body);
+  return await AxiosClient.post(registerEndpoint, body);
 };
 
-const createLoginEndpoint = "/auth/login";
+const loginEndpoint = "/auth/login";
 export const createLogin = async (body: {
   email: string;
   password: string;
 }) => {
-  const url = new URL(`${baseUrl}${createLoginEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(loginEndpoint, body);
 };
 
 // Deposit
@@ -45,14 +43,13 @@ export const createDeposit = async (body: {
   amount: number;
   method: string;
 }) => {
-  const url = new URL(`${baseUrl}${createDepositEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(createDepositEndpoint, body);
 };
 
-const readDepositEndpoint = "/deposit/get";
+const getDepositEndpoint = "/deposit/get";
 export const readDeposit = async (body: { token: string; email: string }) => {
-  const url = new URL(`${baseUrl}${readDepositEndpoint}`);
-  return axios.post(url.href, body);
+  const url = new URL(`${baseURL}${getDepositEndpoint}`);
+  return AxiosClient.post(url.href, body);
 };
 
 const createDepositBonusEndpoint = "/deposit/bonus";
@@ -61,8 +58,7 @@ export const createDepositBonus = async (body: {
   userList: string[];
   amount: number;
 }) => {
-  const url = new URL(`${baseUrl}${createDepositBonusEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(createDepositBonusEndpoint, body);
 };
 
 // Withdrawal
@@ -74,8 +70,7 @@ export const createWithdrawal = async (body: {
   method: string;
   accountWithdrawnTo: string;
 }) => {
-  const url = new URL(`${baseUrl}${createWithdrawalEndpoint}`);
-  return axios.post(url.href, {
+  return AxiosClient.post(createWithdrawalEndpoint, {
     token: body.token,
     email: body.email,
     amount: body.amount,
@@ -84,13 +79,12 @@ export const createWithdrawal = async (body: {
   });
 };
 
-const readWithdrawalEndpoint = "/withdraw/get";
+const getWithdrawalEndpoint = "/withdraw/get";
 export const readWithdrawal = async (body: {
   token: string;
   email: string;
 }) => {
-  const url = new URL(`${baseUrl}${readWithdrawalEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(getWithdrawalEndpoint, body);
 };
 
 // Verify
@@ -101,8 +95,7 @@ export const createSendOtp = async (body: {
   transactionId: string;
   action: string;
 }) => {
-  const url = new URL(`${baseUrl}${sendOtpEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(sendOtpEndpoint, body);
 };
 
 const validateEndpoint = "/verify/validate";
@@ -113,27 +106,79 @@ export const createVerification = async (body: {
   action: string;
   code: string;
 }) => {
-  const url = new URL(`${baseUrl}${validateEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(validateEndpoint, body);
 };
 
 // Admin
-const updateDepositEndpoint = "/admin/updatedeposit";
+const adminUpdateDepositEndpoint = "/admin/updatedeposit";
 export const createAdminUpdateDeposit = async (body: {
   token: string;
   transactionId: string;
   status: string;
 }) => {
-  const url = new URL(`${baseUrl}${updateDepositEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(adminUpdateDepositEndpoint, body);
 };
 
-const updateWithdrawalEndpoint = "/admin/updatewithdrawal";
+const adminUpdateWithdrawalEndpoint = "/admin/updatewithdrawal";
 export const createAdminUpdateWithdrawal = async (body: {
   token: string;
   transactionId: string;
   status: string;
 }) => {
-  const url = new URL(`${baseUrl}${updateWithdrawalEndpoint}`);
-  return axios.post(url.href, body);
+  return AxiosClient.post(adminUpdateWithdrawalEndpoint, body);
+};
+
+const adminGetAdminEndpoint = "/admin/getadmin";
+export const adminReadAdmin = async (request: string) => {
+  const url = new URL(adminGetAdminEndpoint);
+  url.searchParams.append("request", request);
+  return AxiosClient.get(url.href);
+};
+
+const adminGetUsersEndpoint = "/admin/getusers";
+export const adminReadUsers = async (token: string) => {
+  const url = new URL(adminGetUsersEndpoint);
+  url.searchParams.append("token", token);
+  return AxiosClient.get(url.href);
+};
+
+const adminGetDepositsEndpoint = "/admin/getdeposits";
+export const adminReadDeposits = async (token: string) => {
+  const url = new URL(adminGetDepositsEndpoint);
+  url.searchParams.append("token", token);
+  return AxiosClient.get(url.href);
+};
+
+const adminGetWithdrawalsEndpoint = "/admin/getwithdraws";
+export const adminReadWithdraws = async (token: string) => {
+  const url = new URL(adminGetWithdrawalsEndpoint);
+  url.searchParams.append("token", token);
+  return AxiosClient.get(url.href);
+};
+
+const adminGetTransactionsEndpoint = "/admin/getalltransactions";
+export const adminReadTransactions = async (token: string) => {
+  const url = new URL(adminGetTransactionsEndpoint);
+  url.searchParams.append("token", token);
+  return AxiosClient.get(url.href);
+};
+
+const adminRegisterEndpoint = "/admin/auth/register";
+export const adminCreateAdmin = async (body: {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}) => {
+  const url = new URL(adminRegisterEndpoint);
+  return AxiosClient.post(url.href, body);
+};
+
+const adminLoginEndpoint = "/admin/auth/login";
+export const adminCreateLogin = async (body: {
+  email: string;
+  password: string;
+}) => {
+  const url = new URL(adminLoginEndpoint);
+  return AxiosClient.post(url.href, body);
 };

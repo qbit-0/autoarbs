@@ -14,7 +14,9 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./components/pages/AboutPage";
+import AdminLoginPage from "./components/pages/AdminLoginPage";
 import AdminPage from "./components/pages/AdminPage";
+import AdminSignUpPage from "./components/pages/AdminSignUpPage";
 import HistoryPage from "./components/pages/HistoryPage";
 import LoginPage from "./components/pages/LoginPage";
 import LogoutPage from "./components/pages/LogoutPage";
@@ -107,11 +109,31 @@ export const PAGES: Page[] = [
     allowWhenLoggedOut: true,
   },
   {
+    name: "Admin login",
+    path: "/admin_login",
+    icon: <Login />,
+    element: <AdminLoginPage />,
+    showInNavBar: false,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: false,
+    allowWhenLoggedOut: true,
+  },
+  {
     name: "Sign up",
     path: "/signup",
     icon: <PersonAdd />,
     element: <SignUpPage />,
     showInNavBar: true,
+    allowWhenUserLoggedIn: false,
+    allowWhenAdminLoggedIn: false,
+    allowWhenLoggedOut: true,
+  },
+  {
+    name: "Admin sign up",
+    path: "/admin_signup",
+    icon: <PersonAdd />,
+    element: <AdminSignUpPage />,
+    showInNavBar: false,
     allowWhenUserLoggedIn: false,
     allowWhenAdminLoggedIn: false,
     allowWhenLoggedOut: true,
@@ -146,6 +168,8 @@ const router = createBrowserRouter([
       { path: "/signup", element: <SignUpPage /> },
       { path: "/verification", element: <VerificationPage /> },
       { path: "/admin", element: <AdminPage /> },
+      { path: "/admin_login", element: <AdminLoginPage /> },
+      { path: "/admin_signup", element: <AdminSignUpPage /> },
     ],
   },
 ]);
